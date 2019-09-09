@@ -57,7 +57,12 @@ input, select {
   text-align: left;
 }
 
-@media ( min-width: 982px ) {
+.campo:nth-child(9) div.col-3.col-lg-5.valor-campo, .campo:nth-child(10) div.col-3.col-lg-5.valor-campo {
+  padding: 0;
+  text-align: right;
+}
+
+@media ( min-width: 992px ) {
 
   .campo {
     display: block;

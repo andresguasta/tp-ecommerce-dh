@@ -78,7 +78,7 @@ main {
   margin-top: 12rem;
 }
 
-@media (min-width: 982px) {
+@media (min-width: 992px) {
 
     header {
       position: static;
