@@ -18,9 +18,11 @@
     <header>
 
       <div class="encabezado">
-        <button type="button" data-toggle="collapse" href="#collapseNav" aria-expanded="false" aria-controls="collapseNav">
-          <i class="fas fa-bars"></i>
-        </button>
+        <div class="navbar navbar-dark">
+          <button type="button" data-toggle="collapse" href="#collapseNav" aria-expanded="false" aria-controls="collapseNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
         <h1>ecommerce</h1>
       </div>
 
@@ -67,6 +69,141 @@
       </div>
 
     </header>
+
+    <main>
+
+      <form class="" action="home.html" method="post">
+
+        <div class="contenido-formulario row">
+
+          <div class="encabezado-formulario col-12">
+            <h2>Formulario de Registro</h2>
+          </div>
+
+          <div class="col-12 campo">
+            <div class="row">
+              <div class="col-12 col-lg-6 dato-campo">
+                <label for="nombre">Nombre</label>
+              </div>
+              <div class="col-12 col-lg-6 valor-campo">
+                <input type="text" id="nombre" name="" value="" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 campo">
+            <div class="row">
+              <div class="col-12 col-lg-6 dato-campo">
+                <label for="email">Email</label>
+              </div>
+              <div class="col-12 col-lg-6 valor-campo">
+                <input type="email" id="email" name="" value="" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 campo">
+            <div class="row">
+              <div class="col-12 col-lg-6 dato-campo">
+                <label for="telefono"><abbr title="Opcional">Telefono</abbr> </label>
+              </div>
+              <div class="col-12 col-lg-6 valor-campo">
+                <input type="tel" id="telefono" name="" value="" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 campo">
+            <div class="row">
+              <div class="col-12 col-lg-6 dato-campo">
+                <label for="pass">Contraseña</label>
+              </div>
+              <div class="col-12 col-lg-6 valor-campo">
+                <input type="password" id="pass" name="" value="" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 campo">
+            <div class="row">
+              <div class="col-12 col-lg-6 dato-campo">
+                <label for="rep-pass">Repetir Contraseña</label>
+              </div>
+              <div class="col-12 col-lg-6 valor-campo">
+                <input type="password" id="rep-pass" name="" value="" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 campo">
+            <div class="row">
+              <div class="col-12 col-lg-6 dato-campo">
+                <label for="pais">Pais</label>
+              </div>
+              <div class="col-12 col-lg-6 valor-campo">
+                <select class="" name="" id="pais">
+                  <option value="ar">Argentina</option>
+                  <option value="br">Brasil</option>
+                  <option value="ch">Chile</option>
+                  <option value="co">Colombia</option>
+                  <option value="ec">Ecuador</option>
+                  <option value="pa">Paraguay</option>
+                  <option value="uy">Uruguay</option>
+                  <option value="ve">Venezuela</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 campo">
+            <div class="row">
+              <div class="col-12 col-lg-6 dato-campo">
+                <label for="fecha-nac">Fecha de nacimiento</label>
+              </div>
+              <div class="col-12 col-lg-6 valor-campo">
+                <input type="date" id="fecha-nac" name="" value="" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 campo">
+            <div class="row">
+              <div class="col-3 col-lg-5 valor-campo">
+                <input type="checkbox" id="term-y-cond" name="" value="" required>
+              </div>
+              <div class="col-9 col-lg-7 dato-campo">
+                <label for="term-y-cond">Acepto los Términos y Condiciones</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 campo">
+            <div class="row">
+              <div class="col-3 col-lg-5 valor-campo">
+                <input type="checkbox" id="term-y-cond" name="" value="">
+              </div>
+              <div class="col-9 col-lg-7 dato-campo">
+                <label for="term-y-cond">Deseo recibir noticias en mi correo</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 container-botones">
+            <div class="row">
+              <div class="col-6 container-boton-submit">
+                <button class="boton-submit" type="submit" name="button">Enviar</button>
+              </div>
+              <div class="col-6 container-boton-reset">
+                <button class="boton-reset" type="reset" name="button">Reset</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </form>
+
+    </main>
 
   </div>
 
