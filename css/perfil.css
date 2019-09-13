@@ -1,1 +1,10 @@
 @import url('general.css');
+
+
+.texto{
+  margin-left: 45%;
+  margin-top: 10px;
+}
+#textt{
+  margin-top: 50px;
+}
