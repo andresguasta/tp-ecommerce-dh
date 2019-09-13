@@ -11,3 +11,15 @@
 main{
   margin-top: 14rem;
 }
+
+@media (min-width: 346px) {
+  main{
+    margin-top: 12rem;
+  }
+}
+
+@media (min-width: 992px) {
+  main {
+    margin-top: 2rem;
+  }
+}
