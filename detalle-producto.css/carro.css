@@ -1,0 +1,103 @@
+@import url('general.css');
+
+.producto {
+  margin-top: 5%;
+  overflow:hidden;
+}
+
+.imagen-producto {
+  float: left;
+  width: 100%;
+}
+
+.imagen-producto img{
+  border-radius: 15%;
+  width: 100%;
+}
+
+.nombre-mas-precio {
+  background-color: #000;
+  border: 1px solid #fff;
+  float: left;
+  overflow: hidden;
+  margin-bottom: 2%;
+  margin-top: 5%;
+  width: 100%;
+}
+
+.nombre  {
+  text-align: center;
+  width: 60%;
+  padding: 1%;
+  border-right: 1px solid #fff;
+  float: left;
+}
+
+.precio {
+  text-align: center;
+  padding: 1%;
+  width: 40%;
+  float: left;
+}
+
+.precio-total {
+  margin-top: 5%;
+  overflow: hidden;
+  border: 1px solid #fff;
+  width: 100%;
+  margin-bottom: 10%;
+}
+
+.precio-total .texto {
+  padding: 1%;
+  float: left;
+  background-color: #000;
+  width: 60%;
+  text-align: center;
+  border-right: 1px double #fff;
+}
+
+.precio-final {
+  text-align: center;
+  padding: 1%;
+}
+
+@media (min-width: 672px) {
+
+  .imagen-producto {
+    width: 45%;
+    margin-right: 5%;
+  }
+
+  .nombre-mas-precio  {
+    margin-top: 0;
+    width: 50%;
+  }
+
+}
+
+@media (min-width: 992px) {
+
+  main {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .imagen-producto {
+    text-align: center;
+    margin-right: 2%;
+  }
+
+  .imagen-producto img {
+    width: 80%;
+  }
+
+  .descripcion {
+    font-size: 1.2rem;
+  }
+
+  .precio-total {
+    width: 40%;
+  }
+
+}

@@ -1,25 +1,59 @@
 @import url('general.css');
 
-
-.texto{
-  margin-left: 45%;
-  margin-top: 10px;
-}
-#textt{
-  margin-top: 50px;
-}
-main{
-  margin-top: 14rem;
+.card {
+  background-color: #000;
+  border: 1px solid #fff;
+  text-align:center;
+  padding: 2%;
 }
 
-@media (min-width: 346px) {
-  main{
-    margin-top: 12rem;
-  }
+.dato {
+  border: 1px solid #fff;
+  overflow: hidden;
+}
+
+.campo {
+  padding: 2%;
+  width: 30%;
+  text-align: center;
+  float: left;
+}
+
+.valor {
+  padding: 2%;
+  width: 70%;
+  text-align: center;
+  float: right;
+}
+
+.foto-perfil {
+  padding: 2%;
+}
+
+.foto-perfil img {
+  border-radius: 50%;
+}
+
+.editar {
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+
+.editar button {
+  background-color: #000;
+  border: 1px solid #fff;
+  padding: 1%;
+}
+
+.editar button i {
+  margin-right: 4%;
 }
 
 @media (min-width: 992px) {
+
   main {
-    margin-top: 2rem;
+    margin-left: 5%;
+    margin-right: 5%;
   }
+
 }

@@ -1,0 +1,40 @@
+@import url('general.css');
+.imagenes{
+  overflow: hidden;
+  margin: auto;
+
+}
+.pantalon{
+  float: left;
+  padding: 60px;
+  position: relative;
+display: inline-block;
+
+
+
+}
+
+.texto{
+  position: absolute;
+  bottom:60px;
+  left:250px;
+  background-color:rgba(255,0,0,0.3);
+}
+.titulo{
+  text-align: center;
+}
+.mapa{
+
+  float: left;
+}
+.redes{
+  float: left;
+  padding: 80px;
+
+}
+.insta{
+  border-radius: 50%;
+}
+.imagenMuestra{
+  border-radius: 15%;
+}
