@@ -1,78 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
+  <?php require_once('head.php') ?>
+
   <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>ecommerce</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/login.css">
-
   </head>
+
   <body>
 
   <div class="container-fluid">
 
-    <header>
-
-      <div class="encabezado">
-        <div class="navbar navbar-dark">
-          <button type="button" data-toggle="collapse" href="#collapseNav" aria-expanded="false" aria-controls="collapseNav">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-        <h1>ecommerce</h1>
-      </div>
-
-      <div class="collapse" id="collapseNav">
-        <nav>
-          <ul>
-            <div class="row">
-
-              <div class="link-nav col-12 col-md-2">
-                <li><a href="home.html">Home</a></li>
-              </div>
-
-              <div class="link-nav col-12 col-md-2">
-                <li><a href="faq.html">F.A.Q.</a></li>
-              </div>
-
-              <div class="link-nav col-12 col-md-2">
-                <li><a href="contacto.html">Contacto</a></li>
-              </div>
-
-              <div class="link-nav col-12 col-md-2">
-                <li><a href="perfil.html">Perfil</a></li>
-              </div>
-
-              <div class="link-nav col-12 col-md-2">
-                <li><a href="login.html">Login</a></li>
-              </div>
-
-              <div class="link-nav col-12 col-md-2">
-                <li><a href="registro.html">Registro</a></li>
-              </div>
-
-            </div>
-          </ul>
-        </nav>
-      </div>
-
-      <div class="seccion">
-        <div class="row">
-          <div class="col-12">
-            <h2>Login</h2>
-          </div>
-        </div>
-      </div>
-
-    </header>
+    <?php require_once('header.php') ?>
 
     <main>
 
-      <form class="" action="home.html" method="post">
+      <form class="" action="home.php" method="post">
 
         <div class="contenido-formulario row">
 
@@ -112,7 +55,7 @@
           <div class="col-12 campo">
             <div class="row">
               <div class="col-12 dato-campo">
-                <label for=""><a href="home.html">Olvidé mi contraseña</a></label>
+                <label for=""><a href="home.php">Olvidé mi contraseña</a></label>
               </div>
             </div>
           </div>
@@ -120,7 +63,7 @@
           <div class="col-12 campo">
             <div class="row">
               <div class="col-12 dato-campo">
-                <label for=""><a href="registro.html">Registrarse</a></label>
+                <label for=""><a href="registro.php">Registrarse</a></label>
               </div>
             </div>
           </div>

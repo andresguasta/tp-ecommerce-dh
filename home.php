@@ -1,81 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
+  <?php require_once('head.php') ?>
+
   <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>ecommerce</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/fontawesome/css/all.css">
-
   </head>
+
   <body>
 
   <div class="container-fluid">
 
-    <header>
-
-      <div class="encabezado">
-        <div class="navbar navbar-dark">
-          <button type="button" data-toggle="collapse" href="#collapseNav" aria-expanded="false" aria-controls="collapseNav">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-        <h1>ecommerce</h1>
-      </div>
-
-      <div class="collapse" id="collapseNav">
-        <nav>
-          <ul>
-            <div class="row">
-
-              <div class="link-nav col-12 col-md-2">
-                <li><a href="home.html">Home</a></li>
-              </div>
-
-              <div class="link-nav col-12 col-md-2">
-                <li><a href="faq.html">F.A.Q.</a></li>
-              </div>
-
-              <div class="link-nav col-12 col-md-2">
-                <li><a href="contacto.html">Contacto</a></li>
-              </div>
-
-              <div class="link-nav col-12 col-md-2">
-                <li><a href="perfil.html">Perfil</a></li>
-              </div>
-
-              <div class="link-nav col-12 col-md-2">
-                <li><a href="login.html">Login</a></li>
-              </div>
-
-              <div class="link-nav col-12 col-md-2">
-                <li><a href="registro.html">Registro</a></li>
-              </div>
-
-            </div>
-          </ul>
-        </nav>
-      </div>
-
-      <div class="seccion">
-        <div class="row">
-          <div class="col-12">
-            <h2>Home</h2>
-          </div>
-        </div>
-      </div>
-
-    </header>
+    <?php require_once('header.php') ?>
 
     <main>
 
       <div class="carrito-mas-gestor">
-        <div class="carrito"><a href="carro.html"><i class="fas fa-shopping-cart"></i>Ver Carro</a></div>
-        <div class="gestor-productos"><a href="gestor.html"><i class="fas fa-tools"></i>Gestor de productos</a></div>
+        <div class="carrito"><a href="carro.php"><i class="fas fa-shopping-cart"></i>Ver Carro</a></div>
+        <div class="gestor-productos"><a href="gestor.php"><i class="fas fa-tools"></i>Gestor de productos</a></div>
       </div>
 
       <div class="titulo">
@@ -94,7 +36,7 @@
           </div>
           <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
           <div class="botones">
-            <div class="ver-mas"><a href="detalle-producto.html">Ver mas</a></div>
+            <div class="ver-mas"><a href="detalle-producto.php">Ver mas</a></div>
             <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
           </div>
         </article>
@@ -109,7 +51,7 @@
           </div>
           <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
           <div class="botones">
-            <div class="ver-mas"><a href="detalle-producto.html">Ver mas</a></div>
+            <div class="ver-mas"><a href="detalle-producto.php">Ver mas</a></div>
             <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
           </div>
         </article>
@@ -124,7 +66,7 @@
           </div>
           <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
           <div class="botones">
-            <div class="ver-mas"><a href="detalle-producto.html">Ver mas</a></div>
+            <div class="ver-mas"><a href="detalle-producto.php">Ver mas</a></div>
             <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
           </div>
         </article>
@@ -147,7 +89,7 @@
           </div>
           <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
           <div class="botones">
-            <div class="ver-mas"><a href="detalle-producto.html">Ver mas</a></div>
+            <div class="ver-mas"><a href="detalle-producto.php">Ver mas</a></div>
             <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
           </div>
         </article>
@@ -162,7 +104,7 @@
           </div>
           <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
           <div class="botones">
-            <div class="ver-mas"><a href="detalle-producto.html">Ver mas</a></div>
+            <div class="ver-mas"><a href="detalle-producto.php">Ver mas</a></div>
             <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
           </div>
         </article>
@@ -177,7 +119,7 @@
           </div>
           <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
           <div class="botones">
-            <div class="ver-mas"><a href="detalle-producto.html">Ver mas</a></div>
+            <div class="ver-mas"><a href="detalle-producto.php">Ver mas</a></div>
             <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
           </div>
         </article>
