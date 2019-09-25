@@ -1,3 +1,42 @@
+<?php
+
+  if($_POST){
+    $nombre = trim($_POST["nombre"]);
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
+    $confirmar = trim($_POST["confirmar"]);
+    $telefono = trim($_POST["telefono"]);
+    $pais = trim($_POST["pais"]);
+
+    $errores = validar_datos_registro($_POST);
+
+    if(!$errores){
+
+      if(!file_exists('archivos')) {
+        mkdir('archivos');
+      }
+
+      $usuario = [
+        "nombre" => $nombre,
+        "email" => $email,
+        "password" => password_hash($password, PASSWORD_DEFAULT),
+        "telefono" => $telefono,
+        "pais" => $pais
+      ];
+
+      $usuarios = json_decode(file_get_contents("archivos/usuarios.txt"), true);
+
+      $usuarios[] = $usuario;
+
+      file_put_contents("archivo/usuarios.txt", json_encode($usuarios));
+
+    }
+
+  }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -15,7 +54,7 @@
 
     <main>
 
-      <form class="" action="home.php" method="post">
+      <form class="" action="registro.php" method="post">
 
         <div class="contenido-formulario row">
 
@@ -51,7 +90,7 @@
                 <label for="telefono"><abbr title="Opcional">Telefono</abbr> </label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <input type="tel" id="telefono" name="" value="" required>
+                <input type="tel" id="telefono" name="" value="">
               </div>
             </div>
           </div>
