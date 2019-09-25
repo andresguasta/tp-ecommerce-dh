@@ -1,3 +1,13 @@
+<?php
+
+  $seccion = '';
+
+  if($_GET){
+    $seccion = $_GET["nombre"];
+  }
+
+?>
+
 <header>
 
   <div class="encabezado">
@@ -6,13 +16,13 @@
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
-    <h1>ecommerce</h1>
-  </div>
+      <h1>ecommerce</h1>
+    </div>
 
-  <div class="collapse" id="collapseNav">
-    <nav>
-      <ul>
-        <div class="row">
+    <div class="collapse" id="collapseNav">
+      <nav>
+        <ul>
+          <div class="row">
 
           <div class="link-nav col-12 col-md-2">
             <li><a href="home.php">Home</a></li>
@@ -39,16 +49,16 @@
           </div>
 
         </div>
-      </ul>
-    </nav>
-  </div>
+        </ul>
+      </nav>
+    </div>
 
-  <div class="seccion">
-    <div class="row">
-      <div class="col-12">
-        <h2>Home</h2>
+    <div class="seccion">
+      <div class="row">
+        <div class="col-12">
+          <h2> <?=$seccion?> </h2>
+        </div>
       </div>
     </div>
-  </div>
 
 </header>

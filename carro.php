@@ -11,7 +11,13 @@
 
   <div class="container-fluid">
 
-    <?php require_once('header.php') ?>
+    <?php
+
+    require_once('header.php');
+
+    echo dar_header('Carro');
+
+    ?>
 
     <main>
 

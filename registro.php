@@ -1,38 +1,51 @@
 <?php
 
+  $nombre = '';
+  $email = '';
+  $contraseña = '';
+  $confirmar = '';
+  $telefono = '';
+  $pais = '';
+  $fecha_nac = '';
+
   if($_POST){
+
     $nombre = trim($_POST["nombre"]);
     $email = trim($_POST["email"]);
-    $password = trim($_POST["password"]);
+    $contraseña = trim($_POST["contraseña"]);
     $confirmar = trim($_POST["confirmar"]);
     $telefono = trim($_POST["telefono"]);
     $pais = trim($_POST["pais"]);
+    $fecha_nac = trim($_POST["fecha_nac"]);
 
-    $errores = validar_datos_registro($_POST);
-
-    if(!$errores){
+      $usuario = [
+        "nombre" => $nombre,
+        "email" => $email,
+        "password" => password_hash($contraseña, PASSWORD_DEFAULT),
+        "telefono" => $telefono,
+        "pais" => $pais,
+        "fecha_nac" => $fecha_nac
+      ];
 
       if(!file_exists('archivos')) {
         mkdir('archivos');
       }
 
-      $usuario = [
-        "nombre" => $nombre,
-        "email" => $email,
-        "password" => password_hash($password, PASSWORD_DEFAULT),
-        "telefono" => $telefono,
-        "pais" => $pais
-      ];
+      if(!file_exists('archivos/usuarios.json')){
+        touch('archivos/usuarios.json');
+      }
 
-      $usuarios = json_decode(file_get_contents("archivos/usuarios.txt"), true);
+      $usuarios = json_decode(file_get_contents('archivos/usuarios.json'), true);
 
       $usuarios[] = $usuario;
 
-      file_put_contents("archivo/usuarios.txt", json_encode($usuarios));
+      file_put_contents('archivos/usuarios.json', json_encode($usuarios));
+
+      header('location:perfil.php');
 
     }
 
-  }
+
 
 ?>
 
@@ -40,9 +53,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-  <?php require_once('head.php') ?>
-
   <head>
+    <?php require_once('head.php') ?>
     <link rel="stylesheet" href="css/registro.css">
   </head>
 
@@ -50,7 +62,11 @@
 
   <div class="container-fluid">
 
-    <?php require_once('header.php') ?>
+    <?php
+
+    require_once('header.php?nombre=Registro');
+
+    ?>
 
     <main>
 
@@ -68,7 +84,7 @@
                 <label for="nombre">Nombre</label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <input type="text" id="nombre" name="" value="" required>
+                <input type="text" id="nombre" name="nombre" value="<?=$nombre?>" required>
               </div>
             </div>
           </div>
@@ -79,7 +95,7 @@
                 <label for="email">Email</label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <input type="email" id="email" name="" value="" required>
+                <input type="email" id="email" name="email" value="<?=$email?>" required>
               </div>
             </div>
           </div>
@@ -90,7 +106,7 @@
                 <label for="telefono"><abbr title="Opcional">Telefono</abbr> </label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <input type="tel" id="telefono" name="" value="">
+                <input type="tel" id="telefono" name="telefono" value="<?=$telefono?>">
               </div>
             </div>
           </div>
@@ -101,7 +117,7 @@
                 <label for="pass">Contraseña</label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <input type="password" id="pass" name="" value="" required>
+                <input type="password" id="pass" name="contraseña" value="" required>
               </div>
             </div>
           </div>
@@ -112,7 +128,7 @@
                 <label for="rep-pass">Repetir Contraseña</label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <input type="password" id="rep-pass" name="" value="" required>
+                <input type="password" id="rep-pass" name="confirmar" value="" required>
               </div>
             </div>
           </div>
@@ -123,7 +139,7 @@
                 <label for="pais">Pais</label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <select class="" name="" id="pais">
+                <select class="" name="pais" id="pais">
                   <option value="ar">Argentina</option>
                   <option value="br">Brasil</option>
                   <option value="ch">Chile</option>
@@ -143,7 +159,7 @@
                 <label for="fecha-nac">Fecha de nacimiento</label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <input type="date" id="fecha-nac" name="" value="" required>
+                <input type="date" id="fecha-nac" name="fecha_nac" value="<?=$fecha_nac?>" required>
               </div>
             </div>
           </div>
