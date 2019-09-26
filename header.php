@@ -1,13 +1,3 @@
-<?php
-
-  $seccion = '';
-
-  if($_GET){
-    $seccion = $_GET["nombre"];
-  }
-
-?>
-
 <header>
 
   <div class="encabezado">

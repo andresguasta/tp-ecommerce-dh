@@ -1,3 +1,9 @@
+<?php
+
+  $seccion = "Home"; 
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -11,11 +17,7 @@
 
   <div class="container-fluid">
 
-    <?php
-
-    require_once('header.php');
-
-    ?>
+    <?php require_once('header.php'); ?>
 
     <main>
 

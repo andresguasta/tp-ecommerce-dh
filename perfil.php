@@ -1,7 +1,13 @@
+<?php
+
+  $seccion = 'Perfil';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-  <?php require_once('head.php') ?>
+  <?php require_once('head.php'); ?>
 
   <head>
     <link rel="stylesheet" href="css/perfil.css">
@@ -11,13 +17,7 @@
 
   <div class="container-fluid">
 
-    <?php
-
-    require_once('header.php');
-
-    echo dar_header('Perfil');
-
-    ?>
+    <?php require_once('header.php'); ?>
 
     <main>
 

@@ -1,3 +1,9 @@
+<?php
+
+  $seccion = "Gestor de productos";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -11,13 +17,7 @@
 
   <div class="container-fluid">
 
-    <?php
-
-    require_once('header.php');
-
-    echo dar_header('Gestor');
-
-    ?>
+    <?php require_once('header.php'); ?>
 
     <main>
 

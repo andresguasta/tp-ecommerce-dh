@@ -1,51 +1,19 @@
 <?php
 
-  $nombre = '';
-  $email = '';
-  $contraseña = '';
-  $confirmar = '';
-  $telefono = '';
-  $pais = '';
-  $fecha_nac = '';
+  require_once('funciones/validador.php');
+  require_once('funciones/guardador.php');
+
+  $seccion = "Registro";
 
   if($_POST){
 
-    $nombre = trim($_POST["nombre"]);
-    $email = trim($_POST["email"]);
-    $contraseña = trim($_POST["contraseña"]);
-    $confirmar = trim($_POST["confirmar"]);
-    $telefono = trim($_POST["telefono"]);
-    $pais = trim($_POST["pais"]);
-    $fecha_nac = trim($_POST["fecha_nac"]);
+    $errores = validarRegistro($_POST);
 
-      $usuario = [
-        "nombre" => $nombre,
-        "email" => $email,
-        "password" => password_hash($contraseña, PASSWORD_DEFAULT),
-        "telefono" => $telefono,
-        "pais" => $pais,
-        "fecha_nac" => $fecha_nac
-      ];
-
-      if(!file_exists('archivos')) {
-        mkdir('archivos');
-      }
-
-      if(!file_exists('archivos/usuarios.json')){
-        touch('archivos/usuarios.json');
-      }
-
-      $usuarios = json_decode(file_get_contents('archivos/usuarios.json'), true);
-
-      $usuarios[] = $usuario;
-
-      file_put_contents('archivos/usuarios.json', json_encode($usuarios));
-
-      header('location:perfil.php');
-
+    if(!hayErrores($errores)){
+      guardarUsuario(crearUsuario($_POST));
     }
 
-
+  }
 
 ?>
 
@@ -54,7 +22,7 @@
 <html lang="en" dir="ltr">
 
   <head>
-    <?php require_once('head.php') ?>
+    <?php require_once('head.php'); ?>
     <link rel="stylesheet" href="css/registro.css">
   </head>
 
@@ -62,11 +30,7 @@
 
   <div class="container-fluid">
 
-    <?php
-
-    require_once('header.php?nombre=Registro');
-
-    ?>
+    <?php require_once('header.php'); ?>
 
     <main>
 
@@ -84,8 +48,19 @@
                 <label for="nombre">Nombre</label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <input type="text" id="nombre" name="nombre" value="<?=$nombre?>" required>
+                <input type="text" id="nombre" name="nombre" value="<?php if(isset($_POST["nombre"]))  echo $_POST["nombre"]  ; ?>" required>
               </div>
+
+              <?php
+                if(isset($errores["nombre"]) && $errores["nombre"] != ""){
+                  echo '
+                    <div class="error col-12">
+                      <i class="fas fa-exclamation"></i> ' .  $errores["nombre"] . '
+                    </div>
+                  ';
+                }
+              ?>
+
             </div>
           </div>
 
@@ -95,8 +70,19 @@
                 <label for="email">Email</label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <input type="email" id="email" name="email" value="<?=$email?>" required>
+                <input type="email" id="email" name="email" value="<?php if(isset($_POST["email"]))  echo $_POST["email"]  ; ?>" required>
               </div>
+
+              <?php
+                if(isset($errores["email"]) && $errores["email"] != ""){
+                  echo '
+                    <div class="error">
+                      <i class="fas fa-exclamation"></i> ' . $errores["email"] . '
+                    </div>
+                  ';
+                }
+              ?>
+
             </div>
           </div>
 
@@ -106,7 +92,7 @@
                 <label for="telefono"><abbr title="Opcional">Telefono</abbr> </label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <input type="tel" id="telefono" name="telefono" value="<?=$telefono?>">
+                <input type="tel" id="telefono" name="telefono" value="<?php if(isset($_POST["telefono"]))  echo $_POST["telefono"]  ; ?>">
               </div>
             </div>
           </div>
@@ -119,6 +105,17 @@
               <div class="col-12 col-lg-6 valor-campo">
                 <input type="password" id="pass" name="contraseña" value="" required>
               </div>
+
+              <?php
+                if(isset($errores["contraseña"]) && $errores["contraseña"] != ""){
+                  echo '
+                    <div class="error">
+                      <i class="fas fa-exclamation"></i> ' .  $errores["contraseña"] . '
+                    </div>
+                  ';
+                }
+              ?>
+
             </div>
           </div>
 
@@ -128,8 +125,19 @@
                 <label for="rep-pass">Repetir Contraseña</label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <input type="password" id="rep-pass" name="confirmar" value="" required>
+                <input type="password" id="rep-pass" name="confirmacion" value="" required>
               </div>
+
+              <?php
+                if(isset($errores["confirmacion"]) && $errores["confirmacion"] != ""){
+                  echo '
+                    <div class="error">
+                      <i class="fas fa-exclamation"></i> ' .  $errores["confirmacion"] . '
+                    </div>
+                  ';
+                }
+              ?>
+
             </div>
           </div>
 
@@ -159,7 +167,7 @@
                 <label for="fecha-nac">Fecha de nacimiento</label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <input type="date" id="fecha-nac" name="fecha_nac" value="<?=$fecha_nac?>" required>
+                <input type="date" id="fecha-nac" name="fecha-nac" value="<?php if(isset($_POST["fecha-nac"]))  echo $_POST["fecha-nac"]  ; ?>" required>
               </div>
             </div>
           </div>
@@ -167,7 +175,7 @@
           <div class="col-12 campo">
             <div class="row">
               <div class="col-3 col-lg-5 valor-campo">
-                <input type="checkbox" id="term-y-cond" name="" value="" required>
+                <input type="checkbox" id="term-y-cond" name="" value=""  required>
               </div>
               <div class="col-9 col-lg-7 dato-campo">
                 <label for="term-y-cond">Acepto los Términos y Condiciones</label>
@@ -178,7 +186,7 @@
           <div class="col-12 campo">
             <div class="row">
               <div class="col-3 col-lg-5 valor-campo">
-                <input type="checkbox" id="term-y-cond" name="" value="">
+                <input type="checkbox" id="term-y-cond" name="term-y-cond" value="">
               </div>
               <div class="col-9 col-lg-7 dato-campo">
                 <label for="term-y-cond">Deseo recibir noticias en mi correo</label>

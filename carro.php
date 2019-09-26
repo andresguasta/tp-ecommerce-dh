@@ -1,3 +1,9 @@
+<?php
+
+ $seccion = "Carro";
+ 
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -11,13 +17,7 @@
 
   <div class="container-fluid">
 
-    <?php
-
-    require_once('header.php');
-
-    echo dar_header('Carro');
-
-    ?>
+    <?php require_once('header.php'); ?>
 
     <main>
 
