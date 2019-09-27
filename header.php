@@ -1,3 +1,11 @@
+<?php
+
+  function estaLogeado() {
+    return true;
+  }
+
+?>
+
 <header>
 
   <div class="encabezado">
@@ -26,17 +34,19 @@
             <li><a href="contacto.php">Contacto</a></li>
           </div>
 
-          <div class="link-nav col-12 col-md-2">
-            <li><a href="perfil.php">Perfil</a></li>
-          </div>
+          <?php if(estaLogeado()) { ?>
+            <div class="link-nav col-12 col-md-2">
+              <li><a href="perfil.php">Perfil</a></li>
+            </div>
+          <?php } else { ?>
+            <div class="link-nav col-12 col-md-2">
+              <li><a href="login.php">Login</a></li>
+            </div>
 
-          <div class="link-nav col-12 col-md-2">
-            <li><a href="login.php">Login</a></li>
-          </div>
-
-          <div class="link-nav col-12 col-md-2">
-            <li><a href="registro.php">Registro</a></li>
-          </div>
+            <div class="link-nav col-12 col-md-2">
+              <li><a href="registro.php">Registro</a></li>
+            </div>
+          <?php } ?>
 
         </div>
         </ul>
