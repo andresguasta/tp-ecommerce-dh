@@ -79,6 +79,15 @@
 
     return false;
   }
+
+  /* Correcion: la parte de session_start y la funcion estaElUsuarioLogeado() podria hacerse en otro archivo al que
+   * corresponda mas el contexto, por ej: sesiones.php o sesionUsuario.php
+   * Mala indentacion, pocas lineas vacias entre lineas de codigo, no ayuda a la legibilidad
+   * Recordar que no solo hacemos codigo para que lo entienda la computadora, sino que otra gente tambien va a leer nuestro codigo
+   * y tratar de entender lo que codeamos
+   */
+
+   /*
   session_start();
  function estaElUsuarioLogeado () {
      if (isset($_SESSION['email'])) {
@@ -86,22 +95,70 @@
      }
      return false;
  }
+ */
+ session_start();
+
+ function estaElUsuarioLogeado () {
+
+   if ( isset($_SESSION['email'] ) ) {
+     return true;
+   }
+
+   return false;
+ }
+
+ /* Valido la info (email y contraseña) del usuario
+  */
+ function checkearInfoUsuario($email, $password){
+
+   $archivo = file_get_contents('archivos/usuarios.json');
+   $usuarios = json_decode($archivo, true);
+
+   foreach ($usuarios as $usuario) {
+     if ($usuario['email'] == $email && password_verify($password, $usuario['password'])) {
+       // Si encuentra al usuario y coinciden mail y password devuelvo un string vacio, es decir, no hay errores
+       return "";
+     } else if($usuario['email'] == $email && !password_verify($password, $usuario['password'])) {
+       // Si encuentra al usuario y coinciden mail pero no password devuelvo un error
+       return "La contraseña ingresada no es válida. Intente nuevamente";
+     }
+   }
+
+  // Si llego a esta parte de la funcion siginifica que el email ingresado es incorrecto o no existe un usuario con ese Email
+  return "El email ingresado es incorrecto o no existe. Intente nuevamente";
+
+ }
+
+/* Correcion: falta checkear si el email ingresado y la contraseña coinciden con la data de un usuario registrado o no
+ */
  function validarLogin($datos) {
-    $errores = [];
-    $usuario = [];
-    $email = trim($datos['email']);
-    $password = $datos['password'];
+   $errores = [];
 
-    if (strlen($email) === 0) {
-        $errores['email'] = 'Escribe el email';
-    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errores['email'] = 'El email tiene formato errado';
-    }
-    if (strlen($password) < 6) {
-        $errores['password'] = 'La contraseña es muy corta (minimo 6 caracteres)';
-    }
+   $email = trim($datos['email']);
 
-    return $errores;
+   /* Correcion: trimear la password tambien */
+   // $password = $datos['password'];
+   $password = trim($datos['password']);
+
+   if (strlen($email) === 0) {
+     $errores['email'] = 'Escribe el email';
+   } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+     $errores['email'] = 'El email tiene formato errado';
+   }
+
+   if (strlen($password) < 6) {
+     $errores['password'] = 'La contraseña es muy corta (minimo 6 caracteres)';
+   }
+
+   /* Ahora que ya checkee lo basico del login, podria checkear que el email y password correspondan a un usuario regsistrado,
+    * Tambien al hacerlo al final dejo lo mas pesado computacionalmente para el final y solo si no hay errores aun y devuelvo lo que devuelva
+    * La funcion que se fija eso
+    */
+    if( $errores["email"] != "" || $errores["password"] != "" ){
+      return $errores;
+    } else {
+      return checkearInfoUsuario($email, $password);
+    }
 }
 
  ?>

@@ -17,22 +17,24 @@
       "pais" => $pais,
       "fecha-nac" => $fecha_nac
     ];
-    
+
+    return $usuario;
+
   }
 
   function guardarUsuario($usuario){
 
-    if(!file_exists('../archivos')) {
-      mkdir('../archivos');
+    if(!file_exists('archivos')) {
+      mkdir('archivos');
     }
 
-    if(!file_exists('../archivos/usuarios.json')){
-      touch('../archivos/usuarios.json');
+    if(!file_exists('archivos/usuarios.json')){
+      touch('archivos/usuarios.json');
     }
 
-    $usuarios = json_decode(file_get_contents('../archivos/usuarios.json'), true);
+    $usuarios = json_decode(file_get_contents('archivos/usuarios.json'), true);
 
     $usuarios[] = $usuario;
 
-    file_put_contents('../archivos/usuarios.json', json_encode($usuarios));
+    file_put_contents('archivos/usuarios.json', json_encode($usuarios));
   }

@@ -1,8 +1,6 @@
 <?php
 
-  function estaLogeado() {
-    return true;
-  }
+  require_once('funciones/validador.php');
 
 ?>
 
@@ -34,7 +32,7 @@
             <li><a href="contacto.php">Contacto</a></li>
           </div>
 
-          <?php if(estaLogeado()) { ?>
+          <?php if(estaElUsuarioLogeado()) { ?>
             <div class="link-nav col-12 col-md-2">
               <li><a href="perfil.php">Perfil</a></li>
             </div>
