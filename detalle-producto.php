@@ -1,19 +1,19 @@
 <?php
-
-  $seccion = "Detalle del producto"; 
+require_once('funciones/mostrarproducto.php');
+$seccion = "Detalle del producto";
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-  <?php require_once('head.php') ?>
+<?php require_once('head.php') ?>
 
-  <head>
-    <link rel="stylesheet" href="css/detalle-producto.css">
-  </head>
+<head>
+  <link rel="stylesheet" href="css/detalle-producto.css">
+</head>
 
-  <body>
+<body>
 
   <div class="container-fluid">
 
@@ -21,18 +21,36 @@
 
     <main>
 
-        <div class="volver"><a href="home.php"><i class="fas fa-arrow-left"></i>Volver</a></div>
-
+      <div class="volver"><a href="home.php"><i class="fas fa-arrow-left"></i>Volver</a></div>
+      <?php $aux=$_GET['id'];
+      if ($aux>=1 && $aux<=3) {
+        $producto=obteneridpantalones($aux);?>
         <div class="producto">
           <div class="imagen-producto">
-            <img src="img/pan-azul.jpg" alt="pantalon">
+            <img src="img/<?=$producto['imagen']?>" alt="pantalon">
           </div>
           <div class="nombre-mas-precio">
-            <div class="nombre"><h4>Pantalon Azul</h4></div>
-            <div class="precio"><h4>$750</h4></div>
+            <div class="nombre"><h4><?=$producto['nombre']?></h4></div>
+            <div class="precio"><h4><?=$producto['precio']?></h4></div>
           </div>
-          <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
+          <div class="descripcion"><p><?=$producto['descripcion']?></p></div>
         </div>
+      <?php }
+
+      if ($aux>=4 && $aux<=6) {
+        $producto=obteneridcamisa($aux);?>
+        <div class="producto">
+          <div class="imagen-producto">
+            <img src="img/<?=$producto['imagen']?>" alt="pantalon">
+          </div>
+          <div class="nombre-mas-precio">
+            <div class="nombre"><h4><?=$producto['nombre']?></h4></div>
+            <div class="precio"><h4><?=$producto['precio']?></h4></div>
+          </div>
+          <div class="descripcion"><p><?=$producto['descripcion']?></p></div>
+        </div>
+      <?php } ?>
+
 
 
 
@@ -44,5 +62,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-  </body>
+</body>
 </html>
