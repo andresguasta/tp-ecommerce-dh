@@ -79,5 +79,29 @@
 
     return false;
   }
+  session_start();
+ function estaElUsuarioLogeado () {
+     if (isset($_SESSION['email'])) {
+         return true;
+     }
+     return false;
+ }
+ function validarLogin($datos) {
+    $errores = [];
+    $usuario = [];
+    $email = trim($datos['email']);
+    $password = $datos['password'];
+
+    if (strlen($email) === 0) {
+        $errores['email'] = 'Escribe el email';
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errores['email'] = 'El email tiene formato errado';
+    }
+    if (strlen($password) < 6) {
+        $errores['password'] = 'La contraseña es muy corta (minimo 6 caracteres)';
+    }
+
+    return $errores;
+}
 
  ?>
