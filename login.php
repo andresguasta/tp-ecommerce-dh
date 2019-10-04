@@ -1,5 +1,7 @@
 <?php
-require_once('funciones/validador.php');
+
+  require_once('funciones/autoload.php');
+  
   $seccion = "Login";
 
 

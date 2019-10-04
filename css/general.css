@@ -29,7 +29,7 @@ div.row {
   margin: 0;
 }
 
-nav ul .row li {
+nav ul .row li{
   font-size: 1.2rem;
   font-weight: bold;
 }
@@ -76,6 +76,22 @@ header {
 
 main {
   margin-top: 12rem;
+}
+
+.log-out {
+  background-color: #00897b;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+}
+
+.log-out button{
+  background-color: #00897b;
+  border: 0;
+  width: 100%;
+  padding: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 @media (min-width: 992px) {

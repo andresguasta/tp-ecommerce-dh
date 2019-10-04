@@ -1,6 +1,15 @@
 <?php
 
+  require_once('funciones/autoload.php');
+
+  if(!estaElUsuarioLogeado()){
+
+    header('location:login.php');
+  }
+
   $seccion = 'Perfil';
+
+  $usuario = buscarUsuario($_SESSION["email"]);
 
 ?>
 
@@ -21,63 +30,61 @@
 
     <main>
 
-      <div class="card perfil">
+      <div class="card">
 
-        <div class="dato">
-          <div class="foto-perfil">
-            <img src="img/foto-perfil.jpg" alt="">
-          </div>
+        <div class="perfil">
+
+        <div class="foto-perfil">
+          <img src="img/usuarios/<?=$usuario["foto"]?>" alt="">
         </div>
 
-        <div class="dato">
-          <div class="campo">
-            <h4>Nombre</h4>
+        <div class="datos">
+
+          <div class="dato">
+            <div class="campo">
+              <h4>Nombre</h4>
+            </div>
+            <div class="valor">
+              <h4><?=$usuario["nombre"]?></h4>
+            </div>
           </div>
-          <div class="valor">
-            <h4>Pepito</h4>
+
+          <div class="dato">
+            <div class="campo">
+              <h4>Email</h4>
+            </div>
+            <div class="valor">
+              <h4><?=$usuario["email"]?></h4>
+            </div>
           </div>
+
+          <div class="dato">
+            <div class="campo">
+              <h4>Telefono</h4>
+            </div>
+            <div class="valor">
+              <h4><?=$usuario["telefono"]?></h4>
+            </div>
+          </div>
+
+          <div class="dato">
+            <div class="campo">
+              <h4>Direccion</h4>
+            </div>
+            <div class="valor">
+              <h4>una direccion</h4>
+            </div>
+          </div>
+
         </div>
 
-        <div class="dato">
-          <div class="campo">
-            <h4>Email</h4>
-          </div>
-          <div class="valor">
-            <h4>pepito@hotmail.com</h4>
-          </div>
-        </div>
-
-        <div class="dato">
-          <div class="campo">
-            <h4>Telefono</h4>
-          </div>
-          <div class="valor">
-            <h4>12312345566</h4>
-          </div>
-        </div>
-
-        <div class="dato">
-          <div class="campo">
-            <h4>Direccion</h4>
-          </div>
-          <div class="valor">
-            <h4>Calle Falsa 123</h4>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="editar">
-        <button type="button" name="button"><i class="fas fa-tools"></i>Modificar datos del perfil</button>
-      </div>
-
-    </main>
+      </main>
 
     </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
   </body>
 </html>

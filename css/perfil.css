@@ -4,7 +4,7 @@
   background-color: #000;
   border: 1px solid #fff;
   text-align:center;
-  padding: 2%;
+  padding: 0 1%;
 }
 
 .dato {
@@ -19,6 +19,21 @@
   float: left;
 }
 
+.perfil {
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.foto-perfil {
+  width: 40%;
+  padding: 2%;
+}
+
+.datos {
+  width: 60%;
+}
+
 .valor {
   padding: 2%;
   width: 70%;
@@ -26,27 +41,12 @@
   float: right;
 }
 
-.foto-perfil {
-  padding: 2%;
-}
-
 .foto-perfil img {
+  border: 2px solid #fff;
   border-radius: 50%;
-}
-
-.editar {
-  margin-top: 2%;
-  margin-bottom: 5%;
-}
-
-.editar button {
-  background-color: #000;
-  border: 1px solid #fff;
-  padding: 1%;
-}
-
-.editar button i {
-  margin-right: 4%;
+  width: 100%;
+  max-width: 256px;
+  min-width: 256px;
 }
 
 @media (min-width: 992px) {

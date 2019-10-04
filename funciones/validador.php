@@ -1,18 +1,22 @@
 <?php
 
   function validarNombre($unNombre) {
+
     if (trim($unNombre) == "") {
       return "Este campo esta vacío";
     }
+
     return "";
   }
 
   function validarEmail($unEmail) {
+
     if(trim($unEmail) == "") {
       return "Este campo esta vacío";
     } else if(!filter_var(trim($unEmail), FILTER_VALIDATE_EMAIL)) {
       return "Por favor ingrese un email válido";
     }
+
     return checkearEmailNoRepetido($unEmail);
   }
 
@@ -33,32 +37,38 @@
   }
 
   function validarContrasenia($unaContrasenia) {
+
     if(trim($unaContrasenia) == ""){
       return "Este campo esta vacío";
     }
     else if(strlen(trim($unaContrasenia)) < 6){
       return "La contraseña es demasiada corta ( mínimo 6 carácteres )";
     }
+
     return "";
   }
 
   function validarConfirmacion($contrasenia, $confirmacion){
+
     if(trim($confirmacion) == ""){
       return "Este campo está vacío";
     }else if(trim($confirmacion) != trim($contrasenia)) {
       return "Las contraseñas no coinciden";
     }
+
     return "";
   }
 
   function validarEdad($fecha) {
+
     if(trim($fecha) == ""){
       return "Este campo está vacío";
     }
+
     return "";
   }
 
-  function validarRegistro($datos) {
+  function validarRegistro($datos, $archivos) {
     $errores = [];
 
     $errores["nombre"] = validarNombre($datos["nombre"]);
@@ -66,8 +76,25 @@
     $errores["contraseña"] = validarContrasenia($datos["contraseña"]);
     $errores["confirmacion"] = validarConfirmacion($datos["contraseña"], $datos["confirmacion"]);
     $errores["fecha-nac"] = validarEdad($datos["fecha-nac"]);
+    $errores["foto-perfil"] = validarFotoPerfil($archivos["foto-perfil"], $datos["email"]);
 
     return $errores;
+  }
+
+  function validarFotoPerfil($archivo, $email){
+
+    if ($archivo["error"] === 0) {
+
+      $ext = pathinfo($archivo['name'], PATHINFO_EXTENSION);
+
+      if ($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg') {
+        return 'Formato de archivo invalido (JPG, JPEG o PNG)';
+      }
+
+      return "";
+    }
+
+    return "Error al intentar subir archivo. Intentar nuevamente";
   }
 
   function hayErrores($errores){
@@ -96,16 +123,6 @@
      return false;
  }
  */
- session_start();
-
- function estaElUsuarioLogeado () {
-
-   if ( isset($_SESSION['email'] ) ) {
-     return true;
-   }
-
-   return false;
- }
 
  /* Valido la info (email y contraseña) del usuario
   */
@@ -120,13 +137,14 @@
        return "";
      } else if($usuario['email'] == $email && !password_verify($password, $usuario['password'])) {
        // Si encuentra al usuario y coinciden mail pero no password devuelvo un error
-       return "La contraseña ingresada no es válida. Intente nuevamente";
+       $errores["email"] = "La contraseña ingresada no es válida. Intente nuevamente";
      }
    }
 
   // Si llego a esta parte de la funcion siginifica que el email ingresado es incorrecto o no existe un usuario con ese Email
-  return "El email ingresado es incorrecto o no existe. Intente nuevamente";
+  $errores["email"] = "El email ingresado es incorrecto o no existe. Intente nuevamente";
 
+  return $errores;
  }
 
 /* Correcion: falta checkear si el email ingresado y la contraseña coinciden con la data de un usuario registrado o no
@@ -147,14 +165,14 @@
    }
 
    if (strlen($password) < 6) {
-     $errores['password'] = 'La contraseña es muy corta (minimo 6 caracteres)';
+     $errores['password'] = 'Contraseña inválida';
    }
 
    /* Ahora que ya checkee lo basico del login, podria checkear que el email y password correspondan a un usuario regsistrado,
     * Tambien al hacerlo al final dejo lo mas pesado computacionalmente para el final y solo si no hay errores aun y devuelvo lo que devuelva
     * La funcion que se fija eso
     */
-    if( $errores["email"] != "" || $errores["password"] != "" ){
+    if( isset($errores["email"]) || isset($errores["password"])){
       return $errores;
     } else {
       return checkearInfoUsuario($email, $password);

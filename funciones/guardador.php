@@ -1,10 +1,26 @@
 <?php
 
-  function crearUsuario($datosUsuario){
+
+  function guardarFotoPerfil($email, $archivo){
+    if (!file_exists('img/usuarios')) {
+      mkdir('img/usuarios');
+    }
+
+    $ext = pathinfo($archivo['name'], PATHINFO_EXTENSION);
+
+    $nombreArchivo = $email . '.' . $ext;
+
+    //la muevo a mi carpeta avatars
+    move_uploaded_file($archivo['tmp_name'], 'img/usuarios/' . $nombreArchivo);
+
+    return $nombreArchivo;
+  }
+
+  function crearUsuario($datosUsuario, $archivos){
 
     $nombre = trim($_POST["nombre"]);
     $email = trim($_POST["email"]);
-    $contrasenia = trim($_POST["contraseña"]);
+    $password = trim($_POST["contraseña"]);
     $telefono = trim($_POST["telefono"]);
     $pais = trim($_POST["pais"]);
     $fecha_nac = trim($_POST["fecha-nac"]);
@@ -12,14 +28,14 @@
     $usuario = [
       "nombre" => $nombre,
       "email" => $email,
-      "contrasenia" => password_hash($contrasenia, PASSWORD_DEFAULT),
+      "password" => password_hash($password, PASSWORD_DEFAULT),
+      "foto" => guardarFotoPerfil($email, $archivos["foto-perfil"]),
       "telefono" => $telefono,
       "pais" => $pais,
       "fecha-nac" => $fecha_nac
     ];
 
     return $usuario;
-
   }
 
   function guardarUsuario($usuario){

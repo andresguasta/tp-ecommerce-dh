@@ -6,6 +6,10 @@
   margin-bottom: 1.4rem;
 }
 
+.campo .row {
+  justify-content: center;
+}
+
 .dato-campo {
   text-align: center;
 }
@@ -39,6 +43,19 @@ input, select {
 .campo:nth-child(3) div.col-3.col-lg-5.valor-campo {
   padding: 0;
   text-align: right;
+}
+
+.error {
+  margin-top: 1rem;
+  display:flex;
+  justify-content: center;
+}
+
+.error i {
+  background-color: red;
+  padding: 0.2rem 0.5rem;
+  border-radius: 50%;
+  margin-right: 0.4rem;
 }
 
 @media ( min-width: 992px ) {
@@ -81,4 +98,17 @@ input, select {
     font-size: 3rem;
   }
 
+  .error i {
+    padding: 0.6rem 1rem;
+  }
+}
+
+@media ( min-width: 1190px ) {
+  .error {
+    justify-content: center;
+  }
+
+  .error i {
+    padding: 0.6rem 1rem;
+  }
 }

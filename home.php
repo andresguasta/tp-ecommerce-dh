@@ -1,9 +1,8 @@
 <?php
-require_once('funciones/productos.php');
-require_once('funciones/mostrarproducto.php');
-$seccion = "Home";
 
+  require_once('funciones/autoload.php');
 
+  $seccion = "Home";
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +30,7 @@ $seccion = "Home";
       <div class="titulo">
         <h2>Pantalones</h2>
       </div>
+
       <section class="productos">
         <?php mostrarpantalon(); ?>
       </section>
@@ -42,7 +42,6 @@ $seccion = "Home";
 
       <section class="productos">
         <?php mostrarcamisa(); ?>
-
 
       </section>
 

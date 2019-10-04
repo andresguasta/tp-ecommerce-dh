@@ -1,6 +1,6 @@
 <?php
 
-  require_once('funciones/validador.php');
+  require_once('funciones/autoload.php');
 
 ?>
 
@@ -20,7 +20,7 @@
         <ul>
           <div class="row">
 
-          <div class="link-nav col-12 col-md-2">
+          <div class="link-nav col-12 col-md-3">
             <li><a href="home.php">Home</a></li>
           </div>
 
@@ -28,7 +28,7 @@
             <li><a href="faq.php">F.A.Q.</a></li>
           </div>
 
-          <div class="link-nav col-12 col-md-2">
+          <div class="link-nav col-12 col-md-3">
             <li><a href="contacto.php">Contacto</a></li>
           </div>
 
@@ -36,9 +36,12 @@
             <div class="link-nav col-12 col-md-2">
               <li><a href="perfil.php">Perfil</a></li>
             </div>
+            <form class="log-out col-12 col-md-2" action="logout.php" method="post">
+              <button type="submit" name="button">Cerrar sesion</button>
+            </form>
           <?php } else { ?>
             <div class="link-nav col-12 col-md-2">
-              <li><a href="login.php">Login</a></li>
+              <li><a href="loginConCorreciones.php">Login</a></li>
             </div>
 
             <div class="link-nav col-12 col-md-2">

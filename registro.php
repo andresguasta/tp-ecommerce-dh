@@ -1,18 +1,30 @@
 <?php
 
-  require_once('funciones/validador.php');
-  require_once('funciones/guardador.php');
+  require_once('funciones/autoload.php');
 
   $seccion = "Registro";
 
+  if(estaElUsuarioLogeado()){
+
+    header('location:perfil.php');
+  }
+
   if($_POST){
 
-    $errores = validarRegistro($_POST);
+    $errores = validarRegistro($_POST, $_FILES);
 
     if(!hayErrores($errores)){
-      guardarUsuario(crearUsuario($_POST));
-    }
+      guardarUsuario(crearUsuario($_POST, $_FILES));
 
+      $_SESSION['email'] = trim($_POST["email"]);
+
+      if (isset($_POST['recuerdame'])) {
+
+          setcookie('recuerdame', $_POST["email"], time() + 60*60*24*7 );
+      }
+
+      header('location.perfil.php');
+    }
   }
 
 ?>
@@ -34,7 +46,7 @@
 
     <main>
 
-      <form class="" action="registro.php" method="post">
+      <form class="" action="registro.php" method="post" enctype="multipart/form-data">
 
         <div class="contenido-formulario row">
 
@@ -52,14 +64,11 @@
               </div>
 
               <?php
-                if(isset($errores["nombre"]) && $errores["nombre"] != ""){
-                  echo '
-                    <div class="error col-12">
-                      <i class="fas fa-exclamation"></i> ' .  $errores["nombre"] . '
+                if(isset($errores["nombre"]) && $errores["nombre"] != ""){ ?>
+                    <div class="error col-12 col-12 col-lg-6">
+                      <i class="fas fa-exclamation"></i><?= $errores["nombre"] ?>
                     </div>
-                  ';
-                }
-              ?>
+              <?php } ?>
 
             </div>
           </div>
@@ -74,14 +83,11 @@
               </div>
 
               <?php
-                if(isset($errores["email"]) && $errores["email"] != ""){
-                  echo '
-                    <div class="error">
-                      <i class="fas fa-exclamation"></i> ' . $errores["email"] . '
+                if(isset($errores["email"]) && $errores["email"] != ""){ ?>
+                    <div class="error col-12 col-lg-6">
+                      <i class="fas fa-exclamation"></i><?= $errores["email"] ?>
                     </div>
-                  ';
-                }
-              ?>
+              <?php } ?>
 
             </div>
           </div>
@@ -107,14 +113,11 @@
               </div>
 
               <?php
-                if(isset($errores["contraseña"]) && $errores["contraseña"] != ""){
-                  echo '
-                    <div class="error">
-                      <i class="fas fa-exclamation"></i> ' .  $errores["contraseña"] . '
+                if(isset($errores["contraseña"]) && $errores["contraseña"] != ""){ ?>
+                    <div class="error col-12 col-lg-6">
+                      <i class="fas fa-exclamation"></i><?= $errores["contraseña"] ?>
                     </div>
-                  ';
-                }
-              ?>
+              <?php } ?>
 
             </div>
           </div>
@@ -129,14 +132,11 @@
               </div>
 
               <?php
-                if(isset($errores["confirmacion"]) && $errores["confirmacion"] != ""){
-                  echo '
-                    <div class="error">
-                      <i class="fas fa-exclamation"></i> ' .  $errores["confirmacion"] . '
+                if(isset($errores["confirmacion"]) && $errores["confirmacion"] != ""){ ?>
+                    <div class="error col-12 col-lg-6">
+                      <i class="fas fa-exclamation"></i><?= $errores["confirmacion"] ?>
                     </div>
-                  ';
-                }
-              ?>
+              <?php } ?>
 
             </div>
           </div>
@@ -174,6 +174,25 @@
 
           <div class="col-12 campo">
             <div class="row">
+              <div class="col-12 col-lg-6 dato-campo">
+                <label for="foto-perfil">Subir una foto de perfil</label>
+              </div>
+              <div class="col-12 col-lg-6 valor-campo">
+                <input type="file" id="foto-perfil" name="foto-perfil" value="">
+              </div>
+
+              <?php
+                if(isset($errores["foto-perfil"]) && $errores["foto-perfil"] != ""){ ?>
+                    <div class="error col-12 col-lg-6">
+                      <i class="fas fa-exclamation"></i><?= $errores["foto-perfil"] ?>
+                    </div>
+              <?php } ?>
+
+            </div>
+          </div>
+
+          <div class="col-12 campo">
+            <div class="row">
               <div class="col-3 col-lg-5 valor-campo">
                 <input type="checkbox" id="term-y-cond" name="" value=""  required>
               </div>
@@ -186,10 +205,10 @@
           <div class="col-12 campo">
             <div class="row">
               <div class="col-3 col-lg-5 valor-campo">
-                <input type="checkbox" id="term-y-cond" name="term-y-cond" value="">
+                <input type="checkbox" id="recuerdame" name="recuerdame" value="">
               </div>
               <div class="col-9 col-lg-7 dato-campo">
-                <label for="term-y-cond">Deseo recibir noticias en mi correo</label>
+                <label for="recuerdame">No cerrar mi sesión</label>
               </div>
             </div>
           </div>
