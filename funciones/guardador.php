@@ -54,3 +54,58 @@
 
     file_put_contents('archivos/usuarios.json', json_encode($usuarios));
   }
+
+  function guardarModificacionesUsuario($datosNuevos, $archivo){
+    $usuarios = json_decode(file_get_contents('archivos/usuarios.json'), true);
+
+    $usuarioActualizado = [];
+
+    foreach( $usuarios as $key => $buscado ) {
+      if ( $_SESSION["email"] == $buscado["email"] ) {
+
+        if ( isset ( $datosNuevos["nombre"] ) && $datosNuevos["nombre"] != "" ) {
+          $usuarioActualizado["nombre"] = $datosNuevos["nombre"];
+        } else {
+          $usuarioActualizado["nombre"] = $buscado["nombre"];
+        }
+
+        if ( isset ( $datosNuevos["email"] ) && $datosNuevos["email"] != "" ) {
+          $usuarioActualizado["email"] = $datosNuevos["email"];
+        } else {
+          $usuarioActualizado["email"] = $buscado["email"];
+        }
+
+        if ( isset ( $datosNuevos["telefono"] ) && $datosNuevos["telefono"] != "" ) {
+          $usuarioActualizado["telefono"] = $datosNuevos["telefono"];
+        } else {
+          $usuarioActualizado["telefono"] = $buscado["telefono"];
+        }
+
+        if ( isset ( $archivo ) && $archivo["name"] != "" ) {
+          $usuarioActualizado["foto"] = guardarFotoPerfil($usuarioActualizado["email"], $archivo);
+        } else {
+          $usuarioActualizado["foto"] = $buscado["foto"];
+        }
+
+        if ( isset ( $datosNuevos["direccion"] ) && $datosNuevos["direccion"] != "" ) {
+          $usuarioActualizado["direccion"] = $datosNuevos["direccion"];
+        } else {
+          $usuarioActualizado["direccion"] = $buscado["direccion"];
+        }
+
+        $usuarioActualizado["password"] = $buscado["password"];
+        $usuarioActualizado["fecha-nac"] = $buscado["fecha-nac"];
+        $usuarioActualizado["pais"] = $buscado["pais"];
+
+        $_SESSION["email"] = $usuarioActualizado["email"];
+
+        if(isset($_COOKIE["recuerdame"])){
+          setcookie("recuerdame", $usuarioActualizado["email"], time() + 60*60*24*7 );
+       }
+
+        $usuarios[$key] = $usuarioActualizado;
+      }
+    }
+
+    file_put_contents('archivos/usuarios.json', json_encode($usuarios));
+  }

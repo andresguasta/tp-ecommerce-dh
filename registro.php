@@ -23,7 +23,7 @@
           setcookie('recuerdame', $_POST["email"], time() + 60*60*24*7 );
       }
 
-      header('location.perfil.php');
+      header('location:perfil.php');
     }
   }
 

@@ -26,12 +26,12 @@
 }
 
 .foto-perfil {
-  width: 40%;
+  width: 100%;
   padding: 2%;
 }
 
 .datos {
-  width: 60%;
+  width: 100%;
 }
 
 .valor {
@@ -47,6 +47,29 @@
   width: 100%;
   max-width: 256px;
   min-width: 256px;
+}
+
+.modificarPerfil {
+  margin-top: 1%;
+  border: 1px solid #fff;
+  background-color: #000;
+  padding: 1%;
+  text-align: center;
+}
+
+.modificarPerfil i {
+  margin-right: 5%;
+}
+
+@media ( min-width: 768px ) {
+  .foto-perfil {
+    width: 40%;
+    padding: 2%;
+  }
+
+  .datos {
+    width: 60%;
+  }
 }
 
 @media (min-width: 992px) {

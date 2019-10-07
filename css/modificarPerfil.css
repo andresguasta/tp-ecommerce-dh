@@ -1,0 +1,114 @@
+@import url('general.css');
+
+.encabezado-formulario {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.campo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.4rem;
+}
+
+.dato-campo {
+  text-align: center;
+}
+
+.valor-campo {
+  text-align: center;
+}
+
+.container-boton-submit {
+  text-align: right;
+}
+
+.container-boton-reset {
+  text-align: left;
+}
+
+.container-botones button {
+  padding: 0.4rem 1rem;
+  color: #000;
+  border: 2px solid #fff;
+  border-radius: 5px;
+}
+
+.dato-campo abbr {
+  text-decoration: underline;
+}
+
+input, select, select option {
+  color: #000;
+  text-align: center;
+}
+
+input, select {
+  border-radius: 5px;
+  border: 1px solid #fff;
+  background-color: 	#969696;
+}
+
+.dato-actual {
+  text-align: center;
+}
+
+.campo .row {
+  justify-content: center;
+}
+
+.error {
+  margin-top: 1rem;
+  display:flex;
+  justify-content: center;
+}
+
+.error i {
+  background-color: red;
+  padding: 0.2rem 0.5rem;
+  border-radius: 50%;
+  margin-right: 0.4rem;
+}
+
+@media ( min-width: 992px ) {
+
+  .campo {
+    display: block;
+    padding: 1rem;
+    margin-bottom: 0;
+  }
+
+  .dato-campo {
+    text-align: right;
+  }
+
+  .valor-campo {
+    text-align: left;
+  }
+
+  .container-botones button {
+    padding: 0.4rem 2rem;
+  }
+
+  form {
+    font-size: 1.4rem;
+  }
+
+  .encabezado-formulario h2 {
+    font-size: 3rem;
+  }
+
+  .error i {
+    padding: 0.6rem 1rem;
+  }
+}
+
+@media ( min-width: 1190px ) {
+  .error {
+    justify-content: center;
+  }
+
+  .error i {
+    padding: 0.6rem 1rem;
+  }
+}

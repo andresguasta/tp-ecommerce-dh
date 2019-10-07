@@ -76,12 +76,12 @@
     $errores["contraseña"] = validarContrasenia($datos["contraseña"]);
     $errores["confirmacion"] = validarConfirmacion($datos["contraseña"], $datos["confirmacion"]);
     $errores["fecha-nac"] = validarEdad($datos["fecha-nac"]);
-    $errores["foto-perfil"] = validarFotoPerfil($archivos["foto-perfil"], $datos["email"]);
+    $errores["foto-perfil"] = validarFotoPerfil($archivos["foto-perfil"]);
 
     return $errores;
   }
 
-  function validarFotoPerfil($archivo, $email){
+  function validarFotoPerfil($archivo){
 
     if ($archivo["error"] === 0) {
 
@@ -177,6 +177,24 @@
     } else {
       return checkearInfoUsuario($email, $password);
     }
-}
+  }
+
+  function validarModificacionesPerfil($datos, $archivos){
+    $erorres = [];
+
+    if( isset ( $datos["nombre"]) && $datos["nombre"] != "" ) {
+      $errores["nombre"] = validarNombre( $datos["nombre"] );
+    }
+
+    if ( isset ( $datos["email"] ) && $datos["email"] != "" ) {
+      $errores["email"] = validarEmail( $datos["email"] );
+     }
+
+    if ( isset ( $archivos ) && $archivos["foto-perfil"]["name"] != "" ){
+      $errores["foto-perfil"] = validarFotoPerfil( $archivos["foto-perfil"] );
+    }
+
+    return $errores;
+  }
 
  ?>
