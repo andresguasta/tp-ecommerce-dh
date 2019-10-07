@@ -34,74 +34,9 @@
 
       <section class="productos">
 
-        <article class="producto">
-          <div class="borrar-editar">
-            <div class="editar">
-              <button type="button" name="button"><i class="fas fa-tools"></i>Modificar publicacion</button>
-            </div>
-            <div class="borrar">
-              <button type="button" name="button"><i class="fas fa-times"></i>Quitar del catalogo</button>
-            </div>
-          </div>
-          <div class="imagen-producto">
-            <img src="img/pan-azul.jpg" alt="pantalon">
-          </div>
-          <div class="nombre-mas-precio">
-            <div class="nombre"><h4>Pantalon Azul</h4></div>
-            <div class="precio"><h4>$750</h4></div>
-          </div>
-          <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
-          <div class="botones">
-            <div class="ver-mas"><a href="">Ver mas</a></div>
-            <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
-          </div>
-        </article>
-
-        <article class="producto">
-          <div class="borrar-editar">
-            <div class="editar">
-              <button type="button" name="button"><i class="fas fa-tools"></i>Modificar publicacion</button>
-            </div>
-            <div class="borrar">
-              <button type="button" name="button"><i class="fas fa-times"></i>Quitar del catalogo</button>
-            </div>
-          </div>
-          <div class="imagen-producto">
-            <img src="img/pan-beige.jpg" alt="pantalon">
-          </div>
-          <div class="nombre-mas-precio">
-            <div class="nombre"><h4>Pantalon Beige</h4></div>
-            <div class="precio"><h4>$800</h4></div>
-          </div>
-          <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
-          <div class="botones">
-            <div class="ver-mas"><a href="">Ver mas</a></div>
-            <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
-          </div>
-        </article>
-
-        <article class="producto">
-          <div class="borrar-editar">
-            <div class="editar">
-              <button type="button" name="button"><i class="fas fa-tools"></i>Modificar publicacion</button>
-            </div>
-            <div class="borrar">
-              <button type="button" name="button"><i class="fas fa-times"></i>Quitar del catalogo</button>
-            </div>
-          </div>
-          <div class="imagen-producto">
-            <img src="img/pan-verde.jpg" alt="pantalon">
-          </div>
-          <div class="nombre-mas-precio">
-            <div class="nombre"><h4>Pantalon Verde</h4></div>
-            <div class="precio"><h4>$799</h4></div>
-          </div>
-          <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
-          <div class="botones">
-            <div class="ver-mas"><a href="">Ver mas</a></div>
-            <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
-          </div>
-        </article>
+        <section class="productos">
+          <?php mostrarpantalon(); ?>
+        </section>
 
       </section>
 
@@ -190,6 +125,8 @@
       <div class="volver"><a href="home.php"><i class="fas fa-arrow-left"></i>Volver</a></div>
 
     </main>
+
+    <?php require_once('footer.php'); ?>  
 
   </div>
 

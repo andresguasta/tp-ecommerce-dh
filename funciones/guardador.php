@@ -2,6 +2,7 @@
 
 
   function guardarFotoPerfil($email, $archivo){
+
     if (!file_exists('img/usuarios')) {
       mkdir('img/usuarios');
     }
@@ -25,11 +26,17 @@
     $pais = trim($_POST["pais"]);
     $fecha_nac = trim($_POST["fecha-nac"]);
 
+    if($archivos["foto-perfil"]["name"] == ""){
+      $nombreArchivo = "default.png";
+    } else {
+      $nombreArchivo = guardarFotoPerfil($email, $archivos["foto-perfil"]);
+    }
+
     $usuario = [
       "nombre" => $nombre,
       "email" => $email,
       "password" => password_hash($password, PASSWORD_DEFAULT),
-      "foto" => guardarFotoPerfil($email, $archivos["foto-perfil"]),
+      "foto" => $nombreArchivo,
       "telefono" => $telefono,
       "pais" => $pais,
       "fecha-nac" => $fecha_nac

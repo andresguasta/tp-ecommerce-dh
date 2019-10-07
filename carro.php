@@ -1,7 +1,7 @@
 <?php
 
  $seccion = "Carro";
- 
+
 ?>
 
 <!DOCTYPE html>
@@ -44,6 +44,8 @@
           <h2> $750 </h2>
         </div>
       </div>
+
+    <?php require_once('footer.php'); ?>  
 
     </main>
 

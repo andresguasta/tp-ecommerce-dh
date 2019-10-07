@@ -147,37 +147,11 @@
 
           </div>
 
-
-<!--
-          <div class="">
-            <label for="email">Modificar email</label>
-            <input type="email" name="email" id="email" value="">
-          </div>
-          <?php
-            if(isset($errores["email"]) && $errores["email"] != ""){ ?>
-                <div class="error col-12 col-12 col-lg-6">
-                  <i class="fas fa-exclamation"></i><?= $errores["email"] ?>
-                </div>
-          <?php } ?>
-
-          <div class="">
-            <label for="telefono">Modificar telefono</label>
-            <input type="number" name="telefono" id="telefono" value="">
-          </div>
-
-          <div class="">
-            <label for="direccion">Modificar direccion</label>
-            <input type="text" name="direccion" id="direccion" value="">
-          </div>
-
-          <div class="">
-            <button type="submit" name="button">Aplicar cambios</button>
-          </div>
--->
-
         </form>
 
       </main>
+
+      <?php require_once('footer.php'); ?>  
 
     </div>
 

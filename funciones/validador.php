@@ -90,11 +90,9 @@
       if ($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg') {
         return 'Formato de archivo invalido (JPG, JPEG o PNG)';
       }
-
-      return "";
     }
 
-    return "Error al intentar subir archivo. Intentar nuevamente";
+    return "";
   }
 
   function hayErrores($errores){

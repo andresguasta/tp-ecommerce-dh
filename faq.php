@@ -1,6 +1,6 @@
 <?php
 
-  $seccion = "FAQ"; 
+  $seccion = "FAQ";
 
 ?>
 
@@ -86,6 +86,7 @@
 
     </main>
 
+    <?php require_once('footer.php'); ?>
 
   </div>
 

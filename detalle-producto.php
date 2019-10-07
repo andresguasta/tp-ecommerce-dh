@@ -1,6 +1,7 @@
 <?php
-require_once('funciones/mostrarproducto.php');
-$seccion = "Detalle del producto";
+  require_once('funciones/autoload.php');
+
+  $seccion = "Detalle del producto";
 
 ?>
 
@@ -22,9 +23,10 @@ $seccion = "Detalle del producto";
     <main>
 
       <div class="volver"><a href="home.php"><i class="fas fa-arrow-left"></i>Volver</a></div>
-      <?php $aux=$_GET['id'];
-      if ($aux>=1 && $aux<=3) {
-        $producto=obteneridpantalones($aux);?>
+      <?php $aux = $_GET['id'];
+
+        $producto = obtenerIdProducto($aux); ?>
+
         <div class="producto">
           <div class="imagen-producto">
             <img src="img/<?=$producto['imagen']?>" alt="pantalon">
@@ -35,26 +37,10 @@ $seccion = "Detalle del producto";
           </div>
           <div class="descripcion"><p><?=$producto['descripcion']?></p></div>
         </div>
-      <?php }
-
-      if ($aux>=4 && $aux<=6) {
-        $producto=obteneridcamisa($aux);?>
-        <div class="producto">
-          <div class="imagen-producto">
-            <img src="img/<?=$producto['imagen']?>" alt="pantalon">
-          </div>
-          <div class="nombre-mas-precio">
-            <div class="nombre"><h4><?=$producto['nombre']?></h4></div>
-            <div class="precio"><h4><?=$producto['precio']?></h4></div>
-          </div>
-          <div class="descripcion"><p><?=$producto['descripcion']?></p></div>
-        </div>
-      <?php } ?>
-
-
-
 
     </main>
+
+    <?php require_once('footer.php'); ?>  
 
   </div>
 

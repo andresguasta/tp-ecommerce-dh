@@ -4,60 +4,30 @@ function damepantalones(){
 
   $productos = [
     1 => [
-      "grupo" => "Pantalones",
       "imagen" => "pan-azul.jpg",
       "nombre" => "Pantalon azul",
       "precio" => "$750",
-      "descripcion" =>"Lorem Ipsum",
+      "descripcion" =>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "id" => 1,
 
     ],
+
     2 => [
-      "grupo" => "Pantalones",
       "imagen" => "pan-beige.jpg",
       "nombre" => "Pantalon Beige",
-      "descripcion" => "Lorem Ipsum",
+      "descripcion" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "precio" =>"$750",
       "id" => 2,
 
     ],
+
     3 => [
-      "grupo" => "Pantalones",
       "imagen" => "pan-verde.jpg",
       "nombre" => "Pantalon verde",
-      "descripcion" => "Lorem Ipsum",
+      "descripcion" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "precio" => "$750",
       "id" => 3,
 
-    ],
-
-    4 => [
-      "grupo" => "Camisas",  
-      "imagen" => "camisa1.jpg",
-      "nombre" => "Camisa blanca",
-      "precio" => "$800",
-      "descripcion" =>"Lorem Ipsum",
-      "id" => 4,
-
-    ],
-
-    5 => [
-      "grupo" => "Camisas",
-      "imagen" => "camisa2.jpg",
-      "nombre" => "Camisa gris",
-      "descripcion" => "Lorem Ipsum",
-      "precio" =>"1200",
-      "id" => 5,
-
-    ],
-
-    6 => [
-      "grupo" => "Camisas",
-      "imagen" => "camisa3.jpg",
-      "nombre" => "Camisa hawaiana",
-      "descripcion" => "Lorem Ipsum",
-      "precio" => "$1400",
-      "id" => 6,
     ]
   ];
 
@@ -73,14 +43,14 @@ function damecamisas(){
       "imagen" => "camisa1.jpg",
       "nombre" => "Camisa blanca",
       "precio" => "$800",
-      "descripcion" =>"Lorem Ipsum",
+      "descripcion" =>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "id" => 4,
 
     ],
     2 => [
       "imagen" => "camisa2.jpg",
       "nombre" => "Camisa gris",
-      "descripcion" => "Lorem Ipsum",
+      "descripcion" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "precio" =>"1200",
       "id" => 5,
 
@@ -88,7 +58,7 @@ function damecamisas(){
     3 => [
       "imagen" => "camisa3.jpg",
       "nombre" => "Camisa hawaiana",
-      "descripcion" => "Lorem Ipsum",
+      "descripcion" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "precio" => "$1400",
       "id" => 6,
 
@@ -99,15 +69,23 @@ function damecamisas(){
 
 function obtenerIdProducto($id) {
 
-  $productos = damepantalones();
+  if($id >= 1 && $id <= 3){
+    $productos = damepantalones();
+  } else {
+    $productos = damecamisas();
+  }
 
   foreach ($productos as $producto) {
     if ($id == (string) $producto['id']) {
       return $producto;
     }
   }
-  return false;
+
+  return null;
 }
+
+
+/*
 function obteneridcamisa($id) {
   $productos = damecamisas();
   foreach ($productos as $producto) {
@@ -117,3 +95,4 @@ function obteneridcamisa($id) {
   }
   return false;
 }
+**/

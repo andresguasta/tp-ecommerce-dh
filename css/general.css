@@ -94,7 +94,33 @@ main {
   font-weight: bold;
 }
 
+footer {
+  margin-top: 5%;
+  background-color: #000;
+}
+
+footer nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+footer nav ul li {
+  padding: 1%;
+  border: 1px solid #fff;
+  width: 100%;
+}
+
 @media (min-width: 992px) {
+
+    footer {
+      border: 2px solid #fff;
+    }
+
+    footer nav ul li {
+      border: 0;
+      width: 10%;
+    }
 
     header {
       position: static;
