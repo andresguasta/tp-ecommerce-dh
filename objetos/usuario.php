@@ -1,16 +1,18 @@
 <?php
 
-class Usuario{
+class Usuario implements Carrito{
   private $nombre;
   private $email;
   private $username;
   private $password;
+  private $carro;
 
   public function __construct($nombre,$email,$username,$password){
     $this->nombre=$nombre;
     $this->email=$email;
-    $this->username=$username;
+    $this->setPassword($password);
     $this->password=$password;
+    $this->carro=new Carrito()
   }
 
 
@@ -33,9 +35,13 @@ class Usuario{
     $this->username=$username;
   }
   public function setPassword($password){
-    $this->password=$password;
+    $this->password=password_hash($password, PASSWORD_DEFAULT);
   }
   public function getPassword(){
     return $this->password;
   }
+  public function agregarProductoAlCarrito(Producto $producto){
+    $this->carro->agregarProductos($producto);
+  }
+
 }
