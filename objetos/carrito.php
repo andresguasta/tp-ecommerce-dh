@@ -1,6 +1,6 @@
 <?php
 
- Class Carrito
+ class Carrito
  {
    private $productos;
 
