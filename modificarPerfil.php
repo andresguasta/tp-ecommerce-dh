@@ -1,6 +1,7 @@
 <?php
 
   require_once('funciones/autoload.php');
+  require_once('clases/autoload.php');
 
   if(!estaElUsuarioLogeado()){
 
@@ -9,20 +10,23 @@
 
   $seccion = 'Modificar Perfil';
 
-  $usuario = buscarUsuario($_SESSION["email"]);
+  $usuario = $bdd->getUsuarioConEmail($_SESSION['email']);
 
   if($_POST){
+    $validador = new ValidadorModificaciones(["post" => $_POST, "file" => $_FILES, 'email_actual' => $usuario['email']]);
 
-    $errores = validarModificacionesPerfil($_POST, $_FILES);
+    $validador->validar($bdd);
 
-    if ( !hayErrores ( $errores ) ) {
+    if($validador->hayErrores()){
+      $errores = $validador->getErrores();
+    }else{
+      $usuario = new Usuario($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['fecha_nac'], $_POST['telefono'], guardarAvatar($_POST['email'], $_FILES['avatar']));
 
-      guardarModificacionesUsuario($_POST, $_FILES["foto-perfil"]);
+      $usuario->actualizar($bdd);
 
       header('location:perfil.php');
     }
   }
-
 ?>
 
 <!DOCTYPE html>
@@ -49,18 +53,20 @@
             <div class="col-12 campo">
               <div class="row">
                 <div class="col-12 col-lg-6 dato-campo">
-                  <label for="foto-perfil">Modificar foto de perfil</label>
+                  <label for="avatar">Actualizar avatar</label>
                 </div>
                 <div class="col-12 col-lg-6 valor-campo">
-                  <input type="file" id="foto-perfil" name="foto-perfil" value="">
+                  <input type="file" id="avatar" name="avatar" value="">
                 </div>
 
                 <?php
-                if(isset($errores["foto-perfil"]) && $errores["foto-perfil"] != ""){ ?>
-                  <div class="error col-12 col-12 col-lg-6">
-                    <i class="fas fa-exclamation"></i><?= $errores["foto-perfil"] ?>
-                  </div>
-                <?php } ?>
+                  if(isset($errores["avatar"])){
+                    foreach($errores["avatar"] as $error) {?>
+                      <div class="error col-12 col-lg-6">
+                        <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                      </div>
+                    <?php }
+                  } ?>
 
               </div>
             </div>
@@ -68,21 +74,23 @@
             <div class="col-12 campo">
               <div class="row">
                 <div class="col-12 dato-actual">
-                  <label for="nombre">Nombre actual: <?=$usuario["nombre"]?></label>
+                  <label for="nombre">Nombre: <?=$usuario['nombre']?></label>
                 </div>
                 <div class="col-12 col-lg-6 dato-campo">
-                  <label for="nombre">Nuevo nombre</label>
+                  <label for="nombre">Actualizar nombre</label>
                 </div>
                 <div class="col-12 col-lg-6 valor-campo">
                   <input type="text" id="nombre" name="nombre" value="">
                 </div>
 
                 <?php
-                if(isset($errores["nombre"]) && $errores["nombre"] != ""){ ?>
-                  <div class="error col-12 col-12 col-lg-6">
-                    <i class="fas fa-exclamation"></i><?= $errores["nombre"] ?>
-                  </div>
-                <?php } ?>
+                  if(isset($errores["nombre"])){
+                    foreach($errores["nombre"] as $error) {?>
+                      <div class="error col-12 col-lg-6">
+                        <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                      </div>
+                    <?php }
+                  } ?>
 
               </div>
             </div>
@@ -90,21 +98,23 @@
             <div class="col-12 campo">
               <div class="row">
                 <div class="col-12 dato-actual">
-                  <label for="email">Email actual: <?=$usuario["email"]?></label>
+                  <label for="nombre">Apellido: <?=$usuario['apellido']?></label>
                 </div>
                 <div class="col-12 col-lg-6 dato-campo">
-                  <label for="email">Nuevo email</label>
+                  <label for="apellidoapellido">Actualizar apellido</label>
                 </div>
                 <div class="col-12 col-lg-6 valor-campo">
-                  <input type="email" id="email" name="email" value="">
+                  <input type="text" id="apellido" name="apellido" value="">
                 </div>
 
                 <?php
-                if(isset($errores["email"]) && $errores["email"] != ""){ ?>
-                  <div class="error col-12 col-12 col-lg-6">
-                    <i class="fas fa-exclamation"></i><?= $errores["email"] ?>
-                  </div>
-                <?php } ?>
+                  if(isset($errores["apellido"])){
+                    foreach($errores["apellido"] as $error) {?>
+                      <div class="error col-12 col-lg-6">
+                        <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                      </div>
+                    <?php }
+                  } ?>
 
               </div>
             </div>
@@ -112,35 +122,100 @@
             <div class="col-12 campo">
               <div class="row">
                 <div class="col-12 dato-actual">
-                  <label for="telefono">Telefono actual: <?=$usuario["telefono"]?></label>
+                  <label for="email">Email: <?=$usuario['email']?></label>
                 </div>
                 <div class="col-12 col-lg-6 dato-campo">
-                  <label for="telefono">Nuevo telefono</label>
+                  <label for="email">Actualizar email</label>
+                </div>
+                <div class="col-12 col-lg-6 valor-campo">
+                  <input type="text" id="email" name="email" value="">
+                </div>
+
+                <?php
+                  if(isset($errores["email"])){
+                    foreach($errores["email"] as $error) {?>
+                      <div class="error col-12 col-lg-6">
+                        <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                      </div>
+                    <?php }
+                  } ?>
+
+              </div>
+            </div>
+
+            <div class="col-12 campo">
+              <div class="row">
+                <div class="col-12 dato-actual">
+                  <label for="fecha_nac">Fecha de nacimiento: <?=$usuario['fecha_nac']?></label>
+                </div>
+                <div class="col-12 col-lg-6 dato-campo">
+                  <label for="fecha_nac">Actualizar fecha de nacimiento</label>
+                </div>
+                <div class="col-12 col-lg-6 valor-campo">
+                  <input type="date" id="fecha_nac" name="fecha_nac" value="">
+                </div>
+
+                <?php
+                  if(isset($errores["fecha_nac"])){
+                    foreach($errores["fecha_nac"] as $error) {?>
+                      <div class="error col-12 col-lg-6">
+                        <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                      </div>
+                    <?php }
+                  } ?>
+
+              </div>
+            </div>
+
+            <div class="col-12 campo">
+              <div class="row">
+                <div class="col-12 dato-actual">
+                  <label for="telefono">Telefono: <?=($usuario['telefono'])?$usuario['telefono']:'---'?></label>
+                </div>
+                <div class="col-12 col-lg-6 dato-campo">
+                  <label for="telefono">Actualizar telefono</label>
                 </div>
                 <div class="col-12 col-lg-6 valor-campo">
                   <input type="tel" id="telefono" name="telefono" value="">
                 </div>
+
+                <?php
+                  if(isset($errores["telefono"])){
+                    foreach($errores["telefono"] as $error) {?>
+                      <div class="error col-12 col-lg-6">
+                        <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                      </div>
+                    <?php }
+                  } ?>
+
               </div>
             </div>
 
             <div class="col-12 campo">
               <div class="row">
-                <div class="col-12 dato-actual">
-                  <label for="direccion">Direccion actual: <?= (isset($usuario["direccion"]))?$usuario["direccion"]:"" ?></label>
+                <div class="col-8 dato-campo">
+                  <label for="password">Ingrese la contraseña para confirmar los cambios</label>
                 </div>
-                <div class="col-12 col-lg-6 dato-campo">
-                  <label for="direccion">Nueva direccion</label>
+                <div class="col-4 valor-campo">
+                  <input type="password" id="password" name="password" value="">
                 </div>
-                <div class="col-12 col-lg-6 valor-campo">
-                  <input type="direccion" id="direccion" name="direccion" value="">
-                </div>
+
+                <?php
+                  if(isset($errores['password'])){
+                    foreach($errores['password'] as $error) {?>
+                      <div class="error col-12 col-lg-6">
+                        <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                      </div>
+                    <?php }
+                  } ?>
+
               </div>
             </div>
 
             <div class="col-12 container-botones">
               <div class="row">
                 <div class="col-9 container-boton-submit">
-                  <button class="boton-submit" type="submit" name="button">Enviar</button>
+                  <button class="boton-submit" type="submit" name="button">Actualizar</button>
                 </div>
               </div>
             </div>
@@ -151,7 +226,7 @@
 
       </main>
 
-      <?php require_once('footer.php'); ?>  
+      <?php require_once('footer.php'); ?>
 
     </div>
 

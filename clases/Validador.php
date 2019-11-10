@@ -4,9 +4,9 @@ abstract class Validador
 {
   protected $errores;
 
-  abstract public function validar();
+  abstract public function validar(BDD $bdd);
 
-  public function agregarError($campo, $error)
+  public function agregarError(string $campo, string $error)
   {
     $this->errores[$campo][] = $error;
   }
@@ -21,7 +21,7 @@ abstract class Validador
     if(!$this->errores){
       $this->errores = [];
     }
-    
+
     return count($this->errores) > 0;
   }
 

@@ -57,15 +57,15 @@ input, select {
   background-color: 	#969696;
 }
 
-.campo:nth-child(10) .valor-campo, .campo:nth-child(11) .valor-campo {
+.campo:nth-child(12) .valor-campo, .campo:nth-child(11) .valor-campo {
   text-align: right;
 }
 
-.campo:nth-child(10) .dato-campo, .campo:nth-child(11) .dato-campo {
+.campo:nth-child(12) .dato-campo, .campo:nth-child(11) .dato-campo {
   text-align: left;
 }
 
-.campo:nth-child(10) div.col-3.col-lg-5.valor-campo, .campo:nth-child(11) div.col-3.col-lg-5.valor-campo {
+.campo:nth-child(12) div.col-3.col-lg-5.valor-campo, .campo:nth-child(11) div.col-3.col-lg-5.valor-campo {
   padding: 0;
   text-align: right;
 }
@@ -78,13 +78,11 @@ input, select {
   margin-top: 1rem;
   display:flex;
   justify-content: center;
+  color: red;
 }
 
 .error i {
-  background-color: red;
-  padding: 0.2rem 0.5rem;
-  border-radius: 50%;
-  margin-right: 0.4rem;
+  color: red;
 }
 
 @media ( min-width: 992px ) {

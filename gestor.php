@@ -1,7 +1,10 @@
 <?php
 
+  require_once('clases/autoload.php');
+
   $seccion = "Gestor de productos";
 
+  $productos = $bdd->getProductos();
 ?>
 
 <!DOCTYPE html>
@@ -23,110 +26,38 @@
 
       <div class="volver"><a href="home.php"><i class="fas fa-arrow-left"></i>Volver</a></div>
 
-      <div class="titulo-mas-añadir">
-        <div class="titulo">
-          <h2>Pantalones</h2>
-        </div>
-        <div class="añadir">
-          <button type="button" name="button"><i class="fas fa-plus"></i>Añadir producto a esta seccion</button>
-        </div>
+      <div class="agregar">
+        <button type="button" name="button"><a href="agregarProducto.php"><i class="fas fa-plus"></i>Agregar producto</a></button>
       </div>
 
       <section class="productos">
-
-        <section class="productos">
-          <?php mostrarpantalon(); ?>
-        </section>
-
-      </section>
-
-      <div class="titulo-mas-añadir">
-        <div class="titulo">
-          <h2>Camisas</h2>
-        </div>
-        <div class="añadir">
-          <button type="button" name="button"><i class="fas fa-plus"></i>Añadir producto a esta seccion</button>
-        </div>
-      </div>
-
-      <section class="productos">
-
-        <article class="producto">
-          <div class="borrar-editar">
-            <div class="editar">
-              <button type="button" name="button"><i class="fas fa-tools"></i>Modificar publicacion</button>
+        <?php foreach($productos as $producto) { ?>
+          <article class="producto">
+            <div class="imagen-producto">
+              <img src="img/<?=$producto['imagen']?>" alt="pantalon">
             </div>
-            <div class="borrar">
-              <button type="button" name="button"><i class="fas fa-times"></i>Quitar del catalogo</button>
+            <div class="nombre-mas-precio">
+              <div class="nombre"><h4><?= $producto['nombre'] ?></h4></div>
+              <div class="precio"><h4><?=$producto['precio'] ?></h4></div>
             </div>
-          </div>
-          <div class="imagen-producto">
-            <img src="img/camisa1.jpg" alt="camisa">
-          </div>
-          <div class="nombre-mas-precio">
-            <div class="nombre"><h4>Camisa blanca</h4></div>
-            <div class="precio"><h4>$800</h4></div>
-          </div>
-          <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
-          <div class="botones">
-            <div class="ver-mas"><a href="">Ver mas</a></div>
-            <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
-          </div>
-        </article>
-
-        <article class="producto">
-          <div class="borrar-editar">
-            <div class="editar">
-              <button type="button" name="button"><i class="fas fa-tools"></i>Modificar publicacion</button>
+            <div class="descripcion"><p><?= $producto['descripcion'] ?></p></div>
+            <div class="borrar-editar">
+              <div class="editar">
+                <button type="button" name="button"><a href="modificarProducto.php?producto_id=<?=$producto['id']?>"><i class="fas fa-tools"></i>Modificar publicacion</a></button>
+              </div>
+              <div class="borrar">
+                <button type="button" name="button"><a href="eliminarProducto.php?producto_id=<?=$producto['id']?>"><i class="fas fa-times"></i>Quitar del catalogo</a></button>
+              </div>
             </div>
-            <div class="borrar">
-              <button type="button" name="button"><i class="fas fa-times"></i>Quitar del catalogo</button>
-            </div>
-          </div>
-          <div class="imagen-producto">
-            <img src="img/camisa2.jpg" alt="camisa">
-          </div>
-          <div class="nombre-mas-precio">
-            <div class="nombre"><h4>Camisa blanca y negra</h4></div>
-            <div class="precio"><h4>$1200</h4></div>
-          </div>
-          <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
-          <div class="botones">
-            <div class="ver-mas"><a href="">Ver mas</a></div>
-            <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
-          </div>
-        </article>
-
-        <article class="producto">
-          <div class="borrar-editar">
-            <div class="editar">
-              <button type="button" name="button"><i class="fas fa-tools"></i>Modificar publicacion</button>
-            </div>
-            <div class="borrar">
-              <button type="button" name="button"><i class="fas fa-times"></i>Quitar del catalogo</button>
-            </div>
-          </div>
-          <div class="imagen-producto">
-            <img src="img/camisa3.jpg" alt="camisa">
-          </div>
-          <div class="nombre-mas-precio">
-            <div class="nombre"><h4>Camisa Hawaiana</h4></div>
-            <div class="precio"><h4>$1400</h4></div>
-          </div>
-          <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
-          <div class="botones">
-            <div class="ver-mas"><a href="">Ver mas</a></div>
-            <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
-          </div>
-        </article>
-
+          </article>
+        <?php } ?>
       </section>
 
       <div class="volver"><a href="home.php"><i class="fas fa-arrow-left"></i>Volver</a></div>
 
     </main>
 
-    <?php require_once('footer.php'); ?>  
+    <?php require_once('footer.php'); ?>
 
   </div>
 

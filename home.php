@@ -1,8 +1,11 @@
 <?php
 
   require_once('funciones/autoload.php');
+  require_once('clases/autoload.php');
 
   $seccion = "Home";
+
+  $productos = $bdd->getProductos();
 ?>
 
 <!DOCTYPE html>
@@ -27,23 +30,25 @@
         <div class="gestor-productos"><a href="gestor.php"><i class="fas fa-tools"></i>Gestor de productos</a></div>
       </div>
 
-      <div class="titulo">
-        <h2>Pantalones</h2>
-      </div>
-
       <section class="productos">
-        <?php mostrarpantalon(); ?>
+        <?php foreach($productos as $producto) { ?>
+          <article class="producto">
+            <div class="imagen-producto">
+              <img src="img/<?=$producto['imagen']?>" alt="pantalon">
+            </div>
+            <div class="nombre-mas-precio">
+              <div class="nombre"><h4><?= $producto['nombre'] ?></h4></div>
+              <div class="precio"><h4><?=$producto['precio'] ?></h4></div>
+            </div>
+            <div class="descripcion"><p><?= $producto['descripcion'] ?></p></div>
+            <div class="botones">
+              <div class="ver-mas"><a href="detalle-producto.php?id=<?=$producto['id'] ?>">Ver mas</a></div>
+              <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
+            </div>
+          </article>
+        <?php } ?>
       </section>
 
-
-      <div class="titulo">
-        <h2>Camisas</h2>
-      </div>
-
-      <section class="productos">
-        <?php mostrarcamisa(); ?>
-
-      </section>
 
     </main>
 

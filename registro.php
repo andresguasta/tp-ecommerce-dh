@@ -1,7 +1,7 @@
 <?php
 
   require_once('funciones/autoload.php');
-  require_once('objetos/autoload.php');
+  require_once('clases/autoload.php');
 
   $seccion = "Registro";
 
@@ -14,30 +14,25 @@
 
     $validador = new ValidadorRegistro(["post" => $_POST, "file" => $_FILES]);
 
-    $validador->validar();
+    $validador->validar($bdd);
 
     if($validador->hayErrores()){
       $errores = $validador->getErrores();
     } else {
-      guardarUsuario(crearUsuario($_POST, $_FILES));
+      $usuario = new Usuario($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['fecha_nac'], $_POST['telefono'], guardarAvatar($_POST['email'], $_FILES['avatar']));
 
-/*
-    $errores = validarRegistro($_POST, $_FILES);
+      $_SESSION['email'] = $usuario->getEmail();
 
-    if(!hayErrores($errores)){
-      guardarUsuario(crearUsuario($_POST, $_FILES));
-*/
-      $_SESSION['email'] = trim($_POST["email"]);
+      /* GUARDO EN LA BASE DE DATOS */
+      $usuario->guardar($bdd);
 
       if (isset($_POST['recuerdame'])) {
-
-          setcookie('recuerdame', $_POST["email"], time() + 60*60*24*7 );
+          setcookie('recuerdame', $usuario->getEmail(), time() + 60*60*24*7 );
       }
 
       header('location:perfil.php');
     }
   }
-
 ?>
 
 
@@ -78,7 +73,28 @@
                 if(isset($errores["nombre"])){
                   foreach($errores["nombre"] as $error) {?>
                     <div class="error col-12 col-lg-6">
-                      <i class="fas fa-exclamation"></i><?= $error ?>
+                      <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                    </div>
+                  <?php }
+                } ?>
+
+            </div>
+          </div>
+
+          <div class="col-12 campo">
+            <div class="row">
+              <div class="col-12 col-lg-6 dato-campo">
+                <label for="apellido">Apellido</label>
+              </div>
+              <div class="col-12 col-lg-6 valor-campo">
+                <input type="text" id="apellido" name="apellido" value="<?php if(isset($_POST["apellido"]))  echo $_POST["apellido"]  ; ?>">
+              </div>
+
+              <?php
+                if(isset($errores["apellido"])){
+                  foreach($errores["apellido"] as $error) {?>
+                    <div class="error col-12 col-lg-6">
+                      <i class="fas fa-exclamation-triangle"></i><?= $error ?>
                     </div>
                   <?php }
                 } ?>
@@ -99,7 +115,7 @@
                 if(isset($errores["email"])){
                   foreach($errores["email"] as $error) {?>
                     <div class="error col-12 col-lg-6">
-                      <i class="fas fa-exclamation"></i><?= $error ?>
+                      <i class="fas fa-exclamation-triangle"></i><?= $error ?>
                     </div>
                   <?php }
                 } ?>
@@ -120,7 +136,7 @@
                 if(isset($errores["telefono"])){
                   foreach($errores["telefono"] as $error) {?>
                     <div class="error col-12 col-lg-6">
-                      <i class="fas fa-exclamation"></i><?= $error ?>
+                      <i class="fas fa-exclamation-triangle"></i><?= $error ?>
                     </div>
                   <?php }
                 } ?>
@@ -141,7 +157,7 @@
                 if(isset($errores["password"])){
                   foreach($errores["password"] as $error) {?>
                     <div class="error col-12 col-lg-6">
-                      <i class="fas fa-exclamation"></i><?= $error ?>
+                      <i class="fas fa-exclamation-triangle"></i><?= $error ?>
                     </div>
                   <?php }
                 } ?>
@@ -162,7 +178,7 @@
                 if(isset($errores["confirmacion"])){
                   foreach($errores["confirmacion"] as $error) {?>
                     <div class="error col-12 col-lg-6">
-                      <i class="fas fa-exclamation"></i><?= $error ?>
+                      <i class="fas fa-exclamation-triangle"></i><?= $error ?>
                     </div>
                   <?php }
                 } ?>
@@ -203,7 +219,7 @@
                 if(isset($errores["fecha_nac"])){
                   foreach($errores["fecha_nac"] as $error) {?>
                     <div class="error col-12 col-lg-6">
-                      <i class="fas fa-exclamation"></i><?= $error ?>
+                      <i class="fas fa-exclamation-triangle"></i><?= $error ?>
                     </div>
                   <?php }
                 } ?>
@@ -214,17 +230,17 @@
           <div class="col-12 campo">
             <div class="row">
               <div class="col-12 col-lg-6 dato-campo">
-                <label for="imagen">Subir una foto de perfil</label>
+                <label for="avatar">Subir una foto de perfil</label>
               </div>
               <div class="col-12 col-lg-6 valor-campo">
-                <input type="file" id="imagen" name="imagen" value="">
+                <input type="file" id="avatar" name="avatar" value="<?php if(isset($_POST["avatar"]))  echo $_POST["avatar"]  ; ?>">
               </div>
 
               <?php
-                if(isset($errores["imagen"])){
-                  foreach($errores["imagen"] as $error) {?>
+                if(isset($errores["avatar"])){
+                  foreach($errores["avatar"] as $error) {?>
                     <div class="error col-12 col-lg-6">
-                      <i class="fas fa-exclamation"></i><?= $error ?>
+                      <i class="fas fa-exclamation-triangle"></i><?= $error ?>
                     </div>
                   <?php }
                 } ?>
@@ -245,7 +261,7 @@
                 if(isset($errores["terms_cond"])){
                   foreach($errores["terms_cond"] as $error) {?>
                     <div class="error col-12 col-lg-6">
-                      <i class="fas fa-exclamation"></i><?= $error ?>
+                      <i class="fas fa-exclamation-triangle"></i><?= $error ?>
                     </div>
                   <?php }
                 } ?>
@@ -301,7 +317,7 @@
               <?php
                 if(isset($errores["nombre"]) && $errores["nombre"] != ""){ ?>
                     <div class="error col-12 col-12 col-lg-6">
-                      <i class="fas fa-exclamation"></i><?= $errores["nombre"] ?>
+                      <i class="fas fa-exclamation-triangle"></i><?= $errores["nombre"] ?>
                     </div>
               <?php } ?>
 
@@ -320,7 +336,7 @@
               <?php
                 if(isset($errores["email"]) && $errores["email"] != ""){ ?>
                     <div class="error col-12 col-lg-6">
-                      <i class="fas fa-exclamation"></i><?= $errores["email"] ?>
+                      <i class="fas fa-exclamation-triangle"></i><?= $errores["email"] ?>
                     </div>
               <?php } ?>
 
@@ -350,7 +366,7 @@
               <?php
                 if(isset($errores["contraseña"]) && $errores["contraseña"] != ""){ ?>
                     <div class="error col-12 col-lg-6">
-                      <i class="fas fa-exclamation"></i><?= $errores["contraseña"] ?>
+                      <i class="fas fa-exclamation-triangle"></i><?= $errores["contraseña"] ?>
                     </div>
               <?php } ?>
 
@@ -369,7 +385,7 @@
               <?php
                 if(isset($errores["confirmacion"]) && $errores["confirmacion"] != ""){ ?>
                     <div class="error col-12 col-lg-6">
-                      <i class="fas fa-exclamation"></i><?= $errores["confirmacion"] ?>
+                      <i class="fas fa-exclamation-triangle"></i><?= $errores["confirmacion"] ?>
                     </div>
               <?php } ?>
 
@@ -419,7 +435,7 @@
               <?php
                 if(isset($errores["imagen"]) && $errores["imagen"] != ""){ ?>
                     <div class="error col-12 col-lg-6">
-                      <i class="fas fa-exclamation"></i><?= $errores["imagen"] ?>
+                      <i class="fas fa-exclamation-triangle"></i><?= $errores["imagen"] ?>
                     </div>
               <?php } ?>
 

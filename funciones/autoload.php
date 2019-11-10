@@ -6,3 +6,4 @@
   require_once('mostrarproducto.php');
   require_once('validador.php');
   require_once('usuarios.php');
+  

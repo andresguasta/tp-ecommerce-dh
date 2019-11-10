@@ -1,6 +1,7 @@
 <?php
 
   require_once('funciones/autoload.php');
+  require_once('clases/autoload.php');
 
   if(!estaElUsuarioLogeado()){
 
@@ -9,8 +10,7 @@
 
   $seccion = 'Perfil';
 
-  $usuario = buscarUsuario($_SESSION["email"]);
-
+  $usuario = $bdd->getUsuarioConEmail($_SESSION['email']);
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@
           <div class="perfil">
 
             <div class="foto-perfil">
-              <img src="img/usuarios/<?=$usuario["foto"]?>" alt="">
+              <img src="img/usuarios/<?=$usuario['avatar']?>" alt="">
             </div>
 
             <div class="datos">
@@ -44,7 +44,16 @@
                   <h4>Nombre</h4>
                 </div>
                 <div class="valor">
-                  <h4><?=$usuario["nombre"]?></h4>
+                  <h4><?=$usuario['nombre']?></h4>
+                </div>
+              </div>
+
+              <div class="dato">
+                <div class="campo">
+                  <h4>Apellido</h4>
+                </div>
+                <div class="valor">
+                  <h4><?=$usuario['apellido']?></h4>
                 </div>
               </div>
 
@@ -53,7 +62,7 @@
                   <h4>Email</h4>
                 </div>
                 <div class="valor">
-                  <h4><?=$usuario["email"]?></h4>
+                  <h4><?=$usuario['email']?></h4>
                 </div>
               </div>
 
@@ -62,10 +71,19 @@
                   <h4>Telefono</h4>
                 </div>
                 <div class="valor">
-                  <h4><?=$usuario["telefono"]?></h4>
+                  <h4><?=($usuario['telefono'])?$usuario['telefono']:'---'?></h4>
                 </div>
               </div>
 
+              <div class="dato">
+                <div class="campo">
+                  <h4>Fecha de nacimiento</h4>
+                </div>
+                <div class="valor">
+                  <h4><?=$usuario['fecha_nac']?></h4>
+                </div>
+              </div>
+<!--
               <div class="dato">
                 <div class="campo">
                   <h4>Direccion</h4>
@@ -78,7 +96,7 @@
             </div>
           </div>
         </div>
-
+-->
         <div class="button-group row">
           <div class="col-8 col-md-10"></div>
           <div class="col-4 col-md-2 modificarPerfil">
@@ -88,7 +106,7 @@
 
       </main>
 
-      <?php require_once('footer.php'); ?>    
+      <?php require_once('footer.php'); ?>
 
     </div>
 

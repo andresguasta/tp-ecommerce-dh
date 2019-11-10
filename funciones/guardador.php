@@ -1,30 +1,28 @@
 <?php
 
+  function guardarAvatar($email, $archivo){
+    if($archivo['name'] != ""){
+      $ext = pathinfo($archivo['name'], PATHINFO_EXTENSION);
 
-  function guardarFotoPerfil($email, $archivo){
+      $nombreArchivo = $email . '.' . $ext;
 
-    if (!file_exists('img/usuarios')) {
-      mkdir('img/usuarios');
+      // Muevo el archivo a mi carpeta avatars
+      move_uploaded_file($archivo['tmp_name'], 'img/usuarios/' . $nombreArchivo);
+    }else{
+      $nombreArchivo = 'default.png';
     }
-
-    $ext = pathinfo($archivo['name'], PATHINFO_EXTENSION);
-
-    $nombreArchivo = $email . '.' . $ext;
-
-    //la muevo a mi carpeta avatars
-    move_uploaded_file($archivo['tmp_name'], 'img/usuarios/' . $nombreArchivo);
 
     return $nombreArchivo;
   }
-
+/*
   function crearUsuario($datosUsuario, $archivos){
 
-    $nombre = trim($_POST["nombre"]);
-    $email = trim($_POST["email"]);
-    $password = trim($_POST["contraseña"]);
-    $telefono = trim($_POST["telefono"]);
-    $pais = trim($_POST["pais"]);
-    $fecha_nac = trim($_POST["fecha-nac"]);
+    $nombre = trim($datosUsuario["nombre"]);
+    $email = trim($datosUsuario["email"]);
+    $password = trim($datosUsuario["password"]);
+    $telefono = trim($datosUsuario["telefono"]);
+    $pais = trim($datosUsuario["pais"]);
+    $fecha_nac = trim($datosUsuario["fecha_nac"]);
 
     if($archivos["foto-perfil"]["name"] == ""){
       $nombreArchivo = "default.png";
@@ -116,3 +114,4 @@
 
     file_put_contents('archivos/usuarios.json', json_encode($usuarios));
   }
+*/

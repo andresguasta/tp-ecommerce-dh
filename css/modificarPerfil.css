@@ -70,13 +70,11 @@ input, select {
   margin-top: 1rem;
   display:flex;
   justify-content: center;
+  color: red;
 }
 
 .error i {
-  background-color: red;
-  padding: 0.2rem 0.5rem;
-  border-radius: 50%;
-  margin-right: 0.4rem;
+  color: red;
 }
 
 @media ( min-width: 992px ) {

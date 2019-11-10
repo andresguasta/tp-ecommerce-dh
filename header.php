@@ -41,7 +41,7 @@
             </form>
           <?php } else { ?>
             <div class="link-nav col-12 col-md-2">
-              <li><a href="loginConCorreciones.php">Login</a></li>
+              <li><a href="login.php">Login</a></li>
             </div>
 
             <div class="link-nav col-12 col-md-2">
