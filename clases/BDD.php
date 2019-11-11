@@ -57,41 +57,37 @@ class BDD
   }
 
   public function actualizarUsuario(Usuario $usuario){
-    $usuarioAActualizar = $this->getUsuarioConEmail($_SESSION['email']);
-
-    $query = $this->conexion->prepare('update usuarios set nombre = :nombre, apellido = :apellido, email = :email, telefono = :telefono, fecha_nac = :fecha_nac, avatar = :avatar;');
-
     if($usuario->getNombre() != ""){
-      $this->actualizarCampo('nombre', $usuario->getNombre());
+      $this->actualizarCampo('usuarios', 'nombre', $usuario->getNombre(), 'email', $_SESSION['email']);
     }
 
     if($usuario->getApellido() != ""){
-      $this->actualizarCampo('apellido', $usuario->getApellido());
+      $this->actualizarCampo('usuarios', 'apellido', $usuario->getApellido(), 'email', $_SESSION['email']);
     }
 
     if($usuario->getEmail() != ""){
-      $this->actualizarCampo('email', $usuario->getEmail());
+      $this->actualizarCampo('usuarios', 'email', $usuario->getEmail(), 'email', $_SESSION['email']);
       $_SESSION['email'] = $usuario->getEmail();
     }
 
     if($usuario->getTelefono() != ""){
-      $this->actualizarCampo('telefono', $usuario->getTelefono());
+      $this->actualizarCampo('usuarios', 'telefono', $usuario->getTelefono(), 'email', $_SESSION['email']);
     }
 
     if($usuario->getFechaNac() != ""){
-      $this->actualizarCampo('fecha_nac', $usuario->getFechaNac());
+      $this->actualizarCampo('usuarios', 'fecha_nac', $usuario->getFechaNac(), 'email', $_SESSION['email']);
     }
 
     if($usuario->getAvatar() != ""){
-      $this->actualizarCampo('avatar', $usuario->getAvatar());
+      $this->actualizarCampo('usuarios', 'avatar', $usuario->getAvatar(), 'email', $_SESSION['email']);
     }
   }
 
-  private function actualizarCampo(string $campo, string $valor){
-    $query = $this->conexion->prepare("update usuarios set $campo = :valor where email = :email;");
+  private function actualizarCampo(string $tabla, string $campo, string $valor, string $campoComparado, string $comparando){
+    $query = $this->conexion->prepare("update $tabla set $campo = :valor where $campoComparado = :comparando;");
 
     $query->bindValue(':valor', $valor);
-    $query->bindValue(':email', $_SESSION['email']);
+    $query->bindValue(':comparando', $comparando);
 
     $query->execute();
   }
@@ -126,7 +122,8 @@ class BDD
     $query->execute();
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
-  public function agregarProductos(){
+
+  public function agregarProducto(){
     $query=$this->conexion->prepare('insert into productos (nombre, descripcion, precio, imagen, en_oferta, categoria_id) values (:nombre, :descripcion, :precio, :imagen, :oferta, :categoria);');
     $query->bindValue(':nombre', $_POST["nombre"]);
     $query->bindValue(':descripcion', $_POST["descripcion"]);
@@ -144,6 +141,21 @@ class BDD
     $query->bindValue(':categoria', $categoria);
     $query->execute();
   }
+
+  public function actualizarProducto(Producto $producto){
+    if($producto->getNombre() != ""){
+      $this->actualizarCampo('productos', 'nombre', $producto->getNombre(), 'id', $_SESSION['producto_id']);
+    }
+
+    if($producto->getDescripcion() != ""){
+      $this->actualizarCampo('productos', 'descripcion', $producto->getDescripcion(), 'id', $_SESSION['producto_id']);
+    }
+
+    if($producto->getPrecio() != ""){
+      $this->actualizarCampo('productos', 'precio', $producto->getPrecio(), 'id', $_SESSION['producto_id']);
+    }
+  }
+
   public function modificarProductos($producto){
     $query = $this->conexion->prepare("update productos set nombre = :nombre,descripcion=:descripcion,precio=:precio, categoria_id=:categoria,imagen=:imagen where id = :id;");
     $query->bindValue(':nombre', $_POST["nombre"]);
@@ -161,6 +173,7 @@ class BDD
     $query->bindValue(':imagen', guardarImagen($archivo,$nombre));
     $query->bindValue(':id',$producto);
     $query->execute();
+
 
   }
 

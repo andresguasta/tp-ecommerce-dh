@@ -14,7 +14,7 @@ if($_POST){
   // var_dump($_POST);
   // var_dump($_FILES);
 
-  $prueba=$bdd->agregarProductos();
+  $prueba=$bdd->agregarProducto();
 
   //header('location:gestor.php');
 }

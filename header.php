@@ -32,9 +32,24 @@
             <li><a href="contacto.php">Contacto</a></li>
           </div>
 
+          <div class="link-nav col-12 col-md-2">
+            <li><a href="
+              <?php if(estaElUsuarioLogeado()) {
+                echo "perfil.php";
+              } else {
+                echo "login.php";
+              } ?>    "><i class="fas fa-user-alt"></i></a></li>
+          </div>
+
           <?php if(estaElUsuarioLogeado()) { ?>
             <div class="link-nav col-12 col-md-2">
-              <li><a href="perfil.php">Perfil</a></li>
+              <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i></a></li>
+            </div>
+          <?php } ?>
+<!--
+          <?php if(estaElUsuarioLogeado()) { ?>
+            <div class="link-nav col-12 col-md-2">
+              <li><a href="perfil.php"><i class="fas fa-user-alt"></i></a></li>
             </div>
             <form class="log-out col-12 col-md-2" action="logout.php" method="post">
               <button type="submit" name="button">Cerrar sesion</button>
@@ -48,7 +63,7 @@
               <li><a href="registro.php">Registro</a></li>
             </div>
           <?php } ?>
-
+-->
         </div>
         </ul>
       </nav>

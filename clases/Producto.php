@@ -9,20 +9,11 @@ class Producto{
   private $nombre;
   private $descripcion;
 
-  public function __construct($id,$precio,$enOferta,$nombre,$descripcion){
-    $this->id=$id;
-    $this->precio=$precio;
-    $this->enOferta=$enOferta;
-    $this->nombre=$nombre;
-    $this->descripcion=$descripcion;
-  }
-
-  public function getId(){
-    return $this->id;
-  }
-
-  public function setId($id){
-    $this->id=$id;
+  public function __construct($precio,$nombre,$descripcion,$avatar){
+    $this->precio = $precio;
+    $this->avatar = $avatar;
+    $this->nombre = $nombre;
+    $this->descripcion = $descripcion;
   }
 
   public function getPrecio(){
@@ -33,18 +24,15 @@ class Producto{
     $this->precio=$precio;
   }
 
-  public function getEnOferta(){
-    return $this->enOferta;
+  public function setAvatar($avatar){
+    $this->avatar = $avatar;
   }
 
-  public function setEnOferta($enOferta){
-    $this->enOferta=$enOferta;
+  public function getAvatar(){
+    return $this->avatar;
   }
 
   public function getNombre(){
-    // El $ luego del $this-> . Me costo encontrar el error que me tiraba al correr las pruebas jeje
-    // Ademas se repitio un par de veces el error con otros getters
-    // return $this->$nombre;
     return $this->nombre;
   }
 
@@ -64,22 +52,16 @@ class Producto{
      $this->enOferta=TRUE;
   }
 
-  /* Agrego el mensaje para sacar de oferta el producto */
   public function quitarDeOferta(){
     $this->enOferta = false;
   }
 
-  /* La ventaja de tener atributos booleanos es que podemos retornar el valor del atributo sin hacer ningun checkeo
-   */
   public function estaEnOferta(){
-    /*
-    if($this->enOferta==TRUE){
-      return "esta en oferta";
-    }
-    else {
-      return "no esta en oferta";
-    }*/
-    return $this->enOferta; // Si $enOferta es true devuelve true, si es false devuelve false
+    return $this->enOferta;
+  }
+
+  public function actualizar(BDD $bdd){
+    $bdd->actualizarProducto($this);
   }
 
 }

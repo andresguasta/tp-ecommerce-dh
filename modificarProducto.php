@@ -1,9 +1,10 @@
 <?php
 require_once('clases/autoload.php');
 require_once('funciones/autoload.php');
-if($_GET){
-  $producto = $bdd->getProductoConId((int)$_GET['producto_id']);
 
+if(isset($_GET['producto_id'])){
+  $producto = $bdd->getProductoConId((int)$_GET['producto_id']);
+  $_SESSION['producto_id'] = (int)$_GET['producto_id'];
 }
 
 
@@ -12,12 +13,11 @@ $seccion="Modificar Productos";
 
 if($_POST){
 
-  // VALIDAR DATOS INTRODUCIDOS....
+  $producto = new Producto($_POST['precio'], $_POST['nombre'], $_POST['descripcion'], guardarAvatar($_POST['nombre'], $_FILES['imagen']));
 
-  // ACTUALIZO EL PRODUCTO EN LA BDD
-  $prueba=$bdd->modificarProductos($producto);
-  //header('location:gestor.php');
+  $producto->actualizar($bdd);
 
+  header('location:gestor.php');
 }
 ?>
 
