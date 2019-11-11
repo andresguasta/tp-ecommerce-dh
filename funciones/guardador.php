@@ -24,7 +24,7 @@
 
       move_uploaded_file($archivo['tmp_name'], 'img/' . $nombreArchivo);
     }else{
-      $nombreArchivo = 'default.png';
+      $nombreArchivo = "";
     }
 
     return $nombreArchivo;

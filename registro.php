@@ -23,8 +23,7 @@
 
       $_SESSION['email'] = $usuario->getEmail();
 
-      /* GUARDO EN LA BASE DE DATOS */
-      $usuario->guardar($bdd);
+      $usuario->agregar($bdd);
 
       if (isset($_POST['recuerdame'])) {
           setcookie('recuerdame', $usuario->getEmail(), time() + 60*60*24*7 );

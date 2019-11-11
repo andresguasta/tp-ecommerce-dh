@@ -1,19 +1,30 @@
 <?php
 class Producto{
-  private $id;
   private $precio;
-  /* No hace falta asignarle 1 al atributo $enOferta. Si bien 1 es equivalente a true, es conveniente
-   * usar tipos de datos booleanos para estos casos */
-  private $enOferta = false;   // Esto es similar a inicializar $enOferta como false en el constructor, al crear un nuevo objeto de esta clase, este atributo ya es false (desde que se hace new Producto() )
-  // private $enOferta = 1; // Si luego se va a leer como booleano, es equivalente a inicilizar $enOferta como true en el constructor, pero como el nombre del atributo refiere a el valor de verdad de algo (verdadero o falso), es mejor guardar un booleano
+  private $enOferta = false;
   private $nombre;
   private $descripcion;
+  private $categoria;
+  private $imagen;
 
-  public function __construct($precio,$nombre,$descripcion,$avatar){
+  public function __construct($precio,$nombre,$descripcion,$categoria,$imagen = ""){
     $this->precio = $precio;
-    $this->avatar = $avatar;
+    $this->imagen = $imagen;
     $this->nombre = $nombre;
     $this->descripcion = $descripcion;
+    $this->categoria = $categoria;
+  }
+
+  public function getImagen(){
+    return $this->imagen;
+  }
+
+  public function setImagen($imagen){
+    $this->imagen = $imagen;
+  }
+
+  public function getCategoria(){
+    return $this->categoria;
   }
 
   public function getPrecio(){
@@ -22,14 +33,6 @@ class Producto{
 
   public function setPrecio($precio){
     $this->precio=$precio;
-  }
-
-  public function setAvatar($avatar){
-    $this->avatar = $avatar;
-  }
-
-  public function getAvatar(){
-    return $this->avatar;
   }
 
   public function getNombre(){
@@ -62,6 +65,10 @@ class Producto{
 
   public function actualizar(BDD $bdd){
     $bdd->actualizarProducto($this);
+  }
+
+  public function agregar(BDD $bdd){
+    $bdd->agregarProducto($this);
   }
 
 }

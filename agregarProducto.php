@@ -7,26 +7,12 @@ $seccion='Agregar Producto';
 $categorias = $bdd->getCategorias();
 
 if($_POST){
+  $producto = new Producto($_POST['precio'], $_POST['nombre'], $_POST['descripcion'], $_POST['categoria'], guardarImagen($_FILES['imagen'], $_POST['nombre']));
 
-  // VALIDAR DATOS INGRESADOS
+  $producto->agregar($bdd);
 
-  // GUARDAR PRODUCTO EN BDD
-  // var_dump($_POST);
-  // var_dump($_FILES);
-
-  $prueba=$bdd->agregarProducto();
-
-  //header('location:gestor.php');
+  header('location:gestor.php');
 }
-//if($_FILES){
-  //$archivo=$_FILES["imagen"];
-  //$nombre=$_POST["nombre"];
-
-  //guardarImagen($archivo,$nombre);
-
-
-//}
-
 
 ?>
 

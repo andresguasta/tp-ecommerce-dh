@@ -24,7 +24,7 @@ class BDD
     }
   }
 
-  public function guardarUsuario(Usuario $usuario): void
+  public function agregarUsuario(Usuario $usuario): void
   {
     $query = $this->conexion->prepare('insert into usuarios (nombre, apellido, email, password, telefono, fecha_nac, avatar) values (:nombre, :apellido, :email, :password, :telefono, :fecha_nac, :avatar)');
 
@@ -110,7 +110,7 @@ class BDD
 
   public function getProductoConId(int $id)
   {
-    $query = $this->conexion->prepare('select productos.nombre as nombre, descripcion, precio, imagen, categorias.nombre as categoria from productos inner join categorias on productos.categoria_id = categorias.id where productos.id = :id');
+    $query = $this->conexion->prepare('select productos.id as id, productos.nombre as nombre, descripcion, precio, imagen, categorias.nombre as categoria from productos inner join categorias on productos.categoria_id = categorias.id where productos.id = :id');
     $query->bindValue(':id', $id);
     $query->execute();
     return $query->fetch(PDO::FETCH_ASSOC);
@@ -123,36 +123,51 @@ class BDD
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function agregarProducto(){
-    $query=$this->conexion->prepare('insert into productos (nombre, descripcion, precio, imagen, en_oferta, categoria_id) values (:nombre, :descripcion, :precio, :imagen, :oferta, :categoria);');
-    $query->bindValue(':nombre', $_POST["nombre"]);
-    $query->bindValue(':descripcion', $_POST["descripcion"]);
-    $query->bindValue(':precio', $_POST["precio"]);
-    $archivo=$_FILES["imagen"];
-    $nombre=$_POST["nombre"];
-    $query->bindValue(':imagen', guardarImagen($archivo,$nombre));
+  public function agregarProducto(Producto $producto){
+    $query = $this->conexion->prepare('insert into productos (nombre, descripcion, precio, imagen, en_oferta, categoria_id) values (:nombre, :descripcion, :precio, :imagen, :oferta, :categoria_id);');
+
+    $categorias = $this->getCategorias();
+    foreach($categorias as $categoria){
+      if($categoria['nombre'] == $producto->getCategoria()){
+        $categoria_id = $categoria['id'];
+      }
+    }
+
+    $query->bindValue(':nombre', $producto->getNombre());
+    $query->bindValue(':descripcion', $producto->getDescripcion());
+    $query->bindValue(':precio', $producto->getPrecio());
+    $query->bindValue(':imagen', $producto->getImagen());
     $query->bindValue(':oferta', 0);
-    if($_POST["categoria"]=='pantalon'){
-      $categoria=1;
-    }
-    else {
-      $categoria=2;
-    }
-    $query->bindValue(':categoria', $categoria);
+    $query->bindValue(':categoria_id', $categoria_id);
+
     $query->execute();
   }
 
   public function actualizarProducto(Producto $producto){
     if($producto->getNombre() != ""){
-      $this->actualizarCampo('productos', 'nombre', $producto->getNombre(), 'id', $_SESSION['producto_id']);
+      $this->actualizarCampo('productos', 'nombre', $producto->getNombre(), 'nombre', $_SESSION['producto_nombre']);
+      $_SESSION['producto_nombre'] = $producto->getNombre();
     }
 
     if($producto->getDescripcion() != ""){
-      $this->actualizarCampo('productos', 'descripcion', $producto->getDescripcion(), 'id', $_SESSION['producto_id']);
+      $this->actualizarCampo('productos', 'descripcion', $producto->getDescripcion(), 'nombre', $_SESSION['producto_nombre']);
     }
 
     if($producto->getPrecio() != ""){
-      $this->actualizarCampo('productos', 'precio', $producto->getPrecio(), 'id', $_SESSION['producto_id']);
+      $this->actualizarCampo('productos', 'precio', $producto->getPrecio(), 'nombre', $_SESSION['producto_nombre']);
+    }
+
+    if($producto->getImagen() != ""){
+      $this->actualizarCampo('productos', 'imagen', $producto->getImagen(), 'nombre', $_SESSION['producto_nombre']);
+    }
+
+    if($producto->getCategoria() != ""){
+      $query = $this->conexion->prepare('select id from categorias where nombre = :nombre');
+      $query->bindValue(':nombre', $producto->getCategoria());
+      $query->execute();
+      $categoria_id = $query->fetch(PDO::FETCH_ASSOC)['id'];
+
+      $this->actualizarCampo('productos', 'categoria_id', $categoria_id, 'nombre', $_SESSION['producto_nombre']);
     }
   }
 

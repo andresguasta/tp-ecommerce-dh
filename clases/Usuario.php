@@ -77,8 +77,8 @@ class Usuario{
     return $this->telefono;
   }
 
-  public function guardar(BDD $bdd){
-    $bdd->guardarUsuario($this);
+  public function agregar(BDD $bdd){
+    $bdd->agregarUsuario($this);
   }
 
   public function actualizar(BDD $bdd){
