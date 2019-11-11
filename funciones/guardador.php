@@ -14,6 +14,23 @@
 
     return $nombreArchivo;
   }
+
+  function guardarImagen($archivo,$nombre){
+    if($archivo['name'] != ""){
+      $ext = pathinfo($archivo['name'], PATHINFO_EXTENSION);
+
+      $nombreArchivo = $nombre . '.' . $ext;
+
+
+      move_uploaded_file($archivo['tmp_name'], 'img/' . $nombreArchivo);
+    }else{
+      $nombreArchivo = 'default.png';
+    }
+
+    return $nombreArchivo;
+  }
+
+
 /*
   function crearUsuario($datosUsuario, $archivos){
 

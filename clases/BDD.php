@@ -126,5 +126,24 @@ class BDD
     $query->execute();
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
+  public function agregarProductos(){
+    $query=$this->conexion->prepare('insert into productos (nombre, descripcion, precio, imagen, en_oferta, categoria_id) values (:nombre, :descripcion, :precio, :imagen, :oferta, :categoria);');
+    $query->bindValue(':nombre', $_POST["nombre"]);
+    $query->bindValue(':descripcion', $_POST["descripcion"]);
+    $query->bindValue(':precio', $_POST["precio"]);
+    $archivo=$_FILES["imagen"];
+    $nombre=$_POST["nombre"];
+    $query->bindValue(':imagen', guardarImagen($archivo,$nombre));
+    $query->bindValue(':oferta', 0);
+    if($_POST["categoria"]=='pantalon'){
+      $categoria=1;
+    }
+    else {
+      $categoria=2;
+    }
+    $query->bindValue(':categoria', $categoria);
+    $query->execute();
+  }
+
 
 }

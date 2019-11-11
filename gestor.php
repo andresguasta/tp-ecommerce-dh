@@ -7,6 +7,7 @@
   $productos = $bdd->getProductos();
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
