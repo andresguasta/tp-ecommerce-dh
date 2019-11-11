@@ -144,6 +144,25 @@ class BDD
     $query->bindValue(':categoria', $categoria);
     $query->execute();
   }
+  public function modificarProductos($producto){
+    $query = $this->conexion->prepare("update productos set nombre = :nombre,descripcion=:descripcion,precio=:precio, categoria_id=:categoria,imagen=:imagen where id = :id;");
+    $query->bindValue(':nombre', $_POST["nombre"]);
+    $query->bindValue(':descripcion', $_POST["descripcion"]);
+    $query->bindValue(':precio', $_POST["precio"]);
+    if($_POST["categoria"]=='pantalon'){
+      $categoria=1;
+    }
+    else {
+      $categoria=2;
+    }
+    $query->bindValue(':categoria', $producto);
+    $archivo=$_FILES["imagen"];
+    $nombre=$_POST["nombre"];
+    $query->bindValue(':imagen', guardarImagen($archivo,$nombre));
+    $query->bindValue(':id',$producto);
+    $query->execute();
+
+  }
 
 
 }

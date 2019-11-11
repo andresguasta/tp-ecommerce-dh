@@ -1,29 +1,38 @@
 <?php
 require_once('clases/autoload.php');
+require_once('funciones/autoload.php');
+if($_GET){
+  $producto = $bdd->getProductoConId((int)$_GET['producto_id']);
 
-$producto = $bdd->getProductoConId((int)$_GET['producto_id']);
+}
+
 
 $categorias = $bdd->getCategorias();
+$seccion="Modificar Productos";
 
 if($_POST){
 
   // VALIDAR DATOS INTRODUCIDOS....
 
   // ACTUALIZO EL PRODUCTO EN LA BDD
-
-  header('location:gestor.php');
+  $prueba=$bdd->modificarProductos($producto);
+  //header('location:gestor.php');
 
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<?php require_once('head.php') ?>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/login.css">
+
   </head>
   <body>
     <div class="container-fluid">
+      <?php require_once('header.php'); ?>
 
       <main>
         <form class="" action="modificarProducto.php" method="post" enctype="multipart/form-data">
@@ -64,6 +73,7 @@ if($_POST){
           <button type="submit" name="button">Actualizar</button>
         </form>
       </main>
+      <?php require_once('footer.php'); ?>
 
     </div>
   </body>
