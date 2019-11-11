@@ -7,13 +7,20 @@ $seccion='Agregar Producto';
 $categorias = $bdd->getCategorias();
 
 if($_POST){
-  $producto = new Producto($_POST['precio'], $_POST['nombre'], $_POST['descripcion'], $_POST['categoria'], guardarImagen($_FILES['imagen'], $_POST['nombre']));
+  $validador = new ValidadorProductos(["post" => $_POST, "file" => $_FILES]);
 
-  $producto->agregar($bdd);
+  $validador->validarProductoAgregado();
 
-  header('location:gestor.php');
+  if($validador->hayErrores()){
+    $errores = $validador->getErrores();
+  }else{
+    $producto = new Producto($_POST['precio'], $_POST['nombre'], $_POST['descripcion'], $_POST['categoria'], guardarImagen($_FILES['imagen'], $_POST['nombre']));
+
+    $producto->agregar($bdd);
+
+    header('location:gestor.php');
+  }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -39,21 +46,37 @@ if($_POST){
                   <label for="nombre">Nombre</label>
                 </div>
                 <div class="col-12 col-lg-6 valor-campo">
-                  <input type="text" id="nombre" name="nombre" value="">
+                  <input type="text" id="nombre" name="nombre" value="<?=(isset($_POST["nombre"]))?$_POST["nombre"]:"";?>">
                 </div>
+                <?php
+                  if(isset($errores["nombre"])){
+                    foreach($errores["nombre"] as $error) {?>
+                      <div class="error col-12 col-lg-6">
+                        <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                      </div>
+                    <?php }
+                  } ?>
               </div>
             </div>
+
             <div class="col-12 campo">
               <div class="row">
                 <div class="col-12 col-lg-6 dato-campo">
                   <label for="descripcion">Descripcion</label>
                 </div>
                 <div class="col-12 col-lg-6 valor-campo">
-                  <input type="text" id="descripcion" name="descripcion" value="">
+                  <input type="text" id="descripcion" name="descripcion" value="<?=(isset($_POST["descripcion"]))?$_POST["descripcion"]:"";?>">
                 </div>
+                <?php
+                  if(isset($errores["descripcion"])){
+                    foreach($errores["descripcion"] as $error) {?>
+                      <div class="error col-12 col-lg-6">
+                        <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                      </div>
+                    <?php }
+                  } ?>
               </div>
             </div>
-
 
             <div class="col-12 campo">
               <div class="row">
@@ -61,8 +84,16 @@ if($_POST){
                   <label for="precio">Precio</label>
                 </div>
                 <div class="col-12 col-lg-6 valor-campo">
-                  <input type="text" id="precio" name="precio" value="">
+                  <input type="text" id="precio" name="precio" value="<?=(isset($_POST["precio"]))?$_POST["precio"]:"";?>">
                 </div>
+                <?php
+                  if(isset($errores["precio"])){
+                    foreach($errores["precio"] as $error) {?>
+                      <div class="error col-12 col-lg-6">
+                        <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                      </div>
+                    <?php }
+                  } ?>
               </div>
             </div>
 
@@ -82,7 +113,6 @@ if($_POST){
               </div>
             </div>
 
-
             <div class="col-12 campo">
               <div class="row">
                 <div class="col-12 col-lg-6 dato-campo">
@@ -91,6 +121,14 @@ if($_POST){
                 <div class="col-12 col-lg-6 valor-campo">
                   <input type="file" name="imagen" id="imagen" value="">
                 </div>
+                <?php
+                  if(isset($errores["imagen"])){
+                    foreach($errores["imagen"] as $error) {?>
+                      <div class="error col-12 col-lg-6">
+                        <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                      </div>
+                    <?php }
+                  } ?>
               </div>
             </div>
 
@@ -110,8 +148,10 @@ if($_POST){
       <?php require_once('footer.php'); ?>
 
     </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
   </body>
 </html>

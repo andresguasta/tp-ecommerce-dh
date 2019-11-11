@@ -7,8 +7,9 @@
   require_once('ValidadorRegistro.php');
   require_once('ValidadorLogin.php');
   require_once('ValidadorModificaciones.php');
+  require_once('ValidadorProductos.php');
   require_once('BDD.php');
-  
+
 
   $dsn = "mysql:dbname=ecommerce;host=127.0.0.1;port=3306";
   $user = "root";
