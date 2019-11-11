@@ -26,7 +26,9 @@
     <main>
 
       <div class="carrito-mas-gestor">
-        <div class="carrito"><a href="carro.php"><i class="fas fa-shopping-cart"></i>Ver Carro</a></div>
+        <?php if(estaElUsuarioLogeado()) { ?>
+          <div class="carrito"><a href="carro.php"><i class="fas fa-shopping-cart"></i>Ver Carro</a></div>
+        <?php } ?>
         <div class="gestor-productos"><a href="gestor.php"><i class="fas fa-tools"></i>Gestor de productos</a></div>
       </div>
 
@@ -43,7 +45,9 @@
             <div class="descripcion"><p><?= $producto['descripcion'] ?></p></div>
             <div class="botones">
               <div class="ver-mas"><a href="detalle-producto.php?id=<?=$producto['id'] ?>">Ver mas</a></div>
-              <div class="añadir-al-carro"><i class="fas fa-cart-plus"></i> Añadir al carro</div>
+              <?php if(estaElUsuarioLogeado()) { ?>
+                <div class="añadir-al-carro"><a href="agregarAlCarro.php?producto_id=<?=$producto['id']?>"> <i class="fas fa-cart-plus"></i> Añadir al carro</a></div>
+              <?php } ?>
             </div>
           </article>
         <?php } ?>

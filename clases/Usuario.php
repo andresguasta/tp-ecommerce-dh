@@ -8,7 +8,6 @@ class Usuario{
   private $fecha_nac;
   private $telefono;
   private $avatar;
-  private $carro;
 
   public function __construct(string $nombre, string $apellido, string $email, string $password, string $fecha_nac, string $telefono = "", string $avatar = ""){
     $this->nombre=$nombre;
@@ -18,7 +17,6 @@ class Usuario{
     $this->fecha_nac = $fecha_nac;
     $this->telefono = $telefono;
     $this->avatar = $avatar;
-    $this->carro = new Carrito();
   }
 
   public function setNombre(string $nombre){

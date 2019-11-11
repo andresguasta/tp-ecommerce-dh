@@ -192,5 +192,31 @@ class BDD
 
   }
 
+  public function agregarProductoConIdAlCarroDeUsuarioConId($id_producto, $id_usuario)
+  {
+    $query = $this->conexion->prepare('insert into carritos (producto_id, usuario_id) values (:producto_id, :usuario_id);');
+    $query->bindValue(':producto_id', $id_producto);
+    $query->bindValue(':usuario_id', $id_usuario);
+    $query->execute();
+  }
+
+  public function getProductosDeUsuarioConEmail($email)
+  {
+    $query = $this->conexion->prepare('select productos.nombre as nombre, productos.precio as precio, productos.descripcion as descripcion, productos.imagen as imagen from productos inner join carritos on carritos.producto_id = productos.id inner join usuarios on carritos.usuario_id = usuarios.id;');
+    $query->execute();
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function vaciarCarroUsuarioConEmail($email)
+  {
+    $query = $this->conexion->prepare('select id from usuarios where email = :email;');
+    $query->bindValue(':email', $email);
+    $query->execute();
+    $id = $query->fetch(PDO::FETCH_ASSOC)['id'];
+
+    $query = $this->conexion->prepare('delete from carritos where usuario_id = :id;');
+    $query->bindValue(':id', $id);
+    $query->execute();
+  }
 
 }

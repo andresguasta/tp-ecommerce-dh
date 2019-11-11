@@ -1,7 +1,16 @@
 <?php
 
+require_once('clases/autoload.php');
+require_once('funciones/autoload.php');
+
+if(estaElUsuarioLogeado()){
+  header('home.php');
+}
+
  $seccion = "Carro";
 
+ $productos = $bdd->getProductosDeUsuarioConEmail($_SESSION['email']);
+ $total = 0;
 ?>
 
 <!DOCTYPE html>
@@ -25,27 +34,40 @@
 
       <h4>En mi carro actualmente: </h4>
 
-      <div class="producto">
-        <div class="imagen-producto">
-          <img src="img/pan-azul.jpg" alt="pantalon">
+      <?php if($productos) {
+        foreach($productos as $producto) { ?>
+        <div class="producto">
+          <div class="imagen-producto">
+            <img src="img/<?=$producto['imagen']?>" alt="">
+          </div>
+          <div class="nombre-mas-precio">
+            <div class="nombre"><h4><?=$producto['nombre']?></h4></div>
+            <div class="precio"><h4>$<?=$producto['precio']?></h4></div>
+          </div>
+          <div class="descripcion"><p><?=$producto['descripcion']?></p></div>
         </div>
-        <div class="nombre-mas-precio">
-          <div class="nombre"><h4>Pantalon Azul</h4></div>
-          <div class="precio"><h4>$750</h4></div>
-        </div>
-        <div class="descripcion"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
-      </div>
+        <?php $total += $producto['precio'];
+        }
+      } else {
+        echo 'No posee productos en su carro actualmente';
+      }?>
 
       <div class="precio-total">
         <div class="texto">
           <h2>Total</h2>
         </div>
         <div class="precio-final">
-          <h2> $750 </h2>
+          <h2> $<?=$total?> </h2>
         </div>
       </div>
 
-    <?php require_once('footer.php'); ?>  
+      <?php if($productos){ ?>
+        <div class="vaciar-carro">
+          <button class="volver" type="submit" name="button"><a href="vaciar-carro.php">Vaciar carrito</a></button>
+        </div>
+      <?php } ?>
+
+    <?php require_once('footer.php'); ?>
 
     </main>
 
