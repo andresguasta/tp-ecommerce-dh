@@ -12,9 +12,13 @@ $categorias = $bdd->getCategorias();
 $seccion = "Modificar Producto";
 
 if($_POST){
-  $producto = new Producto($_POST['precio'], $_POST['nombre'], $_POST['descripcion'], $_POST['categoria']);
+  if($_POST['nombre'] == ""){
+    $nombre = $_SESSION['prodcuto_nombre'];
+  } else {
+    $nombre = $_POST['nombre'];
+  }
 
-
+  $producto = new Producto($_POST['precio'], $_POST['nombre'], $_POST['descripcion'], $_POST['categoria'], guardarImagen($_FILES['imagen'], $nombre));
 
   $producto->actualizar($bdd);
 

@@ -20,7 +20,13 @@
     if($validador->hayErrores()){
       $errores = $validador->getErrores();
     }else{
-      $usuario = new Usuario($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['fecha_nac'], $_POST['telefono'], guardarAvatar($_POST['email'], $_FILES['avatar']));
+      if($_POST['email'] == ""){
+        $email = $_SESSION['email'];
+      } else {
+        $email = $_POST['email'];
+      }
+
+      $usuario = new Usuario($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['fecha_nac'], $_POST['telefono'], guardarAvatar($email, $_FILES['avatar']));
 
       $usuario->actualizar($bdd);
 
