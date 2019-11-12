@@ -1,0 +1,47 @@
+
+header {
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+}
+
+header nav ul {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+header nav ul .link-nav {
+  text-align: center;
+}
+
+header nav ul .link-nav.titulo {
+  width: 100%;
+  font-size: 30px;
+  color: #fff;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+header nav ul .link-nav.login, header nav ul .link-nav.logout {
+  width:  50;
+}
+
+main {
+  margin-top: 8rem;
+}
+
+@media (min-width: 482px) {
+  main {
+    margin-top: 9rem;
+  }
+}
+
+@media (min-width: 982px) {
+  main {
+    margin-top: 10rem;
+  }
+}

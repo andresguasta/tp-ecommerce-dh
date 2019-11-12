@@ -1,0 +1,126 @@
+@import url('general.css');
+
+main form {
+  background-color: #00564d;
+  border-radius: 20px;
+  border: 2px solid #fff;
+  font-size: 1.5rem;
+  padding: 2%;
+}
+
+.campo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.4rem;
+}
+
+.campo .row {
+  justify-content: center;
+}
+
+.dato-campo {
+  text-align: left;
+}
+
+.valor-campo {
+  text-align: left;
+}
+
+.container-boton-submit {
+  text-align: center;
+}
+
+.container-botones button {
+  padding: 0.4rem 1rem;
+  color: #000;
+  border: 2px solid #fff;
+  border-radius: 5px;
+}
+
+input, select, select option {
+  color: #000;
+  text-align: center;
+}
+
+input, select {
+  border-radius: 5px;
+  border: 1px solid #fff;
+  background-color: 	#969696;
+}
+
+.campo:nth-child(3) div.col-3.col-lg-5.valor-campo {
+  padding: 0;
+  text-align: left;
+}
+
+.error {
+  margin-top: 1rem;
+  display:flex;
+  justify-content: center;
+  color: red;
+}
+
+.error i {
+  color: red;
+}
+
+
+@media ( min-width: 992px ) {
+
+  main form {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .campo {
+    display: block;
+    padding: 1rem;
+    margin-bottom: 0;
+  }
+
+  .dato-campo {
+    text-align: left;
+  }
+
+  .valor-campo {
+    text-align: left;
+  }
+
+  .campo:nth-child(3) .dato-campo {
+    text-align: left;
+  }
+
+  .container-botones button {
+    padding: 0.4rem 2rem;
+  }
+
+  .campo:nth-child(4) .dato-campo, .campo:nth-child(5) .dato-campo {
+    text-align: left;
+  }
+
+  .dato-campo a {
+    text-decoration: underline;
+  }
+
+  form {
+    font-size: 1.4rem;
+  }
+
+  .encabezado-formulario h2 {
+    font-size: 3rem;
+  }
+
+  .error i {
+    padding: 0.6rem 1rem;
+  }
+}
+
+@media ( min-width: 1190px ) {
+  .error {
+    justify-content: center;
+  }
+
+  .error i {
+    padding: 0.6rem 1rem;
+  }
+}

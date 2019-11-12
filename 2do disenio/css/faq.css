@@ -1,0 +1,46 @@
+@import url('general.css');
+
+.encabezado-faqs {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.pregunta-y-respuesta {
+  padding: 0;
+  border: 1px solid #fff;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.pregunta {
+  background-color: #000;
+}
+
+.respuesta {
+  padding-top: 0.4rem;
+}
+
+@media (min-width: 992px ){
+
+  main {
+    padding: 0 2rem;
+  }
+
+  form {
+    font-size: 1.4rem;
+  }
+
+  .encabezado-faqs h2 {
+    font-size: 3rem;
+  }
+
+  .pregunta h4{
+    font-size: 1.8rem;
+    padding: 0.4rem;
+  }
+
+  .respuesta {
+    font-size: 1.2rem;
+  }
+
+}

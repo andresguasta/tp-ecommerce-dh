@@ -1,0 +1,56 @@
+@import url('general.css');
+
+.perfil {
+  background-color: rgba(0,0,0,0.4);
+  border: 1px solid #000;
+  padding: 2% 2% 2% 2%;
+}
+
+.foto {
+  text-align: center;
+  border-bottom: 2px solid #000;
+  color: #000;
+}
+
+.foto img {
+  width: 100%;
+  border: 2px solid #000;
+  min-width: 90%;
+  min-height: 90%;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.titulo {
+  text-decoration: underline;
+}
+
+.campo {
+  display: flex;
+  justify-content: center;
+  margin: 2% 0;
+  color: #000;
+}
+
+.campo-boton {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (min-width:892px) {
+
+  .perfil {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .foto, .informacion {
+    width: 49%;
+  }
+
+  .foto {
+    border-right: 2px solid #000;
+    border-bottom: 0;
+  }
+}

@@ -1,0 +1,55 @@
+@import url('general.css');
+
+form {
+  background-color: rgba(0,0,0,0.4);
+  border: 1px solid #000;
+  padding: 4% 2% 2% 2%;
+}
+
+.col-form-label {
+  color: #000;
+  text-align: center;
+}
+
+input {
+  background-image: url('../img/bkground.png');
+}
+
+div.titulo {
+  margin-bottom: 2rem;
+}
+
+div.recuerdame, div.link, div.titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+
+div.link a {
+  color: #000;
+  text-decoration: underline;
+}
+
+div.link a:hover {
+  color: #2e2726;
+  text-decoration: none;
+}
+
+div.recuerdame input{
+  margin-right: 0.2rem;
+}
+
+div.error {
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #cc0202;
+}
+
+@media (min-width: 574px) {
+  .col-form-label {
+    text-align: right;
+  }
+}

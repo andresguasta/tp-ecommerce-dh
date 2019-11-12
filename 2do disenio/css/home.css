@@ -1,0 +1,102 @@
+@import url('general.css');
+
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 5%;
+}
+
+.producto {
+  padding: 2%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.4);
+  margin-bottom: 2%;
+  border: 1px solid #000;
+}
+
+.imagen-producto {
+  border: 2px solid #000;
+}
+
+.imagen-producto img {
+  width: 100%;
+}
+
+.nombre-mas-precio {
+  margin-top: 2%;
+  display: flex;
+  flex-wrap: wrap;
+  background-image: url('../img/bkground.png');
+  border: 2px solid #000;
+}
+
+.nombre {
+  text-align: center;
+  width: 50%;
+  border-right: 4px solid #000;
+}
+
+.precio {
+  text-align: center;
+  width: 50%;
+}
+
+.descripcion {
+  margin-top: 2%;
+  color: #000;
+  text-align: center;
+}
+
+.carrito-mas-gestor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.carrito, .gestor-productos {
+  width: 49%;
+  text-align: center;
+}
+
+@media (min-width:482px) {
+  .producto {
+    width: 49%;
+  }
+
+  .productos {
+    margin-top: 4%;
+  }
+
+  .botones {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .carrito-mas-gestor {
+    justify-content: flex-end;
+  }
+
+  .boton.ver-mas, .boton.aniadir-al-carro {
+    width: 49%;
+  }
+
+  .boton.carrito, .boton.gestor-productos {
+    width: 20%;
+    margin: 0 1%;
+  }
+}
+
+@media (min-width:982px) {
+  .producto {
+    width: 32%;
+  }
+
+  .productos {
+    margin-top: 2%;
+  }
+
+  .boton.carrito, .boton.gestor-productos {
+    width: 10%;
+  }
+}

@@ -1,0 +1,47 @@
+@import url('general.css');
+
+main form {
+  background-color: #00564d;
+  border-radius: 20px;
+  border: 2px solid #fff;
+  font-size: 1.5rem;
+  padding: 2%;
+}
+
+form {
+  overflow: hidden;
+}
+
+div.imagen {
+  width: 49%;
+  float: left;
+  text-align: center;
+}
+
+div.imagen img {
+  width: 100%;
+}
+
+div.campos {
+  width:49%;
+  float: right;
+  text-align: left;
+}
+
+input, select, select option {
+  color: #000;
+  text-align: center;
+}
+
+input, select {
+  border-radius: 5px;
+  border: 1px solid #fff;
+  background-color: 	#969696;
+}
+
+button {
+  padding: 0.4rem 1rem;
+  color: #000;
+  border: 2px solid #fff;
+  border-radius: 5px;
+}
