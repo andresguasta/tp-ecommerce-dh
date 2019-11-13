@@ -29,7 +29,7 @@ $usuario = $bdd->getUsuarioConEmail($_SESSION['email']);
 
         <div class="perfil">
           <div class="foto">
-            <img src="img/usuarios/<?=$usuario['avatar']?>" alt="">
+            <img src="img/usuarios/<?=($usuario['avatar'] != "")?$usuario['avatar']:"default.png"?>" alt="">
             <p>Foto de perfil</p>
           </div>
           <div class="informacion">

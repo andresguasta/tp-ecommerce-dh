@@ -68,6 +68,7 @@ class BDD
     if($usuario->getEmail() != ""){
       $this->actualizarCampo('usuarios', 'email', $usuario->getEmail(), 'email', $_SESSION['email']);
       $_SESSION['email'] = $usuario->getEmail();
+      $_SESSION['nombre_archivo'] = $usuario['email'];
     }
 
     if($usuario->getTelefono() != ""){
@@ -145,20 +146,20 @@ class BDD
 
   public function actualizarProducto(Producto $producto){
     if($producto->getNombre() != ""){
-      $this->actualizarCampo('productos', 'nombre', $producto->getNombre(), 'nombre', $_SESSION['nombre']);
-      $_SESSION['nombre'] = $producto->getNombre();
+      $this->actualizarCampo('productos', 'nombre', $producto->getNombre(), 'nombre',   $_SESSION['nombre_archivo']);
+      $_SESSION['nombre_archivo'] = $producto->getNombre();
     }
 
     if($producto->getDescripcion() != ""){
-      $this->actualizarCampo('productos', 'descripcion', $producto->getDescripcion(), 'nombre', $_SESSION['nombre']);
+      $this->actualizarCampo('productos', 'descripcion', $producto->getDescripcion(), 'nombre',   $_SESSION['nombre_archivo']);
     }
 
     if($producto->getPrecio() != ""){
-      $this->actualizarCampo('productos', 'precio', $producto->getPrecio(), 'nombre', $_SESSION['nombre']);
+      $this->actualizarCampo('productos', 'precio', $producto->getPrecio(), 'nombre',   $_SESSION['nombre_archivo']);
     }
 
     if($producto->getImagen() != ""){
-      $this->actualizarCampo('productos', 'imagen', $producto->getImagen(), 'nombre', $_SESSION['nombre']);
+      $this->actualizarCampo('productos', 'imagen', $producto->getImagen(), 'nombre',   $_SESSION['nombre_archivo']);
     }
 
     if($producto->getCategoria() != ""){
@@ -167,7 +168,7 @@ class BDD
       $query->execute();
       $categoria_id = $query->fetch(PDO::FETCH_ASSOC)['id'];
 
-      $this->actualizarCampo('productos', 'categoria_id', $categoria_id, 'nombre', $_SESSION['nombre']);
+      $this->actualizarCampo('productos', 'categoria_id', $categoria_id, 'nombre',   $_SESSION['nombre_archivo']);
     }
   }
 
@@ -213,13 +214,12 @@ class BDD
       if($nombre != ""){
         $nombreArchivo = $nombre . '.' . $ext;
       } else {
-        $nombreArchivo = $_SESSION['nombre'] . '.' . $ext;
+        $nombreArchivo = $_SESSION['nombre_archivo'] . '.' . $ext;
       }
 
-      // Muevo el archivo a mi carpeta avatars
       move_uploaded_file($archivo['tmp_name'], $ruta . $nombreArchivo);
     }else{
-      $nombreArchivo = 'default.png';
+      $nombreArchivo = "";
     }
 
     return $nombreArchivo;

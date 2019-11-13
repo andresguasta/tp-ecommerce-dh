@@ -7,6 +7,7 @@ if(!Autenticador::getInstancia()->estaElUsuarioLogeado()){
 }
 
 $usuario = $bdd->getUsuarioConEmail($_SESSION['email']);
+$_SESSION['nombre_archivo'] = $usuario['email'];
 
 if($_POST){
   $validador = new ValidadorModificaciones(["post" => $_POST, "file" => $_FILES, 'email_actual' => $usuario['email']]);
@@ -16,11 +17,7 @@ if($_POST){
   if($validador->hayErrores()){
     $errores = $validador->getErrores();
   }else{
-    $_SESSION['nombre'] = $usuario['nombre'];
-
-    $usuario = new Usuario($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['fecha_nac'], $_POST['telefono'], $bdd->guardarAvatar('img/usuarios/', $_POST['email'], $_FILES['avatar']));
-
-    $_SESSION['nombre'] = "";
+    $usuario = new Usuario($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['fecha_nac'], $_POST['telefono'], $bdd->guardarImagen('img/usuarios/', $_POST['email'], $_FILES['avatar']));
 
     $usuario->actualizar($bdd);
 

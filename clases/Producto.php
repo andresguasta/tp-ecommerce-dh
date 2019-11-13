@@ -8,11 +8,11 @@ class Producto{
   private $imagen;
 
   public function __construct($precio,$nombre,$descripcion,$categoria,$imagen = ""){
-    $this->precio = $precio;
-    $this->imagen = $imagen;
-    $this->nombre = $nombre;
-    $this->descripcion = $descripcion;
-    $this->categoria = $categoria;
+    $this->precio = trim($precio);
+    $this->imagen = trim($imagen);
+    $this->nombre = trim($nombre);
+    $this->descripcion = trim($descripcion);
+    $this->categoria = trim($categoria);
   }
 
   public function getImagen(){

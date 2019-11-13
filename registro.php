@@ -22,7 +22,7 @@ if($_POST){
     $usuario->agregar($bdd);
 
     if (isset($_POST['recuerdame'])) {
-        setcookie('recuerdame', $usuario->getEmail(), time() + 60*60*24*7 );
+      setcookie('recuerdame', $usuario->getEmail(), time() + 60*60*24*7 );
     }
 
     header('location:perfil.php');

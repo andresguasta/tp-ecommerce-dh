@@ -4,16 +4,7 @@ class Autenticador
 {
   private static $instancia = null;
 
-  private function __construct()
-  {
-    if(!session_status() === PHP_SESSION_ACTIVE){
-      session_start();
-    }
-
-    if (isset($_COOKIE['recuerdame'])) {
-      $_SESSION['email'] = $_COOKIE['recuerdame'];
-    }
-  }
+  private function __construct() {}
 
   public static function getInstancia() {
     if (self::$instancia == null)

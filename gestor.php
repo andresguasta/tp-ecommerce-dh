@@ -24,18 +24,14 @@ $productos = $bdd->getProductos();
 
     <main>
 
-      <div class="carrito-mas-gestor">
-        <?php if(Autenticador::getInstancia()->estaElUsuarioLogeado()) { ?>
-          <div class="boton carrito"><a href="carro.php"><i class="fas fa-shopping-cart"></i>Ver Carro</a></div>
-        <?php } ?>
-        <div class="boton gestor-productos"><a href="gestor.php"><i class="fas fa-tools"></i>Gestor de productos</a></div>
-      </div>
+      <button type="button" class="boton"><a href="home.php"><i class="fas fa-arrow-left"></i>Volver</a></button>
+      <button class="boton" type="submit" name="button"><a href="agregarProducto.php"><i class="fas fa-plus"></i>AgregarProducto</a></button>
 
       <section class="productos">
         <?php foreach($productos as $producto) { ?>
           <article class="producto">
             <div class="imagen-producto">
-              <img src="img/<?=$producto['imagen']?>" alt="pantalon">
+              <img src="img/<?=$producto['imagen']?>" alt="">
             </div>
             <div class="nombre-mas-precio">
               <div class="nombre"><h4><?= $producto['nombre'] ?></h4></div>
@@ -43,15 +39,14 @@ $productos = $bdd->getProductos();
             </div>
             <div class="descripcion"><p><?= $producto['descripcion'] ?></p></div>
             <div class="botones">
-              <div class="boton ver-mas"><a href="detalle-producto.php?id=<?=$producto['id'] ?>">Ver en detalle</a></div>
-              <?php if(Autenticador::getInstancia()->estaElUsuarioLogeado()) { ?>
-                <div class="boton aniadir-al-carro"><a href="agregarAlCarro.php?producto_id=<?=$producto['id']?>"> <i class="fas fa-cart-plus"></i> Añadir al carro</a></div>
-              <?php } ?>
+              <button type="button modificar-producto" class="boton col-4" name="button"><a href="modificarProducto.php?producto_id=<?=$producto['id']?>"><i class="fas fa-tools"></i>Modificar publicacion</a></button>
+              <button type="button eliminar-producto" class="boton col-4"  name="button"><a href="eliminarProducto.php?producto_id=<?=$producto['id']?>"><i class="fas fa-times"></i>Quitar del catalogo</a></button>
             </div>
           </article>
         <?php } ?>
       </section>
 
+      <button type="button" class="boton"><a href="home.php"><i class="fas fa-arrow-left"></i>Volver</a></button>
 
     </main>
 

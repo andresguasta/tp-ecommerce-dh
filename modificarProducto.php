@@ -2,20 +2,19 @@
 
 require_once('clases/autoload.php');
 
-if(!isset($_GET['producto_id'])){
-  header('location:home.php');
+if($_GET){
+  if(!isset($_GET['producto_id'])){
+    header('location:home.php');
+  }
+
+  $producto = $bdd->getProductoConId((int)$_GET['producto_id']);
+  $_SESSION['nombre_archivo'] = $producto['nombre'];
+
+  $categorias = $bdd->getCategorias();
 }
 
-$producto = $bdd->getProductoConId((int)$_GET['producto_id']);
-
-$categorias = $bdd->getCategorias();
-
 if($_POST){
-  $_SESSION['nombre'] = $producto['nombre'];
-
   $producto = new Producto($_POST['precio'], $_POST['nombre'], $_POST['descripcion'], $_POST['categoria'], $bdd->guardarImagen('img/', $_POST['nombre'], $_FILES['imagen']));
-
-  $_SESSION['nombre'] = $producto['nombre'];
 
   $producto->actualizar($bdd);
 
@@ -76,7 +75,7 @@ if($_POST){
             <label for="descripcion" class="col-sm-12 col-form-label">Descripcion: <?=$producto['descripcion']?></label>
             <label for="descripcion" class="col-sm-4 col-form-label">Actualizar descripcion: </label>
             <div class="col-sm-6">
-              <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Nueva descripcion" value="<?= (isset($_POST["descripcion"]))?$_POST["descripcion"]:""?>"></textarea>
+              <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Nueva descripcion"><?=(isset($_POST["descripcion"]))?$_POST["descripcion"]:""?></textarea>
             </div>
             <?php
               if(isset($errores['descripcion'])){

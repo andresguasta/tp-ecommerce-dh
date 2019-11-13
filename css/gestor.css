@@ -76,20 +76,17 @@
   .botones {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
   }
 
   .carrito-mas-gestor {
     justify-content: flex-end;
   }
 
-  .boton.ver-mas, .boton.aniadir-al-carro {
+  .boton.modificar-producto, .boton.eliminar-producto {
     width: 49%;
   }
 
-  .boton.carrito, .boton.gestor-productos {
-    width: 20%;
-    margin: 0 1%;
-  }
 }
 
 @media (min-width:982px) {

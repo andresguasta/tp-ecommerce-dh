@@ -1,23 +1,14 @@
 @import url('general.css');
 
-.carrito-mas-gestor {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.carrito {
-  margin-right: 2%;
-}
-
 .productos {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 5%;
 }
 
 .producto {
-  padding: 4% 1% 1% 1%;
+  padding: 2%;
   width: 100%;
   background-color: rgba(0,0,0,0.4);
   margin-bottom: 2%;
@@ -26,84 +17,91 @@
 
 .imagen-producto {
   text-align: center;
-  width: 100%;
 }
 
 .imagen-producto img {
-  min-width: 400px;
-  max-width: 400px;
-  min-height: 400px;
-  max-height: 400px;
+  width: 100%;
   border: 2px solid #000;
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 300px;
+  max-height: 300px;
 }
 
 .nombre-mas-precio {
   margin-top: 2%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  background-color: rgba(0,0,0,0.4);
-  border: 1px solid #000;
-}
-
-.nombre, .precio {
-  text-align: center;
-  width: 100%;
+  background-image: url('../img/bkground.png');
+  border: 2px solid #000;
 }
 
 .nombre {
-  background-color: #000;
-  color: #fff;
+  text-align: center;
+  width: 50%;
+  border-right: 4px solid #000;
 }
 
 .precio {
-  background-color: rgba(0,0,0,0.4);
-  color: #000;
-  border: 1px solid #000;
+  text-align: center;
+  width: 50%;
 }
 
 .descripcion {
-  text-align: center;
+  margin-top: 2%;
   color: #000;
+  text-align: center;
 }
 
-.botones {
+.carrito-mas-gestor {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
 }
 
-.botones .boton {
-  width: 40%;
+.carrito, .gestor-productos {
+  width: 49%;
+  text-align: center;
 }
 
-@media (min-width:576px) {
+@media (min-width:482px) {
   .producto {
     width: 49%;
   }
 
-  .botones .boton {
+  .productos {
+    margin-top: 4%;
+  }
+
+  .botones {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .carrito-mas-gestor {
+    justify-content: flex-end;
+  }
+
+  .boton.ver-mas, .boton.aniadir-al-carro {
     width: 49%;
   }
 
-  .imagen-producto img {
-    min-width: 300px;
-    max-width: 300px;
-    min-height: 300px;
-    max-height: 300px;
+  .boton.carrito, .boton.gestor-productos {
+    width: 20%;
+    margin: 0 1%;
   }
 }
 
-@media (min-width:992px) {
+@media (min-width:982px) {
   .producto {
-    width: 33%;
+    width: 32%;
   }
 
-  .imagen-producto img {
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 250px;
-    max-height: 250px;
+  .productos {
+    margin-top: 2%;
   }
 
+  .boton.carrito, .boton.gestor-productos {
+    width: 10%;
+  }
 }
