@@ -39,7 +39,7 @@ $producto = $bdd->getProductoConId($_GET['producto_id']);
         </div>
         <div class="descripcion"><p><?= $producto['descripcion'] ?></p></div>
         <div class="botones">
-          <?php if(estaElUsuarioLogeado()) { ?>
+          <?php if(Autenticador::getInstancia()->estaElUsuarioLogeado()) { ?>
             <button class="boton aniadir-al-carro"><a href="agregarAlCarro.php?producto_id=<?=$producto['id']?>"><i class="fas fa-cart-plus"></i> Añadir al carro</a></button>
           <?php } ?>
         </div>
