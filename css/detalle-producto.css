@@ -1,97 +1,79 @@
 @import url('general.css');
 
 .producto {
-  margin-top: 5%;
-  overflow:hidden;
+  margin-top: 2%;
+  padding: 4% 1% 1% 1%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.4);
+  margin-bottom: 2%;
+  border: 1px solid #000;
 }
 
 .imagen-producto {
-  float: left;
-  width: 100%;
+  text-align: center;
 }
 
-.imagen-producto img{
-  border-radius: 15%;
-  width: 100%;
+.imagen-producto img {
+  min-width: 400px;
+  max-width: 400px;
+  min-height: 400px;
+  max-height: 400px;
+  border: 2px solid #000;
 }
 
 .nombre-mas-precio {
-  background-color: #000;
-  border: 1px solid #fff;
-  float: left;
-  overflow: hidden;
-  margin-bottom: 2%;
-  margin-top: 5%;
+  margin: 2% auto 0 auto;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.4);
+  border: 1px solid #000;
+}
+
+.nombre, .precio {
+  text-align: center;
   width: 100%;
 }
 
-.nombre  {
-  text-align: center;
-  width: 60%;
-  padding: 1%;
-  border-right: 1px solid #fff;
-  float: left;
+.nombre {
+  background-color: #000;
+  color: #fff;
 }
 
 .precio {
+  background-color: rgba(0,0,0,0.4);
+  color: #000;
+  border: 1px solid #000;
+}
+
+.descripcion {
+  margin: 0 auto;
+  width: 60%;
   text-align: center;
-  padding: 1%;
-  width: 40%;
-  float: left;
+  color: #000;
 }
 
-.volver {
-  background-color: #000;
-  border: 1px solid #fff;
-  padding: 1%;
-  width: 20%;
-  text-align: center;
+.botones {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
-.volver i {
-  margin-right: 10%;
-}
-
-@media (min-width: 672px) {
-
-  .volver {
-    width: 10%;
-  }
-
-  .volver i {
-    margin-right: 5%;
-  }
-
-  .imagen-producto {
-    width: 45%;
-    margin-right: 5%;
-  }
-
-  .nombre-mas-precio  {
-    margin-top: 0;
-    width: 50%;
+@media (min-width: 768px) {
+  .imagen-producto img {
+    min-width: 500px;
+    max-width: 500px;
+    min-height: 500px;
+    max-height: 500px;
   }
 
 }
+
 
 @media (min-width: 992px) {
-
-  main {
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-
-  .imagen-producto {
-    text-align: center;
-    margin-right: 2%;
-  }
-
-  .imagen-producto img {
-    width: 80%;
-  }
-
-  .descripcion {
-    font-size: 1.2rem;
+  .nombre-mas-precio {
+    width: 60%;
   }
 
 }

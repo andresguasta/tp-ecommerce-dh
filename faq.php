@@ -1,9 +1,3 @@
-<?php
-
-  $seccion = "FAQ";
-
-?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 

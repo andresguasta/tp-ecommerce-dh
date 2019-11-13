@@ -1,33 +1,31 @@
 <?php
 
-  require_once('funciones/autoload.php');
-  require_once('clases/autoload.php');
+require_once('clases/autoload.php');
 
-  // si esta logeado va al perfil
-  if(estaElUsuarioLogeado()){
+if(Autenticador::getInstancia()->estaElUsuarioLogeado()){
+  header('location:perfil.php');
+}
+
+$seccion = "Login";
+
+if ($_POST) {
+  $validador = new ValidadorLogin($_POST);
+
+  $validador->validar($bdd);
+
+  if($validador->hayErrores()){
+    $errores = $validador->getErrores();
+  } else {
+    $_SESSION['email'] = $_POST['email'];
+
+    if (isset($_POST['recuerdame'])) {
+        setcookie('recuerdame', $_POST['email'], time() + 60*60*24*7 );
+    }
 
     header('location:perfil.php');
   }
+}
 
-  $seccion = "Login";
-
-  if ($_POST) {
-    $validador = new ValidadorLogin($_POST);
-
-    $validador->validar($bdd);
-
-    if($validador->hayErrores()){
-      $errores = $validador->getErrores();
-    } else {
-      $_SESSION['email'] = $_POST['email'];
-
-      if (isset($_POST['recuerdame'])) {
-          setcookie('recuerdame', $_POST['email'], time() + 60*60*24*7 );
-      }
-
-      header('location:perfil.php');
-    }
-  }
 ?>
 
 <!DOCTYPE html>

@@ -1,10 +1,9 @@
 <?php
 
 require_once('clases/autoload.php');
-require_once('funciones/autoload.php');
 
-if(estaElUsuarioLogeado()){
-  header('home.php');
+if(!Autenticador::getInstancia()->estaElUsuarioLogeado()){
+  header('location:home.php');
 }
 
 $producto = $bdd->getProductoConId($_GET['producto_id']);

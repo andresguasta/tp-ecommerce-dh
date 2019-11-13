@@ -145,20 +145,20 @@ class BDD
 
   public function actualizarProducto(Producto $producto){
     if($producto->getNombre() != ""){
-      $this->actualizarCampo('productos', 'nombre', $producto->getNombre(), 'nombre', $_SESSION['producto_nombre']);
-      $_SESSION['producto_nombre'] = $producto->getNombre();
+      $this->actualizarCampo('productos', 'nombre', $producto->getNombre(), 'nombre', $_SESSION['nombre']);
+      $_SESSION['nombre'] = $producto->getNombre();
     }
 
     if($producto->getDescripcion() != ""){
-      $this->actualizarCampo('productos', 'descripcion', $producto->getDescripcion(), 'nombre', $_SESSION['producto_nombre']);
+      $this->actualizarCampo('productos', 'descripcion', $producto->getDescripcion(), 'nombre', $_SESSION['nombre']);
     }
 
     if($producto->getPrecio() != ""){
-      $this->actualizarCampo('productos', 'precio', $producto->getPrecio(), 'nombre', $_SESSION['producto_nombre']);
+      $this->actualizarCampo('productos', 'precio', $producto->getPrecio(), 'nombre', $_SESSION['nombre']);
     }
 
     if($producto->getImagen() != ""){
-      $this->actualizarCampo('productos', 'imagen', $producto->getImagen(), 'nombre', $_SESSION['producto_nombre']);
+      $this->actualizarCampo('productos', 'imagen', $producto->getImagen(), 'nombre', $_SESSION['nombre']);
     }
 
     if($producto->getCategoria() != ""){
@@ -167,29 +167,8 @@ class BDD
       $query->execute();
       $categoria_id = $query->fetch(PDO::FETCH_ASSOC)['id'];
 
-      $this->actualizarCampo('productos', 'categoria_id', $categoria_id, 'nombre', $_SESSION['producto_nombre']);
+      $this->actualizarCampo('productos', 'categoria_id', $categoria_id, 'nombre', $_SESSION['nombre']);
     }
-  }
-
-  public function modificarProductos($producto){
-    $query = $this->conexion->prepare("update productos set nombre = :nombre,descripcion=:descripcion,precio=:precio, categoria_id=:categoria,imagen=:imagen where id = :id;");
-    $query->bindValue(':nombre', $_POST["nombre"]);
-    $query->bindValue(':descripcion', $_POST["descripcion"]);
-    $query->bindValue(':precio', $_POST["precio"]);
-    if($_POST["categoria"]=='pantalon'){
-      $categoria=1;
-    }
-    else {
-      $categoria=2;
-    }
-    $query->bindValue(':categoria', $producto);
-    $archivo=$_FILES["imagen"];
-    $nombre=$_POST["nombre"];
-    $query->bindValue(':imagen', guardarImagen($archivo,$nombre));
-    $query->bindValue(':id',$producto);
-    $query->execute();
-
-
   }
 
   public function agregarProductoConIdAlCarroDeUsuarioConId($id_producto, $id_usuario)
@@ -225,6 +204,25 @@ class BDD
     $query = $this->conexion->prepare('delete from carritos where usuario_id = :id;');
     $query->bindValue(':id', $id);
     $query->execute();
+  }
+
+  public function guardarImagen($ruta, $nombre, $archivo){
+    if($archivo['name'] != ""){
+      $ext = pathinfo($archivo['name'], PATHINFO_EXTENSION);
+
+      if($nombre != ""){
+        $nombreArchivo = $nombre . '.' . $ext;
+      } else {
+        $nombreArchivo = $_SESSION['nombre'] . '.' . $ext;
+      }
+
+      // Muevo el archivo a mi carpeta avatars
+      move_uploaded_file($archivo['tmp_name'], $ruta . $nombreArchivo);
+    }else{
+      $nombreArchivo = 'default.png';
+    }
+
+    return $nombreArchivo;
   }
 
 }

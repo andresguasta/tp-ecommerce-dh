@@ -2,6 +2,10 @@
 
 require_once('clases/autoload.php');
 
+if(!isset($_GET['producto_id'])){
+    header('location:home.php');
+}
+
 $bdd->eliminarProductoConId($_GET['producto_id']);
 
 header('location:gestor.php');

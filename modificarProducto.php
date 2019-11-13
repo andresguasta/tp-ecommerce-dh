@@ -1,26 +1,27 @@
 <?php
 
 require_once('clases/autoload.php');
-require_once('funciones/autoload.php');
 
-if(isset($_GET['producto_id'])){
-  $producto = $bdd->getProductoConId((int)$_GET['producto_id']);
-  $_SESSION['producto_nombre'] = $producto['nombre'];
+if(!isset($_GET['producto_id'])){
+  header('location:home.php');
 }
 
+$producto = $bdd->getProductoConId((int)$_GET['producto_id']);
+
 $categorias = $bdd->getCategorias();
-$seccion = "Modificar Producto";
 
 if($_POST){
-  $producto = new Producto($_POST['precio'], $_POST['nombre'], $_POST['descripcion'], $_POST['categoria']);
+  $_SESSION['nombre'] = $producto['nombre'];
 
+  $producto = new Producto($_POST['precio'], $_POST['nombre'], $_POST['descripcion'], $_POST['categoria'], $bdd->guardarImagen('img/', $_POST['nombre'], $_FILES['imagen']));
 
+  $_SESSION['nombre'] = $producto['nombre'];
 
   $producto->actualizar($bdd);
 
   header('location:gestor.php');
-
 }
+
 ?>
 
 <!DOCTYPE html>

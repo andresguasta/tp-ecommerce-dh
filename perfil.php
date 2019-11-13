@@ -1,15 +1,13 @@
 <?php
 
-  require_once('funciones/autoload.php');
-  require_once('clases/autoload.php');
+require_once('clases/autoload.php');
 
-  if(!estaElUsuarioLogeado()){
-    header('location:login.php');
-  }
+if(!Autenticador::getInstancia()->estaElUsuarioLogeado()){
+  header('location:login.php');
+}
 
-  $seccion = 'Perfil';
+$usuario = $bdd->getUsuarioConEmail($_SESSION['email']);
 
-  $usuario = $bdd->getUsuarioConEmail($_SESSION['email']);
 ?>
 
 <!DOCTYPE html>

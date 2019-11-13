@@ -1,9 +1,3 @@
-<?php
-
-  $seccion = "Contacto";
-
-?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 

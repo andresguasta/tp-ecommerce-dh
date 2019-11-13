@@ -1,6 +1,6 @@
 <?php
 
-  require_once('funciones/autoload.php');
+require_once('clases/autoload.php');
 
 ?>
 
@@ -12,13 +12,13 @@
         <li><a href="faq.php">F.A.Q.</a></li>
         <li><a href="contacto.php">Contacto</a></li>
         <li><a href="
-          <?php if(estaElUsuarioLogeado()) {
+          <?php if(Autenticador::getInstancia()->estaElUsuarioLogeado()) {
             echo "perfil.php";
           } else {
             echo "login.php";
           } ?>"><i class="fas fa-user-alt"></i></a>
         </li>
-        <?php if(estaElUsuarioLogeado()) { ?>
+        <?php if(Autenticador::getInstancia()->estaElUsuarioLogeado()) { ?>
           <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i></a></li>
         <?php } ?>
       </div>

@@ -1,6 +1,6 @@
 <?php
 
-  require_once('funciones/autoload.php');
+require_once('clases/autoload.php');
 
 ?>
 
@@ -26,7 +26,7 @@
 
       <div class="link-nav login">
         <li><a href="
-          <?php if(estaElUsuarioLogeado()) {
+          <?php if(Autenticador::getInstancia()->estaElUsuarioLogeado()) {
             echo "perfil.php";
           } else {
             echo "login.php";
@@ -34,7 +34,7 @@
         </li>
       </div>
 
-      <?php if(estaElUsuarioLogeado()) { ?>
+      <?php if(Autenticador::getInstancia()->estaElUsuarioLogeado()) { ?>
         <div class="link-nav logout">
           <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i></a></li>
         </div>

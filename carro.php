@@ -1,16 +1,14 @@
 <?php
 
 require_once('clases/autoload.php');
-require_once('funciones/autoload.php');
 
-if(!estaElUsuarioLogeado()){
-  header('home.php');
+if(!Autenticador::getInstancia()->estaElUsuarioLogeado()){
+  header('location:login.php');
 }
 
- $seccion = "Carro";
+$productos = $bdd->getProductosDeUsuarioConEmail($_SESSION['email']);
+$total = 0;
 
- $productos = $bdd->getProductosDeUsuarioConEmail($_SESSION['email']);
- $total = 0;
 ?>
 
 <!DOCTYPE html>

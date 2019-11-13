@@ -16,11 +16,16 @@
 }
 
 .imagen-producto {
-  border: 2px solid #000;
+  text-align: center;
 }
 
 .imagen-producto img {
   width: 100%;
+  border: 2px solid #000;
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 300px;
+  max-height: 300px;
 }
 
 .nombre-mas-precio {
@@ -48,6 +53,17 @@
   text-align: center;
 }
 
+.carrito-mas-gestor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.carrito, .gestor-productos {
+  width: 49%;
+  text-align: center;
+}
+
 @media (min-width:482px) {
   .producto {
     width: 49%;
@@ -65,6 +81,15 @@
   .carrito-mas-gestor {
     justify-content: flex-end;
   }
+
+  .boton.ver-mas, .boton.aniadir-al-carro {
+    width: 49%;
+  }
+
+  .boton.carrito, .boton.gestor-productos {
+    width: 20%;
+    margin: 0 1%;
+  }
 }
 
 @media (min-width:982px) {
@@ -74,5 +99,9 @@
 
   .productos {
     margin-top: 2%;
+  }
+
+  .boton.carrito, .boton.gestor-productos {
+    width: 10%;
   }
 }

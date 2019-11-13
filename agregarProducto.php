@@ -1,8 +1,6 @@
 <?php
 
 require_once('clases/autoload.php');
-require_once('funciones/autoload.php');
-$seccion='Agregar Producto';
 
 $categorias = $bdd->getCategorias();
 
@@ -14,13 +12,14 @@ if($_POST){
   if($validador->hayErrores()){
     $errores = $validador->getErrores();
   }else{
-    $producto = new Producto($_POST['precio'], $_POST['nombre'], $_POST['descripcion'], $_POST['categoria'], guardarImagen($_FILES['imagen'], $_POST['nombre']));
+    $producto = new Producto($_POST['precio'], $_POST['nombre'], $_POST['descripcion'], $_POST['categoria'], $bdd->guardarImagen('img/', $_POST['nombre'], $_FILES['imagen']));
 
     $producto->agregar($bdd);
 
     header('location:gestor.php');
   }
 }
+
 ?>
 
 <!DOCTYPE html>

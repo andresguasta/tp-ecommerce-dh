@@ -1,38 +1,33 @@
 <?php
 
-  require_once('funciones/autoload.php');
-  require_once('clases/autoload.php');
+require_once('clases/autoload.php');
 
-  if(!estaElUsuarioLogeado()){
+if(!Autenticador::getInstancia()->estaElUsuarioLogeado()){
+  header('location:login.php');
+}
 
-    header('location:login.php');
+$usuario = $bdd->getUsuarioConEmail($_SESSION['email']);
+
+if($_POST){
+  $validador = new ValidadorModificaciones(["post" => $_POST, "file" => $_FILES, 'email_actual' => $usuario['email']]);
+
+  $validador->validar($bdd);
+
+  if($validador->hayErrores()){
+    $errores = $validador->getErrores();
+  }else{
+    $_SESSION['nombre'] = $usuario['nombre'];
+
+    $usuario = new Usuario($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['fecha_nac'], $_POST['telefono'], $bdd->guardarAvatar('img/usuarios/', $_POST['email'], $_FILES['avatar']));
+
+    $_SESSION['nombre'] = "";
+
+    $usuario->actualizar($bdd);
+
+    header('location:perfil.php');
   }
+}
 
-  $seccion = 'Modificar Perfil';
-
-  $usuario = $bdd->getUsuarioConEmail($_SESSION['email']);
-
-  if($_POST){
-    $validador = new ValidadorModificaciones(["post" => $_POST, "file" => $_FILES, 'email_actual' => $usuario['email']]);
-
-    $validador->validar($bdd);
-
-    if($validador->hayErrores()){
-      $errores = $validador->getErrores();
-    }else{
-      if($_POST['email'] == ""){
-        $email = $_SESSION['email'];
-      } else {
-        $email = $_POST['email'];
-      }
-
-      $usuario = new Usuario($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['fecha_nac'], $_POST['telefono'], guardarAvatar($email, $_FILES['avatar']));
-
-      $usuario->actualizar($bdd);
-
-      header('location:perfil.php');
-    }
-  }
 ?>
 
 <!DOCTYPE html>

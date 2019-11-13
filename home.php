@@ -1,11 +1,9 @@
 <?php
 
-  require_once('funciones/autoload.php');
-  require_once('clases/autoload.php');
+require_once('clases/autoload.php');
 
-  $seccion = "Home";
+$productos = $bdd->getProductos();
 
-  $productos = $bdd->getProductos();
 ?>
 
 <!DOCTYPE html>
@@ -19,17 +17,17 @@
 
 <body>
 
-  <div class="container-fluid">
+  <div class="container">
 
     <?php require_once('header.php'); ?>
 
     <main>
 
       <div class="carrito-mas-gestor">
-        <?php if(estaElUsuarioLogeado()) { ?>
-          <div class="boton carrito"><a href="carro.php"><i class="fas fa-shopping-cart"></i>Ver Carro</a></div>
+        <?php if(Autenticador::getInstancia()->estaElUsuarioLogeado()) { ?>
+          <button type="button" class="boton carrito"><a href="carro.php"><i class="fas fa-shopping-cart"></i>Ver Carro</a></button>
         <?php } ?>
-        <div class="boton gestor-productos"><a href="gestor.php"><i class="fas fa-tools"></i>Gestor de productos</a></div>
+        <button type="button" class="boton gestor-productos"><a href="gestor.php"><i class="fas fa-tools"></i>Gestor de productos</a></button>
       </div>
 
       <section class="productos">
@@ -44,15 +42,14 @@
             </div>
             <div class="descripcion"><p><?= $producto['descripcion'] ?></p></div>
             <div class="botones">
-              <div class="boton ver-mas"><a href="detalle-producto.php?id=<?=$producto['id'] ?>">Ver en detalle</a></div>
-              <?php if(estaElUsuarioLogeado()) { ?>
-                <div class="boton aniadir-al-carro"><a href="agregarAlCarro.php?producto_id=<?=$producto['id']?>"> <i class="fas fa-cart-plus"></i> Añadir al carro</a></div>
+              <button class="boton ver-mas"><a href="detalle-producto.php?producto_id=<?=$producto['id'] ?>">Ver en detalle</a></button>
+              <?php if(Autenticador::getInstancia()->estaElUsuarioLogeado()) { ?>
+                <button class="boton aniadir-al-carro"><a href="agregarAlCarro.php?producto_id=<?=$producto['id']?>"><i class="fas fa-cart-plus"></i> Añadir al carro</a></button>
               <?php } ?>
             </div>
           </article>
         <?php } ?>
       </section>
-
 
     </main>
   </div>

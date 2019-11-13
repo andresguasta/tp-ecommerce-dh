@@ -1,37 +1,34 @@
 <?php
 
-  require_once('funciones/autoload.php');
-  require_once('clases/autoload.php');
+require_once('clases/autoload.php');
 
-  $seccion = "Registro";
+if(Autenticador::getInstancia()->estaElUsuarioLogeado()){
+  header('location:perfil.php');
+}
 
-  if(estaElUsuarioLogeado()){
+if($_POST){
+
+  $validador = new ValidadorRegistro(["post" => $_POST, "file" => $_FILES]);
+
+  $validador->validar($bdd);
+
+  if($validador->hayErrores()){
+    $errores = $validador->getErrores();
+  } else {
+    $usuario = new Usuario($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['fecha_nac'], $_POST['telefono'], $bdd->guardarImagen('img/usuarios/', $_POST['email'], $_FILES['avatar']));
+
+    $_SESSION['email'] = $usuario->getEmail();
+
+    $usuario->agregar($bdd);
+
+    if (isset($_POST['recuerdame'])) {
+        setcookie('recuerdame', $usuario->getEmail(), time() + 60*60*24*7 );
+    }
 
     header('location:perfil.php');
   }
+}
 
-  if($_POST){
-
-    $validador = new ValidadorRegistro(["post" => $_POST, "file" => $_FILES]);
-
-    $validador->validar($bdd);
-
-    if($validador->hayErrores()){
-      $errores = $validador->getErrores();
-    } else {
-      $usuario = new Usuario($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['fecha_nac'], $_POST['telefono'], guardarAvatar($_POST['email'], $_FILES['avatar']));
-
-      $_SESSION['email'] = $usuario->getEmail();
-
-      $usuario->agregar($bdd);
-
-      if (isset($_POST['recuerdame'])) {
-          setcookie('recuerdame', $usuario->getEmail(), time() + 60*60*24*7 );
-      }
-
-      header('location:perfil.php');
-    }
-  }
 ?>
 
 
