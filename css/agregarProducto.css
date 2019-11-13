@@ -11,37 +11,20 @@ form {
   text-align: center;
 }
 
+input, select, textarea {
+  background-image: url('../img/bkground.png');
+}
+
 .form-control {
   color: #000;
 }
 
-input {
-  background-image: url('../img/bkground.png');
-}
-
 div.titulo {
   margin-bottom: 2rem;
-}
-
-div.recuerdame, div.link, div.titulo {
   display: flex;
   justify-content: center;
   align-items: center;
   color: #000;
-}
-
-div.link a {
-  color: #000;
-  text-decoration: underline;
-}
-
-div.link a:hover {
-  color: #2e2726;
-  text-decoration: none;
-}
-
-div.recuerdame input{
-  margin-right: 0.2rem;
 }
 
 div.error {

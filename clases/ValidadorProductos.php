@@ -9,9 +9,9 @@ class ValidadorProductos extends Validador
 
   public function __construct($datos)
   {
-    $this->nombre = $datos['post']['nombre'];
-    $this->descripcion = $datos['post']['descripcion'];
-    $this->precio = $datos['post']['precio'];
+    $this->nombre = trim($datos['post']['nombre']);
+    $this->descripcion = trim($datos['post']['descripcion']);
+    $this->precio = trim($datos['post']['precio']);
     $this->imagen = $datos['file']['imagen'];
   }
 

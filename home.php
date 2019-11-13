@@ -27,9 +27,9 @@
 
       <div class="carrito-mas-gestor">
         <?php if(estaElUsuarioLogeado()) { ?>
-          <div class="carrito"><a href="carro.php"><i class="fas fa-shopping-cart"></i>Ver Carro</a></div>
+          <div class="boton carrito"><a href="carro.php"><i class="fas fa-shopping-cart"></i>Ver Carro</a></div>
         <?php } ?>
-        <div class="gestor-productos"><a href="gestor.php"><i class="fas fa-tools"></i>Gestor de productos</a></div>
+        <div class="boton gestor-productos"><a href="gestor.php"><i class="fas fa-tools"></i>Gestor de productos</a></div>
       </div>
 
       <section class="productos">
@@ -40,13 +40,13 @@
             </div>
             <div class="nombre-mas-precio">
               <div class="nombre"><h4><?= $producto['nombre'] ?></h4></div>
-              <div class="precio"><h4><?=$producto['precio'] ?></h4></div>
+              <div class="precio"><h4>$<?=$producto['precio'] ?></h4></div>
             </div>
             <div class="descripcion"><p><?= $producto['descripcion'] ?></p></div>
             <div class="botones">
-              <div class="ver-mas"><a href="detalle-producto.php?id=<?=$producto['id'] ?>">Ver mas</a></div>
+              <div class="boton ver-mas"><a href="detalle-producto.php?id=<?=$producto['id'] ?>">Ver en detalle</a></div>
               <?php if(estaElUsuarioLogeado()) { ?>
-                <div class="añadir-al-carro"><a href="agregarAlCarro.php?producto_id=<?=$producto['id']?>"> <i class="fas fa-cart-plus"></i> Añadir al carro</a></div>
+                <div class="boton aniadir-al-carro"><a href="agregarAlCarro.php?producto_id=<?=$producto['id']?>"> <i class="fas fa-cart-plus"></i> Añadir al carro</a></div>
               <?php } ?>
             </div>
           </article>
@@ -55,10 +55,9 @@
 
 
     </main>
-
-    <?php require_once('footer.php'); ?>
-
   </div>
+
+  <?php require_once('footer.php'); ?>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

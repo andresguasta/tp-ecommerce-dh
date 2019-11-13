@@ -4,7 +4,6 @@
   require_once('clases/autoload.php');
 
   if(!estaElUsuarioLogeado()){
-
     header('location:login.php');
   }
 
@@ -30,6 +29,61 @@
 
       <main>
 
+        <div class="perfil">
+          <div class="foto">
+            <img src="img/usuarios/<?=$usuario['avatar']?>" alt="">
+            <p>Foto de perfil</p>
+          </div>
+          <div class="informacion">
+            <div class="campo titulo">
+              <h2>Informacion de usuario</h2>
+            </div>
+            <div class="campo">
+              <div class="dato">
+                <h3>Nombre:</h3>
+              </div>
+              <div class="valor">
+                <h3><?=$usuario['nombre']?></h3>
+              </div>
+            </div>
+            <div class="campo">
+              <div class="dato">
+                <h3>Apellido:</h3>
+              </div>
+              <div class="valor">
+                <h3><?=$usuario['apellido']?></h3>
+              </div>
+            </div>
+            <div class="campo">
+              <div class="dato">
+                <h3>Email:</h3>
+              </div>
+              <div class="valor">
+                <h3><?=$usuario['email']?></h3>
+              </div>
+            </div>
+            <div class="campo">
+              <div class="dato">
+                <h3>Telefono:</h3>
+              </div>
+              <div class="valor">
+                <h3><?=($usuario['telefono'])?$usuario['telefono']:'---'?></h3>
+              </div>
+            </div>
+            <div class="campo">
+              <div class="dato">
+                <h3>Fecha de nacimiento: </h3>
+              </div>
+              <div class="valor">
+                <h3><?=$usuario['fecha_nac']?></h3>
+              </div>
+            </div>
+            <div class="campo-boton">
+              <div class="boton"><a href="modificarPerfil.php"><i class="fas fa-tools"></i>Modificar información del perfil</a></div>
+            </div>
+          </div>
+
+<!--
         <div class="card">
           <div class="perfil">
 
@@ -83,7 +137,6 @@
                   <h4><?=$usuario['fecha_nac']?></h4>
                 </div>
               </div>
-<!--
               <div class="dato">
                 <div class="campo">
                   <h4>Direccion</h4>
@@ -96,14 +149,14 @@
             </div>
           </div>
         </div>
--->
+
         <div class="button-group row">
           <div class="col-8 col-md-10"></div>
           <div class="col-4 col-md-2 modificarPerfil">
             <a class="" href="modificarPerfil.php"><i class="fas fa-tools"></i>Modificar información del perfil</a>
           </div>
         </div>
-
+-->
       </main>
 
       <?php require_once('footer.php'); ?>

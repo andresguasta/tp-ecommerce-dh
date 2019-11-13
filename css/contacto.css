@@ -1,17 +1,57 @@
 @import url('general.css');
 
-.div2{
-  margin-top: 20px;
+@import url('general.css');
+
+main {
+  background-color: rgba(0,0,0,0.4);
+  border: 1px solid #000;
+  padding: 4% 2% 2% 2%;
 }
-#enviar{
- margin-top: 10px;
+
+.col-form-label {
+  color: #000;
+  text-align: center;
 }
-.contacto1{
-  margin-top: 25px;
-  margin-left: 10px;
+
+.form-control {
+  color: #000;
 }
-main{
-  margin-top: 14rem;
+
+input, textarea {
+  background-image: url('../img/bkground.png');
+}
+
+div.titulo {
+  margin-bottom: 2rem;
+}
+
+div.recuerdame, div.link, div.titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+
+div.link a {
+  color: #000;
+  text-decoration: underline;
+}
+
+div.link a:hover {
+  color: #2e2726;
+  text-decoration: none;
+}
+
+div.recuerdame input{
+  margin-right: 0.2rem;
+}
+
+div.error {
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #cc0202;
 }
 
 .mapa {
@@ -19,21 +59,16 @@ main{
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 5%;
+  color: #000;
 }
 
 .mapa iframe {
   width: 90%;
+  border: 2px solid #000;
 }
 
-
-@media (min-width: 346px) {
-  main{
-    margin-top: 12rem;
-  }
-}
-
-@media (min-width: 992px) {
-  main {
-    margin-top: 2rem;
+@media (min-width: 574px) {
+  .col-form-label {
+    text-align: right;
   }
 }

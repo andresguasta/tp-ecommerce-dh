@@ -12,13 +12,9 @@ $categorias = $bdd->getCategorias();
 $seccion = "Modificar Producto";
 
 if($_POST){
-  if($_POST['nombre'] == ""){
-    $nombre = $_SESSION['prodcuto_nombre'];
-  } else {
-    $nombre = $_POST['nombre'];
-  }
+  $producto = new Producto($_POST['precio'], $_POST['nombre'], $_POST['descripcion'], $_POST['categoria']);
 
-  $producto = new Producto($_POST['precio'], $_POST['nombre'], $_POST['descripcion'], $_POST['categoria'], guardarImagen($_FILES['imagen'], $nombre));
+
 
   $producto->actualizar($bdd);
 
@@ -42,53 +38,91 @@ if($_POST){
 
       <main>
         <form class="" action="modificarProducto.php" method="post" enctype="multipart/form-data">
-          <div class="campos">
-            <div class="">
-              <h4>Nombre</h4>
-              <p>Actual: <?=$producto['nombre']?>
-              <label for="nombre">Nuevo: </label>
-              <input type="text" name="nombre" id="nombre" value="">
-              </p>
+          <div class="titulo row">
+            <h2>Actualizar producto</h2>
+          </div>
+          <div class="form-group row">
+            <label for="nombre" class="col-sm-12 col-form-label">Nombre: <?=$producto['nombre']?></label>
+            <label for="nombre" class="col-sm-4 col-form-label">Actualizar nombre: </label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nuevo nombre" value="<?= (isset($_POST["nombre"]))?$_POST["nombre"]:""?>">
             </div>
-            <div class="">
-              <h4>Descripcion</h4>
-              <p>Actual: <?=$producto['descripcion']?>
-              <label for="descripcion">Nuevo: </label>
-              <input type="text" name="descripcion" id="descripcion" value="">
-              </p>
+            <?php
+              if(isset($errores['nombre'])){
+                foreach($errores['nombre'] as $error) {?>
+                  <div class="error for-group row col-12">
+                    <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                  </div>
+                <?php }
+              } ?>
+          </div>
+          <div class="form-group row">
+            <label for="precio" class="col-sm-12 col-form-label">Precio: <?=$producto['precio']?></label>
+            <label for="precio" class="col-sm-4 col-form-label">Actualizar precio: </label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="precio" name="precio" placeholder="Nuevo precio" value="<?= (isset($_POST["precio"]))?$_POST["precio"]:""?>">
             </div>
-            <div class="">
-              <h4>Precio</h4>
-              <p>Actual: <?=$producto['precio']?>
-              <label for="precio">Nuevo: </label>
-              <input type="text" name="precio" id="precio" value="">
-              </p>
+            <?php
+              if(isset($errores['precio'])){
+                foreach($errores['precio'] as $error) {?>
+                  <div class="error for-group row col-12">
+                    <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                  </div>
+                <?php }
+              } ?>
+          </div>
+          <div class="form-group row">
+            <label for="descripcion" class="col-sm-12 col-form-label">Descripcion: <?=$producto['descripcion']?></label>
+            <label for="descripcion" class="col-sm-4 col-form-label">Actualizar descripcion: </label>
+            <div class="col-sm-6">
+              <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Nueva descripcion" value="<?= (isset($_POST["descripcion"]))?$_POST["descripcion"]:""?>"></textarea>
             </div>
-            <div class="">
-              <h4>Categoria</h4>
-              <p>Actual: <?=$producto['categoria']?>
-              <label for="categoria">Nuevo: </label>
-                <select id="categoria" name="categoria">
-                  <?php foreach($categorias as $categoria) { ?>
-                    <option value="<?=$categoria['nombre']?>"><?=$categoria['nombre']?></option>
-                  <?php } ?>
+            <?php
+              if(isset($errores['descripcion'])){
+                foreach($errores['descripcion'] as $error) {?>
+                  <div class="error for-group row col-12">
+                    <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                  </div>
+                <?php }
+              } ?>
+          </div>
+          <div class="form-group row">
+              <label class="col-sm-12 col-form-label" for="categoria">Categoria: <?=$producto['categoria']?></label>
+              <label class="col-sm-4 col-form-label" for="categoria">Categoria nueva:</label>
+              <div class="col-sm-6">
+                <select class="form-control" name="categoria" id="categoria">
+                   <?php foreach($categorias as $categoria) { ?>
+                      <option value="<?=$categoria['nombre']?>"><?=$categoria['nombre']?></option>
+                   <?php } ?>
                 </select>
-              </p>
-            </div>
+              </div>
           </div>
-          <div class="imagen">
-            <h4>Imagen</h4>
-            <p><img src="img/<?=$producto['imagen']?>" alt=""></p>
-            <label for="imagen">Nuevo: </label>
-            <input type="file" name="imagen" id="imagen" value="">
+          <div class="form-group row">
+              <label class="col-sm-12 col-form-label" for="imagen">Imagen:</label>
+              <div class="c-img col-sm-12">
+                <img id="imagen-producto" src="img/<?=$producto['imagen']?>" alt="">
+              </div>
+              <label class="col-sm-4 col-form-label" for="imagen">Imagen nueva:</label>
+              <div class="col-sm-6 input-imagen">
+                <input type="file" class="form-control" id="imagen" name="imagen" value="">
+              </div>
+              <?php
+              if(isset($errores["imagen"])){
+                foreach($errores["imagen"] as $error) {?>
+                  <div class="error form-group row col-12">
+                    <i class="fas fa-exclamation-triangle"></i><?= $error ?>
+                  </div>
+                <?php }
+              } ?>
           </div>
-          <div class="boton">
-            <button type="submit" name="button">Actualizar</button>
+          <div class="form-group row">
+            <div class="col-6"></div>
+            <button class="boton col-4" type="submit" name="button">Actualizar</button>
           </div>
-        </form>
       </main>
-      <?php require_once('footer.php'); ?>
-
     </div>
+
+    <?php require_once('footer.php'); ?>
+
   </body>
 </html>

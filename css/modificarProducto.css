@@ -1,47 +1,52 @@
 @import url('general.css');
 
-main form {
-  background-color: #00564d;
-  border-radius: 20px;
-  border: 2px solid #fff;
-  font-size: 1.5rem;
-  padding: 2%;
-}
-
 form {
-  overflow: hidden;
+  background-color: rgba(0,0,0,0.4);
+  border: 1px solid #000;
+  padding: 4% 2% 2% 2%;
 }
 
-div.imagen {
-  width: 49%;
-  float: left;
+.form-group, div.titulo {
+  display: flex;
+  justify-content: center;
+}
+
+div.titulo {
+  margin-bottom: 2rem;
+}
+
+.col-form-label {
   text-align: center;
+  color: #000;
 }
 
-div.imagen img {
+.form-control {
+  color: #000;
+}
+
+div.error {
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #cc0202;
+}
+
+input {
+  background-image: url('../img/bkground.png');
+}
+
+.c-img {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2%;
+}
+
+img#imagen-producto {
   width: 100%;
-}
-
-div.campos {
-  width:49%;
-  float: right;
-  text-align: left;
-}
-
-input, select, select option {
-  color: #000;
-  text-align: center;
-}
-
-input, select {
-  border-radius: 5px;
-  border: 1px solid #fff;
-  background-color: 	#969696;
-}
-
-button {
-  padding: 0.4rem 1rem;
-  color: #000;
-  border: 2px solid #fff;
-  border-radius: 5px;
+  border: 2px solid #000;
+  max-width: 200px;
+  max-height: 200px;
+  min-width: 200px;
+  min-height: 200px;
 }

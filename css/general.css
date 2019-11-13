@@ -1,137 +1,48 @@
+@import url('header.css');
+@import url('footer.css');
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  color: #fff;
 }
 
-body {
-  background-color: #282828;
+.container {
+  margin: 0 auto;
 }
 
-dl, ul, ol {
-  list-style-type: none;
-  margin-top: 0;
-  margin-bottom: 0;
-}
 
 a {
   text-decoration: none;
-  color: #fff;
 }
 
 a:hover {
   text-decoration: none;
-  color: lightgray;
 }
 
-div.row {
-  margin: 0;
+ul, ol {
+  list-style-type: none;
 }
 
-nav ul .row li{
-  font-size: 1.2rem;
-  font-weight: bold;
+.container-fluid {
+  margin: 0 auto;
 }
 
-header {
-  position: fixed;
-  right: 0;
-  top: 0;
-  left: 0;
-  z-index: 10;
+body {
+  background-image: url('../img/bkground.png');
 }
 
-.encabezado {
-  border: 1px solid #fff;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 1rem;
-  background-color: #00564d;
+.boton {
+  background-image: url('../img/bkground.png');
+  text-align: center;
+  border: 1px solid #000;
+  padding: 0.6%;
 }
 
-.encabezado button {
-  padding: 1rem 1.2rem;
+.boton a {
   color: #000;
-  background-color: transparent;
-  border: 1px solid #fff;
-  border-radius: 20%;
-  font-size: 1rem;
 }
 
-.link-nav {
-  background-color: #00897b;
-  text-align: center;
-  border: 1px solid #fff;
-  padding: 1rem;
-}
-
-.seccion {
-  background-color: #00564d;
-  border: 1px solid #fff;
-  text-align: center;
-}
-
-main {
-  margin-top: 12rem;
-}
-
-.log-out {
-  background-color: #00897b;
-  border: 1px solid #fff;
-  display: flex;
-  align-items: center;
-}
-
-.log-out button{
-  background-color: #00897b;
-  border: 0;
-  width: 100%;
-  padding: 0;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-footer {
-  margin-top: 5%;
-  background-color: #000;
-}
-
-footer nav ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-footer nav ul li {
-  padding: 1%;
-  border: 1px solid #fff;
-  width: 100%;
-}
-
-@media (min-width: 992px) {
-
-    footer {
-      border: 2px solid #fff;
-    }
-
-    footer nav ul li {
-      border: 0;
-      width: 10%;
-    }
-
-    header {
-      position: static;
-    }
-
-    .container-fluid {
-      margin: 0;
-      padding: 0;
-    }
-
-    main {
-      margin-top: 2rem;
-    }
+.boton:hover a {
+  color: #343a40;
 }

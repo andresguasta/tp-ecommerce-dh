@@ -15,7 +15,7 @@
 
   <body>
 
-  <div class="container-fluid">
+  <div class="container">
 
     <?php require_once('header.php'); ?>
 
@@ -30,10 +30,10 @@
         <div class="pregunta-y-respuesta col-12">
           <div class="row">
             <div class="pregunta col-12">
-              <h4>¿Qué es "nombre-ecommerce"? </h4>
+              <h4>¿Qué es King of the Conurbano? </h4>
             </div>
             <div class="respuesta col-12">
-              <p>"nombre-ecommerce" es un sitio web diseñado para poder ver productos y hacer compras desde la comodidad de su casa.</p>
+              <p>King of the Conurbano es un sitio web diseñado para poder ver productos y hacer compras desde la comodidad de su casa.</p>
             </div>
           </div>
         </div>
@@ -41,10 +41,10 @@
         <div class="pregunta-y-respuesta col-12">
           <div class="row">
             <div class="pregunta col-12">
-              <h4>¿Cómo comprar en "nombre-ecommerce"? </h4>
+              <h4>¿Cómo comprar en King of the Conurbano? </h4>
             </div>
             <div class="respuesta col-12">
-              <p>Para hacer una compra en "nombre-ecommerce" simplemente añada aquellos artículos que desee comprar al carrito. Luego proceda al carrito para hacer el pago.</p>
+              <p>Para hacer una compra en King of the Conurbano simplemente añada aquellos artículos que desee comprar al carrito. Luego proceda al carrito para hacer el pago.</p>
             </div>
           </div>
         </div>
@@ -52,10 +52,10 @@
         <div class="pregunta-y-respuesta col-12">
           <div class="row">
             <div class="pregunta col-12">
-              <h4>¿Qué metodos de pago maneja "nombre-ecommerce"?</h4>
+              <h4>¿Qué metodos de pago maneja King of the Conurbano?</h4>
             </div>
             <div class="respuesta col-12">
-              <p>En "nombre-ecommerce" puede comprar con tarjeta VISA, Mastercard, otros... o también puede imprimir la factura y pagarla en RapiPago o PagoFácil.</p>
+              <p>En King of the Conurbano puede comprar con tarjeta VISA, Mastercard, otros... o también puede imprimir la factura y pagarla en RapiPago o PagoFácil.</p>
             </div>
           </div>
         </div>
@@ -86,9 +86,9 @@
 
     </main>
 
-    <?php require_once('footer.php'); ?>
-
   </div>
+
+  <?php require_once('footer.php'); ?>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

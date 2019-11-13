@@ -19,17 +19,14 @@
 
   <body>
 
-  <div class="container-fluid">
+  <div class="container">
 
     <?php require_once('header.php'); ?>
 
     <main>
 
-      <div class="volver"><a href="home.php"><i class="fas fa-arrow-left"></i>Volver</a></div>
-
-      <div class="agregar">
-        <button type="button" name="button"><a href="agregarProducto.php"><i class="fas fa-plus"></i>Agregar producto</a></button>
-      </div>
+      <button class="boton" type="submit" name="button"><a href="home.php"> <i class="fas fa-arrow-left"></i>Volver</a></button>
+      <button class="boton" type="submit" name="button"><a href="agregarProducto.php"><i class="fas fa-plus"></i>AgregarProducto</a></button>
 
       <section class="productos">
         <?php foreach($productos as $producto) { ?>
@@ -42,25 +39,24 @@
               <div class="precio"><h4><?=$producto['precio'] ?></h4></div>
             </div>
             <div class="descripcion"><p><?= $producto['descripcion'] ?></p></div>
-            <div class="borrar-editar">
-              <div class="editar">
-                <button type="button" name="button"><a href="modificarProducto.php?producto_id=<?=$producto['id']?>"><i class="fas fa-tools"></i>Modificar publicacion</a></button>
-              </div>
-              <div class="borrar">
-                <button type="button" name="button"><a href="eliminarProducto.php?producto_id=<?=$producto['id']?>"><i class="fas fa-times"></i>Quitar del catalogo</a></button>
-              </div>
+            <div class="botones row">
+                <div class="col-1"></div>
+                <button type="button" class="boton col-4" name="button"><a href="modificarProducto.php?producto_id=<?=$producto['id']?>"><i class="fas fa-tools"></i>Modificar publicacion</a></button>
+                <div class="col-2"></div>
+                <button type="button" class="boton col-4"  name="button"><a href="eliminarProducto.php?producto_id=<?=$producto['id']?>"><i class="fas fa-times"></i>Quitar del catalogo</a></button>
+                <div class="col-1"></div>
             </div>
           </article>
         <?php } ?>
       </section>
 
-      <div class="volver"><a href="home.php"><i class="fas fa-arrow-left"></i>Volver</a></div>
+      <button class="boton" type="submit" name="button"><a href="home.php"> <i class="fas fa-arrow-left"></i>Volver</a></button>
 
     </main>
 
-    <?php require_once('footer.php'); ?>
-
   </div>
+
+  <?php require_once('footer.php'); ?>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

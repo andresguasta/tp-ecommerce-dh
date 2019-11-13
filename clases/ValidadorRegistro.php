@@ -64,7 +64,7 @@ class ValidadorRegistro extends Validador
     if($this->fecha_nac == ""){
       $this->agregarError("fecha_nac", "Por favor no deje este campo vacío");
     }
-    else if(strtotime($this->fecha_nac) > time()){
+    else if( date("Y",strtotime($this->fecha_nac)) > date("Y",time()) || date("Y",strtotime($this->fecha_nac)) <= date("Y",time()) - 100){
       $this->agregarError("fecha_nac", "Por favor ingrese una fecha de nacimiento válida");
     }
   }
@@ -118,7 +118,7 @@ class ValidadorRegistro extends Validador
     if($this->nombre == ""){
       $this->agregarError("nombre", "Por favor no deje este campo vacío");
     } else if( strlen($this->nombre) < 3){
-      $this->agregarError("nombre", "Creemos que la longitud del campo es demasiado corto para ser válido. Por favor, ingrese además un segundo nombre o repita algún carácter hasta completar una longitud de 3 carácteres");
+      $this->agregarError("nombre", "Creemos que la longitud del campo es demasiado corto para ser válido");
     }
   }
 
@@ -126,8 +126,8 @@ class ValidadorRegistro extends Validador
   {
     if($this->apellido == ""){
       $this->agregarError("apellido", "Por favor no deje este campo vacío");
-    } else if( strlen($this->nombre) < 2){
-      $this->agregarError("apellido", "Creemos que la longitud del campo es demasiado corto para ser válido. Por favor, ingrese además un segundo nombre o repita algún carácter hasta completar una longitud de 3 carácteres");
+    } else if( strlen($this->apellido) < 2){
+      $this->agregarError("apellido", "Creemos que la longitud del campo es demasiado corto para ser válido");
     }
   }
 

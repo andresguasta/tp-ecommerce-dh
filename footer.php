@@ -7,22 +7,26 @@
 <footer>
   <nav>
     <ul>
-
-      <li><a href="home.php">Home</a></li>
-      <li><a href="faq.php">F.A.Q.</a></li>
-      <li><a href="contacto.php">Contacto</a></li>
-
-      <?php if(estaElUsuarioLogeado()) { ?>
-
-        <li><a href="perfil.php">Perfil</a></li>
-
-      <?php } else { ?>
-
-        <li><a href="loginConCorreciones.php">Login</a></li>
-        <li><a href="registro.php">Registro</a></li>
-
-      <?php } ?>
-
+      <div class="links">
+        <li><a href="home.php">Home</a></li>
+        <li><a href="faq.php">F.A.Q.</a></li>
+        <li><a href="contacto.php">Contacto</a></li>
+        <li><a href="
+          <?php if(estaElUsuarioLogeado()) {
+            echo "perfil.php";
+          } else {
+            echo "login.php";
+          } ?>"><i class="fas fa-user-alt"></i></a>
+        </li>
+        <?php if(estaElUsuarioLogeado()) { ?>
+          <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i></a></li>
+        <?php } ?>
+      </div>
+      <div class="redes">
+        <li><i class="fab fa-twitter-square"></i><a href="https://www.twitter.com">@kingoftheconurbano</a></li>
+        <li><i class="fab fa-instagram"></i><a href="https://www.instagram.com">King of the Conurbano</a></li>
+        <li><i class="fab fa-facebook-square"></i><a href="https://www.facebook.com">King of the Conurbano</a></li>
+      </div>
     </ul>
   </nav>
 </footer>
