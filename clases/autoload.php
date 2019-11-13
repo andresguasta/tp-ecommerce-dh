@@ -11,7 +11,7 @@ require_once('BDD.php');
 require_once('Autenticador.php');
 
 
-$dsn = "mysql:dbname=KingOfTheCongo_db;host=127.0.0.1;port=3306";
+$dsn = "mysql:dbname=KingOfTheConurbano_db;host=127.0.0.1;port=3306";
 $user = "root";
 $pass = "";
 

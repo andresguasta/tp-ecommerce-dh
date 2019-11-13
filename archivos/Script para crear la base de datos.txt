@@ -1,12 +1,12 @@
-create database KingOfTheCongo_db;
-use KingOfTheCongo_db;
+create database kingoftheconurbano_db;
+use kingoftheconurbano_db;
 
 create table categorias (
     id int unsigned primary key auto_increment,
     nombre varchar(100) not null unique
 );
 
-create table productos ( 
+create table productos (
     id int unsigned primary key auto_increment,
     nombre varchar(100) not null,
     descripcion varchar(500) not null,
