@@ -16,7 +16,10 @@ if ($_POST) {
   if($validador->hayErrores()){
     $errores = $validador->getErrores();
   } else {
-    $_SESSION['email'] = $_POST['email'];
+    $usuario = $bdd->getUsuarioConEmail($_POST['email']);
+
+    $_SESSION['es_admin'] = ($usuario['es_admin'])?true:false;
+    $_SESSION['email'] = $usuario['email'];
 
     if (isset($_POST['recuerdame'])) {
         setcookie('recuerdame', $_POST['email'], time() + 60*60*24*7 );

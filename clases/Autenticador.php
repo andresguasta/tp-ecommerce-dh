@@ -15,13 +15,23 @@ class Autenticador
     return self::$instancia;
   }
 
-  public function estaElUsuarioLogeado ()
+  public function estaElUsuarioLogeado()
   {
-    if ( isset($_SESSION['email'] ) ) {
+    if(isset($_SESSION['email'])) {
       return true;
     }
 
     return false;
+  }
+
+  public function usuarioEsAdmin()
+  {
+    if (self::$instancia == null)
+    {
+      self::$instancia = new Autenticador();
+    }
+    
+    return self::$instancia->estaElUsuarioLogeado() && $_SESSION['es_admin'];
   }
 
 }

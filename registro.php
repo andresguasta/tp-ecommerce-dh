@@ -18,6 +18,7 @@ if($_POST){
     $usuario = new Usuario($_POST['nombre'], $_POST['apellido'], $_POST['email'], $_POST['password'], $_POST['fecha_nac'], $_POST['telefono'], $bdd->guardarImagen('img/usuarios/', $_POST['email'], $_FILES['avatar']));
 
     $_SESSION['email'] = $usuario->getEmail();
+    $_SESSION['es_admin'] = false;
 
     $usuario->agregar($bdd);
 
@@ -96,7 +97,7 @@ if($_POST){
         <div class="form-group row">
             <label class="col-sm-4 col-form-label" for="password">Contraseña</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="password" name="password" value="">
+                <input type="password" class="form-control" id="password" name="password" value="">
             </div>
             <?php
             if(isset($errores["password"])){
@@ -110,7 +111,7 @@ if($_POST){
         <div class="form-group row">
             <label class="col-sm-4 col-form-label" for="confirmacion">Confirme contraseña</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="confirmacion" name="confirmacion" value="">
+                <input type="password" class="form-control" id="confirmacion" name="confirmacion" value="">
             </div>
             <?php
             if(isset($errores["confirmacion"])){

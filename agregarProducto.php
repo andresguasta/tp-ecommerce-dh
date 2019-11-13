@@ -2,6 +2,10 @@
 
 require_once('clases/autoload.php');
 
+if(!Autenticador::usuarioEsAdmin()){
+  header('location:home.php');
+}
+
 $categorias = $bdd->getCategorias();
 
 if($_POST){

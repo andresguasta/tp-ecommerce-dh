@@ -2,6 +2,10 @@
 
 require_once('clases/autoload.php');
 
+if(!Autenticador::usuarioEsAdmin()){
+  header('location:home.php');
+}
+
 if($_GET){
   if(!isset($_GET['producto_id'])){
     header('location:home.php');

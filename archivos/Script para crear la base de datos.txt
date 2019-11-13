@@ -1,0 +1,48 @@
+create database KingOfTheCongo_db;
+use KingOfTheCongo_db;
+
+create table categorias (
+    id int unsigned primary key auto_increment,
+    nombre varchar(100) not null unique
+);
+
+create table productos ( 
+    id int unsigned primary key auto_increment,
+    nombre varchar(100) not null,
+    descripcion varchar(500) not null,
+    precio int unsigned not null,
+    imagen varchar(100) not null,
+    en_oferta int unsigned,
+    categoria_id int unsigned not null,
+    foreign key (categoria_id) references categorias(id)
+);
+
+create table usuarios (
+    id int unsigned primary key auto_increment,
+    nombre varchar(100) not null,
+    apellido varchar(100) not null,
+    email varchar(100) unique not null,
+    password varchar (300) not null,
+    telefono varchar(100),
+    fecha_nac varchar(100) not null,
+    avatar varchar(100),
+    es_admin int unsigned
+);
+
+create table carritos (
+    id int unsigned primary key auto_increment,
+    usuario_id int unsigned not null,
+    producto_id int unsigned not null,
+    foreign key (usuario_id) references usuarios(id),
+    foreign key (producto_id) references productos(id)
+);
+
+insert into categorias values(default, 'pantalon');
+insert into categorias values(default, 'camisa');
+
+insert into productos (nombre, descripcion, precio, imagen, en_oferta, categoria_id) values ('Pantalon azul', 'Lorem ipsum', 750, 'pan-azul.jpg', 0, 1);
+insert into productos (nombre, descripcion, precio, imagen, en_oferta, categoria_id) values ('Pantalon beige', 'Lorem ipsum', 750, 'pan-beige.jpg', 0, 1);
+insert into productos (nombre, descripcion, precio, imagen, en_oferta, categoria_id) values ('Pantalon verde', 'Lorem ipsum', 750, 'pan-verde.jpg', 0, 1);
+insert into productos (nombre, descripcion, precio, imagen, en_oferta, categoria_id) values ('Camisa 1', 'Lorem ipsum', 800, 'camisa1.jpg', 0, 2);
+insert into productos (nombre, descripcion, precio, imagen, en_oferta, categoria_id) values ('Camisa 2', 'Lorem ipsum', 1200, 'camisa2.jpg', 0, 2);
+insert into productos (nombre, descripcion, precio, imagen, en_oferta, categoria_id) values ('Camisa 3', 'Lorem ipsum', 1400, 'camisa3.jpg', 0, 2);

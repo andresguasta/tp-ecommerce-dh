@@ -32,7 +32,7 @@ div.error {
   color: #cc0202;
 }
 
-input {
+input, textarea, select {
   background-image: url('../img/bkground.png');
 }
 

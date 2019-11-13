@@ -24,6 +24,13 @@ class BDD
     }
   }
 
+  public function hacerAdminAUsuarioConEmail(string $email)
+  {
+    $query = $this->conexion->prepare('update usuarios set es_admin = 1 where email = :email;');
+    $query->bindValue(':email', $email);
+    $query->execute();
+  }
+
   public function agregarUsuario(Usuario $usuario): void
   {
     $query = $this->conexion->prepare('insert into usuarios (nombre, apellido, email, password, telefono, fecha_nac, avatar) values (:nombre, :apellido, :email, :password, :telefono, :fecha_nac, :avatar)');

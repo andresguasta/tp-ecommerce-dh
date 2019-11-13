@@ -26,8 +26,10 @@ $productos = $bdd->getProductos();
       <div class="carrito-mas-gestor">
         <?php if(Autenticador::getInstancia()->estaElUsuarioLogeado()) { ?>
           <button type="button" class="boton carrito"><a href="carro.php"><i class="fas fa-shopping-cart"></i>Ver Carro</a></button>
-        <?php } ?>
-        <button type="button" class="boton gestor-productos"><a href="gestor.php"><i class="fas fa-tools"></i>Gestor de productos</a></button>
+          <?php if(Autenticador::getInstancia()->usuarioEsAdmin()) { ?>
+            <button type="button" class="boton gestor-productos"><a href="gestor.php"><i class="fas fa-tools"></i>Gestor de productos</a></button>
+          <?php }
+      } ?>
       </div>
 
       <section class="productos">
